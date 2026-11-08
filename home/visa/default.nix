@@ -109,7 +109,17 @@
         "Switch to Next Keyboard Layout" = "Alt+Shift";
       };
     };
-    configFile = { };
+    # keyboard layouts for Plasma (US + Hebrew, Alt+Shift toggle) - important
+    configFile = {
+      kxkbrc.Layout = {
+        Use.value = true;
+        LayoutList.value = "us,il";
+        VariantList.value = ",";
+        Options.value = "grp:alt_shift_toggle";
+        ResetOldOptions.value = true;
+        SwitchMode.value = "Global";
+      };
+    };
   };
 
   # apps (nixpkgs/native). Flatpak is enabled system-wide but no Flatpak apps declared here.

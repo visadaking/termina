@@ -57,7 +57,7 @@ nix search github:NixOS/nixpkgs/nixos-unstable <name>
 | org.prismlauncher.PrismLauncher | `prismlauncher` ✅ | unstable often newer |
 | com.moonlight_stream.Moonlight | `moonlight-qt` (commented) | stable/unstable |
 | org.jellyfin.JellyfinDesktop | `jellyfin-media-player` (commented) | stable |
-| org.kde.krita | `krita` (commented) | stable |
+| org.kde.krita | `krita` ✅ | stable |
 | com.spotify.Client | `spotify` (**unfree**) ✅ | unstable often newer |
 | md.obsidian.Obsidian | `obsidian` (**unfree**, electron caveats) | unstable |
 | io.ente.auth | `ente-auth` (**verify attr**) | unstable likely |
