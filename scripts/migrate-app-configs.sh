@@ -77,6 +77,19 @@ copy_dir "config/sunshine" "$HOME/.config/sunshine"
 say "LocalSend (flatpak)"
 copy_dir "var-app/org.localsend.localsend_app" "$HOME/.var/app/org.localsend.localsend_app"
 
+# --- Vesktop / Vencord (SENSITIVE: may contain tokens/session-related plugin data) ---
+say "Vesktop/Vencord (SENSITIVE - may contain tokens) - NEVER COMMIT"
+copy_dir "var-app/dev.vencord.Vesktop" "$HOME/.var/app/dev.vencord.Vesktop/config/vesktop"
+copy_dir "config/vesktop" "$HOME/.config/vesktop"
+# explicit backup file (e.g. from Downloads)
+for f in "$HOME"/Downloads/vencord-settings-backup-*.json "$HOME"/Downloads/vesktop-settings-backup-*.json; do
+  [ -e "$f" ] || continue
+  run mkdir -p "$DEST/vesktop-backups"
+  run cp -a "$f" "$DEST/vesktop-backups/"
+done
+[ "$DRY" = "0" ] && [ -d "$DEST/var-app/dev.vencord.Vesktop" ] && chmod -R go-rwx "$DEST/var-app/dev.vencord.Vesktop" 2>/dev/null || true
+[ "$DRY" = "0" ] && [ -d "$DEST/vesktop-backups" ] && chmod -R go-rwx "$DEST/vesktop-backups" 2>/dev/null || true
+
 # --- Safe app configs (review contents) ---
 say "safe app configs (review; do not include tokens)"
 for d in fastfetch hyfetch ghostty kitty nvim vim git opencode; do
