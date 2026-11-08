@@ -168,9 +168,10 @@
 
     # gaming/helpers (Steam enabled system-wide); /games data untouched
     prismlauncher
+    itch             # verify attr on search.nixos.org (26.11/unstable)
     # moonlight-qt
     # bottles
-    # (itch.io client is not natively packaged the same way; Sober/Roblox - check availability)
+    # (Sober/Roblox - check availability)
 
     # VPN (Proton VPN) - verify attr on search.nixos.org (26.11/unstable); common attrs: protonvpn-gui, proton-vpn-gtk-app, proton-vpn-cli
     proton-vpn
