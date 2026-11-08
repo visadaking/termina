@@ -172,11 +172,14 @@
     # bottles
     # (itch.io client is not natively packaged the same way; Sober/Roblox - check availability)
 
-    # VPN (Proton VPN was a flatpak) - verify attr on 26.11/unstable
-    # protonvpn-gui
-    # protonvpn-cli
+    # VPN (Proton VPN) - verify attr on search.nixos.org (26.11/unstable); common attrs: protonvpn-gui, proton-vpn-gtk-app, proton-vpn-cli
+    proton-vpn
 
-    # AppImages (you have: lichii, redact.appimage, music_presence.appimage in ~)
+    # native replacements/helpers for former AppImages/niche (verify attrs on 26.11/unstable)
+    music-presence   # was music_presence.appimage (nixpkgs attr is usually music-presence)
+    redact           # was redact.appimage (verify attr/licensing)
+    openlogi         # niche; verify attr exists (pkgs.unstable.openlogi if needed)
+    # AppImages (you still have: lichii in ~/Downloads; others can stay as files)
     appimage-run
 
     # fonts/themes helpers (add your Tokyo Night/cursor/font packages here as needed)
