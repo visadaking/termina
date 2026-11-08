@@ -1,0 +1,20 @@
+# secrets - never commit
+/secrets/
+/*.age
+/*.key
+*.secret
+*.token
+.env
+.env.*
+
+# local migration outputs / backups
+/scripts/migration-output/
+/scripts/*.local.sh
+/result
+/result-*
+
+# OS/editor noise
+.DS_Store
+.direnv
+*.swp
+*~
