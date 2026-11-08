@@ -48,9 +48,10 @@
   };
   security.rtkit.enable = true;
 
-  # bluetooth
+  # bluetooth (incl. USB adapters e.g. TP-Link UB600 / RTL8761BU)
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+  boot.kernelModules = [ "btusb" "sr_mod" "cdrom" ]; # btusb for USB BT; sr_mod/cdrom for USB optical (e.g. ASUS ZenDrive U8M SDRW-08U8M-U)
 
   # no printer
   services.printing.enable = false;
@@ -78,8 +79,9 @@
   # allow unfree where needed (Steam etc.) - labeled in intent
   nixpkgs.config.allowUnfree = true;
 
-  # firmware
+  # firmware (enableAllFirmware helps devices like TP-Link UB600/RTL8761BU; unfree already allowed)
   hardware.enableRedistributableFirmware = true;
+  hardware.enableAllFirmware = true;
 
   # no openSUSE hacks/repos/workarounds carried over
 }
