@@ -154,6 +154,7 @@
     podman
     distrobox
     gh
+    github-desktop
     vscodium
     filezilla
     # remmina
