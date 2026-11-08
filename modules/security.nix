@@ -1,6 +1,27 @@
 { ... }:
 {
-  networking.firewall.enable = true;
+  networking.firewall = {
+    enable = true;
+    # app/streaming/sync ports (from current system). adjust if you change app settings.
+    allowedTCPPorts = [
+      1716              # KDE Connect
+      22000             # Syncthing sync
+      53317             # LocalSend
+      22446             # qBittorrent listen (Session\Port)
+      8580              # qBittorrent WebUI (LAN; disable if not needed)
+      47984 47989 47990 48010  # Sunshine (web UI / HTTPS / RTSP / etc.)
+    ];
+    allowedTCPPortRanges = [ { from = 1714; to = 1764; } ]; # KDE Connect range
+    allowedUDPPorts = [
+      1716              # KDE Connect
+      21027             # Syncthing discovery
+      22000             # Syncthing QUIC/sync
+      53317             # LocalSend
+      22446             # qBittorrent listen
+      47998 47999 48000 48002 48010  # Sunshine
+    ];
+    allowedUDPPortRanges = [ { from = 1714; to = 1764; } ]; # KDE Connect range
+  };
 
   services.fail2ban.enable = true;
 

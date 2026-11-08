@@ -13,8 +13,10 @@
     # productivity/dev
     vscodium keepassxc gh lazygit opencode  # verify attr on 26.11/unstable (pkgs.unstable.opencode if needed)
 
-    # media
+    # media / streaming / sharing
     vlc mpv obs-studio nuclear
+    qbittorrent
+    sunshine    # host (Moonlight client is moonlight-qt in home/visa; verify sunshine attr on 26.11/unstable)
   ];
 
   # filesystems

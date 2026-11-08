@@ -22,6 +22,9 @@
     maid-runner.url = "github:Maidware-Project/Maid-Runner";
     maidshare.url = "github:Maidware-Project/Maidshare";
     maid-suite.url = "github:Maidware-Project/Maid-Suite";
+
+    # personal project (downloadable from GitHub)
+    ihaveacreditcard.url = "github:visadaking/ihaveacreditcard";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, plasma-manager, ... }:

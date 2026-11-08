@@ -64,10 +64,12 @@
   # KDE Plasma via plasma-manager: keybinds + theme basics only (start small).
   # declarative can conflict with GUI changes - keep scope minimal.
   # keybinds imported from current kglobalshortcutsrc (verify after first login).
+  # wallpaper deployed via home.file below (Ergo Proxy; file added from /home/visa/trash/wallpapers/).
   programs.plasma = {
     enable = true;
     workspace = {
       clickItemTo = "select";
+      wallpaper = "${config.home.homeDirectory}/Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png";
       # Tokyo Night - set to the exact installed names on your NixOS system:
       # lookAndFeel = "org.kde.breezedark.desktop";
       # cursor = { theme = "YOUR_TOKYO_NIGHT_CURSOR"; size = 24; };
@@ -169,9 +171,12 @@
     # gaming/helpers (Steam enabled system-wide); /games data untouched
     prismlauncher
     itch             # verify attr on search.nixos.org (26.11/unstable)
-    # moonlight-qt
+    moonlight-qt     # Moonlight client (pairs with Sunshine host; ports opened in modules/security.nix)
     # bottles
     # (Sober/Roblox - check availability)
+
+    # personal (downloadable Nix flake from GitHub: visadaking/ihaveacreditcard)
+    inputs.ihaveacreditcard.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # VPN (Proton VPN) - verify attr on search.nixos.org (26.11/unstable); common attrs: protonvpn-gui, proton-vpn-gtk-app, proton-vpn-cli
     proton-vpn
@@ -187,6 +192,10 @@
     # tokyonight-gtk-theme
     # (cursor/font packages vary; search: nix search nixpkgs tokyo night)
   ];
+
+  # wallpaper (Ergo Proxy) - managed file
+  home.file."Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png".source =
+    ../../assets/wallpapers/ergo-proxy-kw9yj7-1920x1080.png;
 
   # keep secrets out of repo; browser passwords/keys/cookies/sessions excluded by migration script
   home.sessionVariables = {
