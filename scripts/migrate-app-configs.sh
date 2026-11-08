@@ -81,7 +81,6 @@ copy_dir "var-app/org.localsend.localsend_app" "$HOME/.var/app/org.localsend.loc
 say "Vesktop/Vencord (SENSITIVE - may contain tokens) - NEVER COMMIT"
 copy_dir "var-app/dev.vencord.Vesktop" "$HOME/.var/app/dev.vencord.Vesktop/config/vesktop"
 copy_dir "config/vesktop" "$HOME/.config/vesktop"
-# explicit backup file (e.g. from Downloads)
 for f in "$HOME"/Downloads/vencord-settings-backup-*.json "$HOME"/Downloads/vesktop-settings-backup-*.json; do
   [ -e "$f" ] || continue
   run mkdir -p "$DEST/vesktop-backups"
@@ -89,6 +88,34 @@ for f in "$HOME"/Downloads/vencord-settings-backup-*.json "$HOME"/Downloads/vesk
 done
 [ "$DRY" = "0" ] && [ -d "$DEST/var-app/dev.vencord.Vesktop" ] && chmod -R go-rwx "$DEST/var-app/dev.vencord.Vesktop" 2>/dev/null || true
 [ "$DRY" = "0" ] && [ -d "$DEST/vesktop-backups" ] && chmod -R go-rwx "$DEST/vesktop-backups" 2>/dev/null || true
+
+# --- OBS / MPV / VLC (native configs) ---
+say "media app configs (OBS/MPV/VLC)"
+copy_dir "config/obs-studio" "$HOME/.config/obs-studio"
+copy_dir "config/mpv" "$HOME/.config/mpv"
+copy_dir "config/vlc" "$HOME/.config/vlc"
+
+# --- Gaming launcher configs (metadata only; /games data never touched) ---
+say "launcher configs (Heroic/Prism/Bottles - metadata; /games untouched)"
+copy_dir "config/heroic" "$HOME/.config/heroic"
+copy_dir "data/PrismLauncher" "$HOME/.local/share/PrismLauncher"
+copy_dir "var-app/com.heroicgameslauncher.hgl/config" "$HOME/.var/app/com.heroicgameslauncher.hgl/config"
+copy_dir "var-app/com.heroicgameslauncher.hgl/data" "$HOME/.var/app/com.heroicgameslauncher.hgl/data"
+copy_dir "var-app/org.prismlauncher.PrismLauncher/config" "$HOME/.var/app/org.prismlauncher.PrismLauncher/config"
+copy_dir "var-app/org.prismlauncher.PrismLauncher/data" "$HOME/.var/app/org.prismlauncher.PrismLauncher/data"
+copy_dir "var-app/com.usebottles.bottles" "$HOME/.var/app/com.usebottles.bottles"
+
+# --- Flatpak -> native app data (SENSITIVE: may contain sessions/auth/logins) - review before restoring ---
+warn "Staging flatpak app data for apps moved to native (may contain sessions/logins/tokens). SENSITIVE - NEVER COMMIT."
+for app in com.obsproject.Studio md.obsidian.Obsidian com.spotify.Client org.telegram.desktop org.signal.Signal org.localsend.localsend_app; do
+  [ -d "$HOME/.var/app/$app/config" ] && copy_dir "var-app/$app/config" "$HOME/.var/app/$app/config"
+  [ -d "$HOME/.var/app/$app/data" ] && copy_dir "var-app/$app/data" "$HOME/.var/app/$app/data"
+done
+
+# --- GPG / SSH (VERY SENSITIVE) ---
+warn "GPG/SSH are VERY SENSITIVE (private keys). Staging for migration - NEVER COMMIT."
+[ -d "$HOME/.gnupg" ] && copy_dir "gnupg" "$HOME/.gnupg" && [ "$DRY" = "0" ] && chmod -R go-rwx "$DEST/gnupg" 2>/dev/null || true
+[ -d "$HOME/.ssh" ] && copy_dir "ssh" "$HOME/.ssh" && [ "$DRY" = "0" ] && chmod -R go-rwx "$DEST/ssh" 2>/dev/null || true
 
 # --- Safe app configs (review contents) ---
 say "safe app configs (review; do not include tokens)"
