@@ -20,8 +20,8 @@
     heroic
     mangohud
     gamescope
-    # Wine staging (64-bit + 32-bit/WoW64). 32-bit graphics enabled in common.nix.
-    wineWowPackages.staging
+    # Wine staging (64-bit + 32-bit/WoW64) from unstable. 32-bit graphics enabled in common.nix.
+    unstable.wineWowPackages.staging
     winetricks
   ];
 }
