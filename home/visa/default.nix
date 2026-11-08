@@ -181,6 +181,12 @@
     # VPN (Proton VPN) - verify attr on search.nixos.org (26.11/unstable); common attrs: protonvpn-gui, proton-vpn-gtk-app, proton-vpn-cli
     proton-vpn
 
+    # creative (Affinity via affinity-nix flake)
+    inputs.affinity-nix.packages.${pkgs.stdenv.hostPlatform.system}.affinity-v3
+    inputs.affinity-nix.packages.${pkgs.stdenv.hostPlatform.system}.affinity-photo
+    inputs.affinity-nix.packages.${pkgs.stdenv.hostPlatform.system}.affinity-designer
+    inputs.affinity-nix.packages.${pkgs.stdenv.hostPlatform.system}.affinity-publisher
+
     # native replacements/helpers for former AppImages/niche (verify attrs on 26.11/unstable)
     music-presence   # was music_presence.appimage (nixpkgs attr is usually music-presence)
     redact           # was redact.appimage (verify attr/licensing)

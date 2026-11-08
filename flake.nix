@@ -25,6 +25,9 @@
 
     # personal project (downloadable from GitHub)
     ihaveacreditcard.url = "github:visadaking/ihaveacreditcard";
+
+    # Affinity apps via affinity-nix (downloadable flake)
+    affinity-nix.url = "github:mrshmllow/affinity-nix";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, plasma-manager, ... }:
