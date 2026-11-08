@@ -62,7 +62,7 @@ nix search github:NixOS/nixpkgs/nixos-unstable <name>
 | md.obsidian.Obsidian | `obsidian` (**unfree**, electron caveats) | unstable |
 | io.ente.auth | `ente-auth` (**verify attr**) | unstable likely |
 | us.zoom.Zoom | `zoom-us` (**unfree**) | unstable |
-| com.protonvpn.www | **not needed (mostly)**. Native options exist (`protonvpn-gui`/`protonvpn-cli`, **verify**) | skip unless needed |
+| com.protonvpn.www | `proton-vpn` ✅ added (requested). **Verify exact attr** on 26.11/unstable (common names: `protonvpn-gui`, `proton-vpn-gtk-app`, `proton-vpn-cli`/namespace) | native (verify) |
 | info.mumble.Mumble | `mumble` | stable |
 | org.nicotine_plus.Nicotine | `nicotine-plus` | stable |
 | com.rtosta.zapzap | `zapzap` (**verify attr**) | unstable likely |
@@ -70,7 +70,7 @@ nix search github:NixOS/nixpkgs/nixos-unstable <name>
 | com.anydesk.Anydesk | `anydesk` (**unfree/proprietary**, availability varies) | unstable |
 | fm.reaper.Reaper | **proprietary DAW**; no native nixpkgs equivalent - use AppImage/Flatpak/manual if needed | — |
 | io.github.block.Goose | verify `goose`/upstream packaging; may be unstable/manual | unstable/manual |
-| io.itch.itch | itch client not packaged like flatpak; use web/other method | — |
+| io.itch.itch | `itch` ✅ added (requested). **Verify exact attr** on 26.11/unstable | native (verify) |
 | org.vinegarhq.Sober | **Roblox (Sober)** - check availability/legal/packaging; often manual/flatpak | — |
 | org.azahar_emu.Azahar | `azahar` (**verify attr**) | unstable likely |
 | org.fooyin.fooyin | `fooyin` ✅ | stable/unstable (verify attr) |
