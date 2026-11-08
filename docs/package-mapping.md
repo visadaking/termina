@@ -56,7 +56,7 @@ nix search github:NixOS/nixpkgs/nixos-unstable <name>
 | com.moonlight_stream.Moonlight | `moonlight-qt` (commented) | stable/unstable |
 | org.jellyfin.JellyfinDesktop | `jellyfin-media-player` (commented) | stable |
 | org.kde.krita | `krita` (commented) | stable |
-| com.spotify.Client | `spotify` (**unfree**) | unstable |
+| com.spotify.Client | `spotify` (**unfree**) ✅ | unstable often newer |
 | md.obsidian.Obsidian | `obsidian` (**unfree**, electron caveats) | unstable |
 | io.ente.auth | `ente-auth` (**verify attr**) | unstable likely |
 | us.zoom.Zoom | `zoom-us` (**unfree**) | unstable |
@@ -71,7 +71,8 @@ nix search github:NixOS/nixpkgs/nixos-unstable <name>
 | io.itch.itch | itch client not packaged like flatpak; use web/other method | — |
 | org.vinegarhq.Sober | **Roblox (Sober)** - check availability/legal/packaging; often manual/flatpak | — |
 | org.azahar_emu.Azahar | `azahar` (**verify attr**) | unstable likely |
-| hu.irl.cameractrls, io.gitlab.theevilskeleton.Upscaler, org.openlogi.OpenLogi, org.desktop_plus.desktop-plus, xyz.xclicker.xclicker, org.fooyin.fooyin, org.freac.freac, io.github.peazip.PeaZip | niche; search `nixpkgs` case-by-case (`fooyin`, `freac`, `peazip` may exist) | varies |
+| org.fooyin.fooyin | `fooyin` ✅ | stable/unstable (verify attr) |
+| hu.irl.cameractrls, io.gitlab.theevilskeleton.Upscaler, org.openlogi.OpenLogi, org.desktop_plus.desktop-plus, xyz.xclicker.xclicker, org.freac.freac, io.github.peazip.PeaZip | niche; search `nixpkgs` case-by-case (`freac`, `peazip` may exist) | varies |
 
 ## AppImages (current `~`)
 | AppImage | action on NixOS |

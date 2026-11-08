@@ -11,7 +11,7 @@
     ntfs3g exfatprogs # NTFS/exFAT support
 
     # productivity/dev
-    vscodium keepassxc gh lazygit
+    vscodium keepassxc gh lazygit opencode  # verify attr on 26.11/unstable (pkgs.unstable.opencode if needed)
 
     # media
     vlc mpv obs-studio nuclear
