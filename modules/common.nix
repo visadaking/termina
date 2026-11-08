@@ -29,12 +29,22 @@
   # networking
   networking.networkmanager.enable = true;
 
-  # audio (PipeWire)
+  # audio (PipeWire) - high-quality defaults (Fiio K11 USB DAC etc.)
+  # adjust allowed-rates/quantum if a device misbehaves; check with: pw-metadata -n settings 0
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    extraConfig.pipewire."92-hifi-audio" = {
+      "context.properties" = {
+        "default.clock.rate" = 48000;
+        "default.clock.allowed-rates" = [ 44100 48000 88200 96000 176400 192000 ];
+        "default.clock.quantum" = 1024;
+        "default.clock.min-quantum" = 32;
+        "default.clock.max-quantum" = 2048;
+      };
+    };
   };
   security.rtkit.enable = true;
 
