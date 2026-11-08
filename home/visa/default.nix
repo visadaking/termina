@@ -148,6 +148,7 @@
     obsidian              # unfree/electron caveats
     ente-auth             # verify attr (ente-auth / pkgs.unstable.ente-auth)
     peazip                # verify attr
+    # freac               # verify attr (org.freac.freac) - uncomment if needed
 
     # dev/tools
     vim
