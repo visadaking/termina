@@ -4,6 +4,7 @@
     ./hardware.nix
     ../../modules/common.nix
     ../../modules/nix.nix
+    ../../modules/nix-ld.nix
     ../../modules/security.nix
     ../../modules/services.nix
     ../../modules/packages.nix
