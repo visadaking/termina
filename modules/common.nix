@@ -1,8 +1,18 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   # flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.gc = { automatic = true; dates = "weekly"; options = "--delete-older-than 14d"; };
+
+  # nixpkgs 26.11 base + unstable available as pkgs.unstable.<name>
+  nixpkgs.overlays = [
+    (final: prev: {
+      unstable = import inputs.nixpkgs-unstable {
+        system = prev.stdenv.hostPlatform.system;
+        config.allowUnfree = true;
+      };
+    })
+  ];
 
   # boot (UEFI, systemd-boot) - no dualboot
   boot.loader.systemd-boot.enable = true;

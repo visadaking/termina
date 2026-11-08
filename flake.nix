@@ -2,10 +2,12 @@
   description = "termina - personal NixOS flake (multi-host, flakes + home-manager, KDE)";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # NixOS 26.11 "Zokor" (base) + unstable for select packages (pkgs.unstable.<name>)
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-26.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

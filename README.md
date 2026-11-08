@@ -6,7 +6,7 @@ personal NixOS flake (multi-host, reusable). **private repo - no secrets committ
 - boot: systemd-boot (UEFI)
 - fs: Btrfs subvols (like current openSUSE layout), **no LUKS**; `/games` ext4 mounted (`nofail`) - **Steam/library data is never touched**
 - desktop: KDE Plasma (Wayland-capable), plasma-manager for **keybinds + theme basics** (Tokyo Night/cursor related) - start small
-- config style: flakes + Home Manager (as NixOS module)
+- config style: flakes + Home Manager (as NixOS module), **nixpkgs NixOS 26.11 "Zokor"** (base) + **nixpkgs-unstable** available as `pkgs.unstable.<pkg>`
 - apps: nixpkgs (native). Flatpak enabled, but no Flatpak app installs by default
 - Maidware tools: BT/Runner/Maidshare/Suite via flakes (auto-update on rebuild with `--refresh`)
 - secrets: **kept out of repo** (sops-nix/agenix can be added later; do not commit tokens/keys/passwords)
