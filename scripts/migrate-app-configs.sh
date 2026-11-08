@@ -20,14 +20,15 @@ set -euo pipefail
 DRY=0
 SYNCTHING_ONLY=0
 DEST="${HOME}/termina-migration-staging"
-for a in "${@:-}"; do
+for a in "$@"; do
   case "$a" in
     --dry-run) DRY=1 ;;
     --syncthing-only) SYNCTHING_ONLY=1 ;;
     -h|--help) sed -n '1,30p' "$0"; exit 0 ;;
-    *) DEST="$a" ;;
+    *) [ -n "$a" ] && DEST="$a" ;;
   esac
 done
+[ -n "$DEST" ] || { echo "ERROR: destination is empty" >&2; exit 1; }
 
 say() { printf '==> %s\n' "$*"; }
 warn() { printf '!!  %s\n' "$*"; }
@@ -119,7 +120,7 @@ warn "GPG/SSH are VERY SENSITIVE (private keys). Staging for migration - NEVER C
 
 # --- Safe app configs (review contents) ---
 say "safe app configs (review; do not include tokens)"
-for d in fastfetch hyfetch ghostty kitty nvim vim git opencode; do
+for d in fastfetch hyfetch ghostty kitty nvim vim git opencode obs-studio mpv vlc; do
   [ -e "$HOME/.config/$d" ] && run mkdir -p "$DEST/config" && run rsync -a "$HOME/.config/$d" "$DEST/config/" 2>/dev/null || true
 done
 [ -f "$HOME/.config/hyfetch.json" ] && run mkdir -p "$DEST/config" && run cp -a "$HOME/.config/hyfetch.json" "$DEST/config/" || true
@@ -136,6 +137,7 @@ if [ -f "$HOME/trash/wallpapers/ergo-proxy-kw9yj7-1920x1080.png" ]; then
   run cp -a "$HOME/trash/wallpapers/ergo-proxy-kw9yj7-1920x1080.png" "$DEST/wallpapers/"
 fi
 
-say "done. REVIEW $DEST carefully. SENSITIVE contents present (syncthing keys, sunshine/qbit creds)."
+say "done. REVIEW $DEST carefully. SENSITIVE contents present (syncthing/gpg/ssh keys, sunshine/qbit/vesktop creds, app sessions)."
 warn "NEVER COMMIT $DEST. Transfer securely. Restore Syncthing identity on new NixOS to keep phone paired."
 say "Browser profiles (passwords/keys/cookies/sessions excluded): run scripts/migrate-browser-profiles.sh separately."
+say "Not staged here (handle manually if needed): /etc/NetworkManager/system-connections (sudo; may contain WiFi PSKs), libvirt VM images/XML (/var/lib/libvirt, /etc/libvirt), Steam config outside /games, Bluetooth pairings, printer config (you have printing disabled), /games contents (NEVER touch)."
