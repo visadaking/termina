@@ -16,6 +16,9 @@
       t-switch = "sudo nixos-rebuild switch --flake $HOME/Documents/GitHub/termina#termina --refresh";
       t-clean = "sudo nix-collect-garbage --delete-older-than 30d";
       t-update = "nix flake update --flake $HOME/Documents/GitHub/termina";
+      # strict DNS kept; temporary captive-portal workaround (runtime-only, no rebuild/degrade). usage: t-dns-relax wlan0
+      t-dns-relax = "f(){ i=\${1:?usage: t-dns-relax <iface> (nmcli device status)}; sudo resolvectl dns \"$i\" '' && sudo resolvectl dnsovertls \"$i\" no && sudo resolvectl dnssec \"$i\" no && echo relaxed: $i; }; f";
+      t-dns-revert = "f(){ i=\${1:?usage: t-dns-revert <iface>}; sudo resolvectl revert \"$i\" && echo reverted: $i; }; f";
     };
   };
   programs.bash = {
@@ -108,22 +111,40 @@
   };
 
   # apps (nixpkgs/native). Flatpak is enabled system-wide but no Flatpak apps declared here.
+  # verify attr names on nixpkgs 26.11 / unstable: nix search nixpkgs <name> (use pkgs.unstable.<pkg> if needed)
   home.packages = with pkgs; [
     # browsers
     firefox
     vivaldi
+    # chromium # you have chromium RPM; add if wanted (or pkgs.unstable.chromium)
 
-    # comms
+    # comms (from your flatpaks/RPMs - add what you use; some are unfree)
     vesktop
     element-desktop
-    # simplex-chat-desktop may be named simplex-desktop/simplexchat depending on nixpkgs; adjust if needed:
-    # simplex-chat-desktop
+    signal-desktop
+    telegram-desktop
+    # mumble
+    # zapzap                # WhatsApp client (check attr: zapzap)
+    # zoom-us               # unfree
+    # simplex-chat-desktop  # attr name varies (simplex-chat-desktop/simplexchat/simplex-chat); check nixpkgs
+    # wasistlos / whatsapp-for-linux (alternatives)
 
     # media
     obs-studio
     vlc
     mpv
     nuclear
+    # krita
+    # audacity
+    # jellyfin-media-player # org.jellyfin.JellyfinDesktop
+    # nicotine-plus
+
+    # files/sync/productivity
+    keepassxc
+    localsend
+    # obsidian              # unfree/electron caveats
+    # ente-auth             # verify attr (ente-auth)
+    # peazip
 
     # dev/tools
     vim
@@ -132,15 +153,28 @@
     distrobox
     gh
     vscodium
-    keepassxc
+    filezilla
+    # remmina
+    # anydesk               # unfree/proprietary; availability varies
 
     # terminal/tools + configs to migrate
     ghostty
     fastfetch
+    hyfetch
     kitty
 
-    # gaming helpers (Steam enabled system-wide); /games data untouched
-    # (protonplus/heroic/mangohud/gamescope installed system-wide in modules/gaming.nix)
+    # gaming/helpers (Steam enabled system-wide); /games data untouched
+    prismlauncher
+    # moonlight-qt
+    # bottles
+    # (itch.io client is not natively packaged the same way; Sober/Roblox - check availability)
+
+    # VPN (Proton VPN was a flatpak) - verify attr on 26.11/unstable
+    # protonvpn-gui
+    # protonvpn-cli
+
+    # AppImages (you have: lichii, redact.appimage, music_presence.appimage in ~)
+    appimage-run
 
     # fonts/themes helpers (add your Tokyo Night/cursor/font packages here as needed)
     # tokyonight-gtk-theme

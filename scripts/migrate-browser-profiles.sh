@@ -55,13 +55,17 @@ copy_profile vivaldi "$HOME/.config/vivaldi" "${VIV_EXCLUDES[@]}"
 
 # safe app configs to move over (review contents; do not include secrets/tokens)
 say "copy safe configs (review before using)"
-for d in fastfetch ghostty kitty nvim vim git opencode; do
+for d in fastfetch ghostty kitty nvim vim git opencode hyfetch; do
   if [ -e "$HOME/.config/$d" ]; then
     run mkdir -p "$DEST/config"
     run rsync -a --info=NAME "$HOME/.config/$d" "$DEST/config/" 2>/dev/null || true
   fi
 done
-# single files
+# single config files (e.g. hyfetch.json lives directly in ~/.config)
+for f in "$HOME/.config/hyfetch.json"; do
+  [ -e "$f" ] && run mkdir -p "$DEST/config" && run cp -a "$f" "$DEST/config/" || true
+done
+# home dotfiles
 for f in "$HOME/.zshrc" "$HOME/.vimrc" "$HOME/.gitconfig"; do
   [ -e "$f" ] && run mkdir -p "$DEST/home" && run cp -a "$f" "$DEST/home/" || true
 done
