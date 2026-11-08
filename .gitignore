@@ -1,6 +1,7 @@
 # secrets - never commit
 /secrets/
-/*.age
+secrets.nix
+*.age
 /*.key
 *.secret
 *.token

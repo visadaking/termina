@@ -173,6 +173,7 @@
     itch             # verify attr on search.nixos.org (26.11/unstable)
     moonlight-qt     # Moonlight client (pairs with Sunshine host; ports opened in modules/security.nix)
     bottles          # verify attr/unfree
+    amethyst-mod-manager  # verify attr on 26.11/unstable (pkgs.unstable.amethyst-mod-manager)
     # Lutris skipped (Heroic only). Sober/Roblox - no reliable main nixpkgs package; use flatpak/appimage if needed.
 
     # personal (downloadable Nix flake from GitHub: visadaking/ihaveacreditcard)
