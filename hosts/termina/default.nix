@@ -3,6 +3,10 @@
   imports = [
     ./hardware.nix
     ../../modules/common.nix
+    ../../modules/nix.nix
+    ../../modules/security.nix
+    ../../modules/services.nix
+    ../../modules/packages.nix
     ../../modules/desktop-kde.nix
     ../../modules/gaming.nix
     ../../modules/virtualisation.nix

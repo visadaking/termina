@@ -1,8 +1,6 @@
 { pkgs, inputs, ... }:
 {
-  # flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.gc = { automatic = true; dates = "weekly"; options = "--delete-older-than 14d"; };
+  # nix settings/gc/cachix/autoUpgrade -> modules/nix.nix
 
   # nixpkgs 26.11 base + unstable available as pkgs.unstable.<name>
   nixpkgs.overlays = [
@@ -63,11 +61,6 @@
 
   # allow unfree where needed (Steam etc.) - labeled in intent
   nixpkgs.config.allowUnfree = true;
-
-  environment.systemPackages = with pkgs; [
-    git curl wget vim neovim
-    pciutils usbutils btop fastfetch
-  ];
 
   # firmware
   hardware.enableRedistributableFirmware = true;

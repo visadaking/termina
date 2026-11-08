@@ -8,6 +8,13 @@
   };
   programs.gamemode.enable = true;
 
+  # kernel support
+  boot.kernelModules = [ "ntsync" ];
+
+  # xbox controller support (xone). PlayStation controllers (DualSense/DualShock)
+  # work via the kernel hid-playstation driver/SDL/Steam Input over USB/Bluetooth.
+  hardware.xone.enable = true;
+
   environment.systemPackages = with pkgs; [
     protonplus
     heroic

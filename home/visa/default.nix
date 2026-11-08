@@ -6,9 +6,22 @@
 
   programs.home-manager.enable = true;
 
-  # shells
-  programs.zsh.enable = true;
-  programs.bash.enable = true;
+  # shells + termina aliases (adjust path if you clone elsewhere)
+  programs.zsh = {
+    enable = true;
+    shellAliases = {
+      t-edit = "nvim $HOME/Documents/GitHub/termina";
+      t-check = "nix flake check $HOME/Documents/GitHub/termina";
+      t-dry = "sudo nixos-rebuild dry-build --flake $HOME/Documents/GitHub/termina#termina";
+      t-switch = "sudo nixos-rebuild switch --flake $HOME/Documents/GitHub/termina#termina --refresh";
+      t-clean = "sudo nix-collect-garbage --delete-older-than 30d";
+      t-update = "nix flake update --flake $HOME/Documents/GitHub/termina";
+    };
+  };
+  programs.bash = {
+    enable = true;
+    shellAliases = config.programs.zsh.shellAliases;
+  };
 
   # dev: vim + LazyVim (neovim + LazyVim starter handled by user config; we provide tools)
   programs.neovim = {
@@ -110,6 +123,7 @@
     obs-studio
     vlc
     mpv
+    nuclear
 
     # dev/tools
     vim
