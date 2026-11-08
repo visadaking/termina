@@ -125,11 +125,10 @@
     element-desktop
     signal-desktop
     telegram-desktop
-    # mumble
-    # zapzap                # WhatsApp client (check attr: zapzap)
-    # zoom-us               # unfree
-    # simplex-chat-desktop  # attr name varies (simplex-chat-desktop/simplexchat/simplex-chat); check nixpkgs
-    # wasistlos / whatsapp-for-linux (alternatives)
+    mumble
+    zapzap                # WhatsApp client (verify attr: zapzap / pkgs.unstable.zapzap)
+    zoom-us               # unfree
+    simplex-chat-desktop  # verify attr name on 26.11/unstable (simplex-chat-desktop or simplex-chat)
 
     # media
     obs-studio
@@ -140,15 +139,15 @@
     fooyin
     krita
     audacity
-    # jellyfin-media-player # org.jellyfin.JellyfinDesktop
-    # nicotine-plus
+    jellyfin-media-player  # org.jellyfin.JellyfinDesktop
+    nicotine-plus
 
     # files/sync/productivity
     keepassxc
     localsend
-    # obsidian              # unfree/electron caveats
-    # ente-auth             # verify attr (ente-auth)
-    # peazip
+    obsidian              # unfree/electron caveats
+    ente-auth             # verify attr (ente-auth / pkgs.unstable.ente-auth)
+    peazip                # verify attr
 
     # dev/tools
     vim
@@ -159,8 +158,8 @@
     github-desktop
     vscodium
     filezilla
-    # remmina
-    # anydesk               # unfree/proprietary; availability varies
+    remmina
+    # anydesk               # unfree/proprietary; verify attr (anydesk) if you need it - can break on some channels
 
     # terminal/tools + configs to migrate
     ghostty
@@ -172,8 +171,8 @@
     prismlauncher
     itch             # verify attr on search.nixos.org (26.11/unstable)
     moonlight-qt     # Moonlight client (pairs with Sunshine host; ports opened in modules/security.nix)
-    # bottles
-    # (Sober/Roblox - check availability)
+    bottles          # verify attr/unfree
+    # Lutris skipped (Heroic only). Sober/Roblox - no reliable main nixpkgs package; use flatpak/appimage if needed.
 
     # personal (downloadable Nix flake from GitHub: visadaking/ihaveacreditcard)
     inputs.ihaveacreditcard.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -185,7 +184,10 @@
     music-presence   # was music_presence.appimage (nixpkgs attr is usually music-presence)
     redact           # was redact.appimage (verify attr/licensing)
     openlogi         # niche; verify attr exists (pkgs.unstable.openlogi if needed)
-    # AppImages (you still have: lichii in ~/Downloads; others can stay as files)
+    cameractrls      # verify attr
+    xclicker         # verify attr
+    # upscaler? peazip/freac/niche - verify attrs; Goose/Azahar/Sober/Reaper handled case-by-case (see docs)
+    # AppImages (you still have: lichii in ~/Downloads; keep as file + appimage-run)
     appimage-run
 
     # fonts/themes helpers (add your Tokyo Night/cursor/font packages here as needed)
