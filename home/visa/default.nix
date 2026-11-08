@@ -138,8 +138,8 @@
     nuclear
     spotify        # unfree
     fooyin
-    # krita
-    # audacity
+    krita
+    audacity
     # jellyfin-media-player # org.jellyfin.JellyfinDesktop
     # nicotine-plus
 
