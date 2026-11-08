@@ -134,6 +134,8 @@
     vlc
     mpv
     nuclear
+    spotify        # unfree
+    fooyin
     # krita
     # audacity
     # jellyfin-media-player # org.jellyfin.JellyfinDesktop

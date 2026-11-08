@@ -14,7 +14,7 @@ nix search github:NixOS/nixpkgs/nixos-unstable <name>
 - **Filesystems:** Btrfs `@` layout + ESP (as verified), `/games` ext4 `nofail` **never touched**, NTFS/exFAT.
 - **Gaming:** Steam+Gamemode, ProtonPlus, Heroic, MangoHud, Gamescope, **Wine staging (WoW64 64+32) + winetricks**, `ntsync`, `xone` (Xbox); PS controllers via kernel `hid-playstation`/SDL/Steam Input.
 - **Core/dev:** gcc/make/binutils/pkg-config/psmisc/xdg-utils/procps/wget/curl/git/python3/ffmpeg-full/zip/unzip/ripgrep/fd/nil/playerctl/jq/nodejs/libnotify, vim/neovim, btop/fastfetch/**hyfetch**, vscodium, keepassxc, gh, lazygit, filezilla, podman, distrobox, direnv.
-- **Media/comms (enabled):** Vivaldi, Firefox, Vesktop, Element, Signal, Telegram, OBS, VLC, MPV, Nuclear, LocalSend, PrismLauncher.
+- **Media/comms (enabled):** Vivaldi, Firefox, Vesktop, Element, Signal, Telegram, OBS, VLC, MPV, Nuclear, Spotify (unfree), fooyin, LocalSend, PrismLauncher.
 - **Maidware:** BT/Runner/Maidshare/Suite via flakes + HM modules; auto-update with rebuild `--refresh`.
 - **Config migration:** `scripts/migrate-browser-profiles.sh` stages browser profiles **excluding passwords/keys/cookies/sessions** and copies safe configs incl. **fastfetch + hyfetch** (`~/.config/fastfetch`, `~/.config/hyfetch*`), ghostty/kitty/nvim/vim/git/opencode, dotfiles. **Local-only, review, never commit.**
 
