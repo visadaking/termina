@@ -21,7 +21,9 @@ nix search github:NixOS/nixpkgs/nixos-unstable <name>
 ## RPM/zypper highlights (current host) → nixpkgs
 | Current RPM (examples) | nixpkgs / action | Channel hint |
 |---|---|---|
-| firefox, chromium | `firefox`, `chromium` (add if wanted) | stable/unstable |
+| firefox | `firefox` ✅ | stable/unstable |
+| chromium | **not needed** | skip |
+| opencode (RPM, `/usr/bin/opencode`, config present) | `opencode` added (**verify attr**; use `pkgs.unstable.opencode` if missing on 26.11) | stable/unstable |
 | ghostty, kitty, konsole | `ghostty`, `kitty` (konsole comes with Plasma/kdePackages) | stable |
 | neovim, vim, vscodium (flatpak) | `neovim`, `vim`, `vscodium` (included) | stable/`unstable.vscodium` for latest |
 | git, gh, lazygit, ripgrep, fd, jq, nodejs, python, gcc/clang/cmake/ninja/cargo | included/baseline; add `rustup`/`cargo`/`go` as needed | stable |
@@ -60,7 +62,7 @@ nix search github:NixOS/nixpkgs/nixos-unstable <name>
 | md.obsidian.Obsidian | `obsidian` (**unfree**, electron caveats) | unstable |
 | io.ente.auth | `ente-auth` (**verify attr**) | unstable likely |
 | us.zoom.Zoom | `zoom-us` (**unfree**) | unstable |
-| com.protonvpn.www | `protonvpn-gui` / `protonvpn-cli` (**verify**) | unstable likely |
+| com.protonvpn.www | **not needed (mostly)**. Native options exist (`protonvpn-gui`/`protonvpn-cli`, **verify**) | skip unless needed |
 | info.mumble.Mumble | `mumble` | stable |
 | org.nicotine_plus.Nicotine | `nicotine-plus` | stable |
 | com.rtosta.zapzap | `zapzap` (**verify attr**) | unstable likely |
