@@ -38,6 +38,86 @@
         "type": "github"
       }
     },
+    "maid-bt": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794238159,
+        "narHash": "sha256-GKTffKpfGuIZ2s0ySzTDo76FGrv7Ii1HUT6jcNdImwg=",
+        "owner": "Maidware-Project",
+        "repo": "Maid-BT",
+        "rev": "9bd9bcfeafb0d9a41605d94fa9eb8500c40b4c4e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Maidware-Project",
+        "repo": "Maid-BT",
+        "type": "github"
+      }
+    },
+    "maid-runner": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794238159,
+        "narHash": "sha256-VJgqL8VfTAjzW224iWZXUOhEiSkANQeuMJogddi0S4I=",
+        "owner": "Maidware-Project",
+        "repo": "Maid-Runner",
+        "rev": "d2e22b39e9c9437a29bc8089538d87fd040f5a0a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Maidware-Project",
+        "repo": "Maid-Runner",
+        "type": "github"
+      }
+    },
+    "maid-suite": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794238159,
+        "narHash": "sha256-aN0aIXaWt5e3nW0Vefkzj6gsxbB6iv++8+ZMoL179V4=",
+        "owner": "Maidware-Project",
+        "repo": "Maid-Suite",
+        "rev": "b4b9ddfd9c4df0c896422456231e4eea290f6942",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Maidware-Project",
+        "repo": "Maid-Suite",
+        "type": "github"
+      }
+    },
+    "maidshare": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794238159,
+        "narHash": "sha256-XfHHDpzO8kOuDFqX/9E04dSv7vX4bz0IvYWpJ8jxYiQ=",
+        "owner": "Maidware-Project",
+        "repo": "Maidshare",
+        "rev": "daf748d1ee31c56a301c27c579700851eb0ca742",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Maidware-Project",
+        "repo": "Maidshare",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1794042290,
@@ -112,6 +192,10 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "maid-bt": "maid-bt",
+        "maid-runner": "maid-runner",
+        "maid-suite": "maid-suite",
+        "maidshare": "maidshare",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "plasma-manager": "plasma-manager",

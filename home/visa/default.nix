@@ -83,6 +83,12 @@
   # sunshine-screen (ddcutil dim/restore; config at ~/.config/sunshine-screen.conf)
   programs.sunshine-screen.enable = true;
 
+  # Maidware Project tools
+  programs.maid-bt.enable = true;
+  programs.maidshare.enable = true;
+  programs.maid-suite.enable = true;
+  programs.maid-runner.enable = true;
+
   # KDE Connect run commands (device-specific: 5356cbe09e0a454cbcf086511c34833e)
   # Adds reboot/poweroff (systemctl, polkit/session-dependent), Sunshine controls, sunshine-screen dim/restore.
   xdg.configFile."kdeconnect/5356cbe09e0a454cbcf086511c34833e/kdeconnect_runcommand/config".text = ''
