@@ -21,6 +21,10 @@
       url = "github:visadaking/sunshine-screen";
     };
 
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak/?ref=latest";
+    };
+
     # Maidware Project tools (packaging fixed/pushed upstream)
     maid-bt = {
       url = "github:Maidware-Project/Maid-BT";

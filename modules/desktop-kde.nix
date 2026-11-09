@@ -5,10 +5,12 @@
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  # XWayland (X11 app compatibility on Wayland)
+  programs.xwayland.enable = true;
+
   # exclude KDE/PIM apps you don't want (attr names may vary by nixpkgs rev)
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     akonadiconsole
-    ark
     elisa
     kmail
     kontact
@@ -25,5 +27,6 @@
   environment.systemPackages = with pkgs; [
     kdePackages.kate
     kdePackages.discover
+    gparted
   ];
 }

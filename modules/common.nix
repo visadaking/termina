@@ -66,7 +66,7 @@
   # bluetooth (incl. USB adapters e.g. TP-Link UB600 / RTL8761BU)
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
-  boot.kernelModules = [ "btusb" "sr_mod" "cdrom" ]; # btusb for USB BT; sr_mod/cdrom for USB optical (e.g. ASUS ZenDrive U8M SDRW-08U8M-U)
+  boot.kernelModules = [ "btusb" "sr_mod" "cdrom" "uvcvideo" ]; # btusb for USB BT; sr_mod/cdrom for USB optical; uvcvideo for USB webcams
 
   # i2c/DDC access (for ddcutil / sunshine-screen)
   hardware.i2c.enable = true;

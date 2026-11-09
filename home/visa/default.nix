@@ -252,6 +252,7 @@
     handbrake
     reaper                # DAW (unfree)
     eartag                # audio file tag editor
+    kdePackages.kdenlive
     jellyfin-media-player  # org.jellyfin.JellyfinDesktop
     nicotine-plus
 
@@ -275,6 +276,8 @@
     home-manager
     android-tools         # adb, fastboot, etc.
     android-cli
+    nh                    # Nix helper
+    discordchatexporter-desktop
     # github-desktop      # replaced by GH Desktop Plus (Flatpak: org.desktop_plus.desktop-plus)
     # anydesk               # unfree/proprietary; verify attr (anydesk) if you need it - can break on some channels
 
@@ -282,6 +285,9 @@
     ghostty
     fastfetch
     hyfetch
+    starship
+    cowsay
+    wget
     wakeonlan             # send magic packets to wake other machines (wol)
     # gearlever           # temporarily disabled: fails to build due to dwarfs-0.15.8 tests in current nixpkgs (upstream issue)
 
@@ -290,6 +296,7 @@
     itch             # verify attr on search.nixos.org (26.11/unstable)
     moonlight-qt     # Moonlight client (pairs with Sunshine host; ports opened in modules/security.nix)
     bottles          # verify attr/unfree
+    mangohud
     # Lutris skipped (Heroic only). Sober/Roblox - no reliable main nixpkgs package; use flatpak/appimage if needed.
 
     # VPN (Proton VPN) - verify attr on search.nixos.org (26.11/unstable); common attrs: protonvpn-gui, proton-vpn-gtk-app, proton-vpn-cli
