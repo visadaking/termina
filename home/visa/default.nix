@@ -89,9 +89,7 @@
     $rust\
     $golang\
     $php\
-    [](fg:#212736 bg:#1d2230)\
-    $time\
-    [ ](fg:#1d2230)\
+    [ ](fg:#212736)\
     \n$character"""
 
     [directory]
@@ -150,10 +148,7 @@
     format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
 
     [time]
-    disabled = false
-    time_format = "%R" # Hour:Minute Format
-    style = "bg:#1d2230"
-    format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
+    disabled = true
 
     [os]
     style = "bg:#a3aed2 fg:#090c0c"
