@@ -2,15 +2,15 @@
 {
   imports = [
     ./hardware.nix
-    ../../modules/common.nix
-    ../../modules/nix.nix
-    ../../modules/nix-ld.nix
-    ../../modules/security.nix
-    ../../modules/services.nix
-    ../../modules/packages.nix
-    ../../modules/desktop-kde.nix
-    ../../modules/gaming.nix
-    ../../modules/virtualisation.nix
+    ../../modules/nixos/common.nix
+    ../../modules/nixos/nix.nix
+    ../../modules/nixos/nix-ld.nix
+    ../../modules/nixos/security.nix
+    ../../modules/nixos/services.nix
+    ../../modules/nixos/packages.nix
+    ../../modules/nixos/desktop-kde.nix
+    ../../modules/nixos/gaming.nix
+    ../../modules/nixos/virtualisation.nix
   ];
 
   networking.hostName = "termina";

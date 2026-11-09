@@ -1,5 +1,10 @@
 { config, pkgs, lib, inputs, osConfig ? {}, ... }:
 {
+  imports = [
+    ./desktop.nix
+    ./packages.nix
+  ];
+
   home.username = "visa";
   home.homeDirectory = "/home/visa";
   home.stateVersion = "26.11"; # match NixOS 26.11 (Zokor)
@@ -181,7 +186,7 @@
   '';
 
   # fastfetch config (portable across machines/users)
-  xdg.configFile."fastfetch/fastfetch-logo.jpg".source = ./assets/fastfetch-logo.jpg;
+  xdg.configFile."fastfetch/fastfetch-logo.jpg".source = ../../assets/wallpapers/fastfetch-logo.jpg;
   xdg.configFile."fastfetch/config.jsonc".text =
     let
       host = osConfig.networking.hostName or "nixos";
@@ -344,33 +349,6 @@
     ];
   };
 
-  # GTK theme (Tokyo Night)
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Tokyonight-Dark-B";
-      package = pkgs.tokyonight-gtk-theme.override {
-        colorVariants = [ "dark" ];
-        themeVariants = [ "default" ];
-        tweakVariants = [ "storm" ];
-      };
-    };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-    cursorTheme = {
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-cursors;
-    };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-    };
-  };
-
   # syncthing (user service, secrets/device IDs configured outside repo)
   services.syncthing = {
     enable = true;
@@ -378,175 +356,8 @@
   };
 
 
-  # KDE Plasma via plasma-manager: keybinds + theme basics only (start small).
-  # declarative can conflict with GUI changes - keep scope minimal.
-  # keybinds imported from current kglobalshortcutsrc (verify after first login).
-  # wallpaper deployed via home.file below (Ergo Proxy; file added from /home/visa/trash/wallpapers/).
-  programs.plasma = {
-    enable = true;
-    workspace = {
-      clickItemTo = "select";
-      wallpaper = "${config.home.homeDirectory}/Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png";
-      cursor = {
-        theme = "Bibata-Modern-Classic";
-        size = 24;
-      };
-      # Tokyo Night - GTK theme handled via programs.gtk above
-      # lookAndFeel = "org.kde.breezedark.desktop"; # third-party; install/set if available
-      # colorScheme = "TokyoNightStorm";             # set if a Plasma color scheme is installed
-      # theme = "default";
-    };
-    shortcuts = {
-      ksmserver."Lock Session" = "Meta+Esc";
-      kwin = {
-        "Overview" = "Meta+W";
-        "Grid View" = "Meta+G";
-        "Show Desktop" = "Meta+D";
-        "Window Close" = "Meta+Q";
-        "Kill Window" = "Meta+Ctrl+Esc";
-        "Switch to Desktop 1" = "Meta+1";
-        "Switch to Desktop 2" = "Meta+2";
-        "Switch to Desktop 3" = "Meta+3";
-        "Switch to Desktop 4" = "Meta+4";
-        "Switch to Desktop 5" = "Meta+5";
-        "Switch to Desktop 6" = "Meta+6";
-        "Switch One Desktop Down" = "Meta+Ctrl+Down";
-        "Switch One Desktop Up" = "Meta+Ctrl+Up";
-        "Switch One Desktop to the Left" = "Meta+Ctrl+Left";
-        "Switch One Desktop to the Right" = "Meta+Ctrl+Right";
-        "Walk Through Windows" = "Meta+Tab";
-        "Walk Through Windows (Reverse)" = "Meta+Shift+Tab";
-        "Walk Through Windows of Current Application" = "Meta+`";
-        "Walk Through Windows of Current Application (Reverse)" = "Meta+~";
-      };
-      kmix = {
-        "decrease_volume" = "Volume Down";
-        "increase_volume" = "Volume Up";
-        "mute" = "Volume Mute";
-        "mic_mute" = [ "Microphone Mute" "Meta+Volume Mute" ];
-      };
-      "KDE Keyboard Layout Switcher" = {
-        "Switch to Next Keyboard Layout" = "Alt+Shift";
-      };
-    };
-    # keyboard layouts for Plasma (US + Hebrew, Alt+Shift toggle) - important
-    configFile = {
-      kxkbrc.Layout = {
-        Use.value = true;
-        LayoutList.value = "us,il";
-        VariantList.value = ",";
-        Options.value = "grp:alt_shift_toggle";
-        ResetOldOptions.value = true;
-        SwitchMode.value = "Global";
-      };
-      # Tokyo Night / old dotfiles accent (teal #5cb9ae)
-      kdeglobals.General.AccentColor = "92,185,174";
-      # Spectacle: stupid fucking pop up
-      spectaclerc.General.clipboardGroup = "PostScreenshotCopyImage";
-      spectaclerc.GuiConfig.quitAfterSaveCopyExport = true;
-    };
-  };
-
   # apps (nixpkgs/native). Flatpak is enabled system-wide but no Flatpak apps declared here.
   # verify attr names on nixpkgs 26.11 / unstable: nix search nixpkgs <name> (use pkgs.unstable.<pkg> if needed)
-  home.packages = with pkgs; [
-    # themes
-    tokyonight-gtk-theme
-    bibata-cursors
-    kdePackages.breeze-icons
-    papirus-icon-theme
-
-    # browsers
-    firefox
-    vivaldi
-    # chromium # you have chromium RPM; add if wanted (or pkgs.unstable.chromium)
-
-    # comms (from your flatpaks/RPMs - add what you use; some are unfree)
-    vesktop
-    element-desktop
-    signal-desktop
-    telegram-desktop
-    mumble
-    zapzap                # WhatsApp client (verify attr: zapzap / pkgs.unstable.zapzap)
-    zoom-us               # unfree
-    simplex-chat-desktop  # verify attr name on 26.11/unstable (simplex-chat-desktop or simplex-chat)
-    halloy                # IRC client
-
-    # media
-    vlc
-    mpv
-    nuclear
-    spotify        # unfree
-    fooyin
-    krita
-    audacity_3
-    handbrake
-    reaper                # DAW (unfree)
-    eartag                # audio file tag editor
-    kdePackages.kdenlive
-    jellyfin-media-player  # org.jellyfin.JellyfinDesktop
-    nicotine-plus
-
-    # files/sync/productivity
-    keepassxc
-    localsend
-    obsidian              # unfree/electron caveats
-    onlyoffice-desktopeditors
-    ente-auth             # verify attr (ente-auth / pkgs.unstable.ente-auth)
-    peazip                # verify attr
-    freac                 # audio converter (org.freac.freac)
-
-    # dev/tools
-    vim
-    lazygit
-    podman
-    distrobox
-    gh
-    vscodium
-    filezilla
-    home-manager
-    android-tools         # adb, fastboot, etc.
-    android-cli
-    nh                    # Nix helper
-    discordchatexporter-desktop
-    # github-desktop      # replaced by GH Desktop Plus (Flatpak: org.desktop_plus.desktop-plus)
-    # anydesk               # unfree/proprietary; verify attr (anydesk) if you need it - can break on some channels
-
-    # terminal/tools + configs to migrate
-    ghostty
-    fastfetch
-    hyfetch
-    starship
-    cowsay
-    wget
-    wakeonlan             # send magic packets to wake other machines (wol)
-    # gearlever           # temporarily disabled: fails to build due to dwarfs-0.15.8 tests in current nixpkgs (upstream issue)
-
-    # gaming/helpers (Steam enabled system-wide); /games data untouched
-    prismlauncher
-    itch             # verify attr on search.nixos.org (26.11/unstable)
-    moonlight-qt     # Moonlight client (pairs with Sunshine host; ports opened in modules/security.nix)
-    bottles          # verify attr/unfree
-    mangohud
-    # Lutris skipped (Heroic only). Sober/Roblox - no reliable main nixpkgs package; use flatpak/appimage if needed.
-
-    # VPN (Proton VPN) - verify attr on search.nixos.org (26.11/unstable); common attrs: protonvpn-gui, proton-vpn-gtk-app, proton-vpn-cli
-    proton-vpn
-
-    # native replacements/helpers for former AppImages/niche (verify attrs on 26.11/unstable)
-    musicpresence    # Discord/music rich presence (was music_presence.appimage)
-    redact           # image/pdf redaction
-    cameractrls      # verify attr
-    xclicker         # verify attr
-    # upscaler? peazip/freac/niche - verify attrs; Goose/Azahar/Sober/Reaper handled case-by-case (see docs)
-    # AppImages (you still have: lichii in ~/Downloads; keep as file + appimage-run)
-    appimage-run
-
-    # fonts/themes helpers (add your Tokyo Night/cursor/font packages here as needed)
-    # tokyonight-gtk-theme
-    # (cursor/font packages vary; search: nix search nixpkgs tokyo night)
-  ];
-
   # wallpaper (Ergo Proxy) - managed file
   home.file."Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png".source =
     ../../assets/wallpapers/ergo-proxy-kw9yj7-1920x1080.png;
