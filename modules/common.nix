@@ -96,5 +96,6 @@
   hardware.enableRedistributableFirmware = true;
   hardware.enableAllFirmware = true;
 
-  # no openSUSE hacks/repos/workarounds carried over
+  # fwupd/LVFS firmware updates
+  services.fwupd.enable = true;
 }
