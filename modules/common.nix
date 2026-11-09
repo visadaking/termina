@@ -88,8 +88,17 @@
   # zram swap (like current)
   zramSwap.enable = true;
 
-  # flatpak enabled (but prefer nixpkgs apps - no flatpak installs by default)
+  # flatpak enabled (prefer nixpkgs apps); declaratively manage current system flatpaks via nix-flatpak
   services.flatpak.enable = true;
+  services.flatpak.packages = [
+    "app.fluxer.Fluxer"
+    "org.desktop_plus.desktop-plus"
+    "org.vinegarhq.Sober"
+  ];
+  services.flatpak.update.auto = {
+    enable = true;
+    onCalendar = "weekly";
+  };
 
   # user
   users.users.visa = {

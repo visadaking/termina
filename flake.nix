@@ -44,7 +44,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, plasma-manager, sunshine-screen, maid-bt, maidshare, maid-suite, maid-runner, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, plasma-manager, sunshine-screen, nix-flatpak, maid-bt, maidshare, maid-suite, maid-runner, ... }:
     let
       system = "x86_64-linux";
       mkHost = hostName: nixpkgs.lib.nixosSystem {
@@ -52,6 +52,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/${hostName}
+          nix-flatpak.nixosModules.nix-flatpak
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

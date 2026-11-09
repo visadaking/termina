@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, osConfig ? {}, ... }:
 {
   home.username = "visa";
   home.homeDirectory = "/home/visa";
@@ -178,6 +178,124 @@
     Redhat = "󱄛"
     RedHatEnterprise = "󱄛"
     Pop = ""
+  '';
+
+  # fastfetch config (portable across machines/users)
+  xdg.configFile."fastfetch/fastfetch-logo.jpg".source = ./assets/fastfetch-logo.jpg;
+  xdg.configFile."fastfetch/config.jsonc".text =
+    let
+      host = osConfig.networking.hostName or "nixos";
+      user = config.home.username;
+      home = config.home.homeDirectory;
+    in ''
+    {
+      "logo": {
+        "type": "kitty",
+        "source": "${home}/.config/fastfetch/fastfetch-logo.jpg",
+        "width": 63,
+        "padding": {
+          "top": 1,
+          "left": 2
+        }
+      },
+      "display": {
+        "separator": " ─ ",
+        "color": {
+          "separator": "blue"
+        }
+      },
+      "modules": [
+        "break",
+        {
+          "type": "title",
+          "format": "${user}@${host}",
+          "color": {
+            "user": "blue",
+            "host": "cyan"
+          }
+        },
+        "break",
+        {
+          "type": "custom",
+          "format": "╭─ System"
+        },
+        {
+          "type": "os",
+          "key": "├  OS",
+          "keyColor": "blue",
+          "format": "{pretty-name}"
+        },
+        {
+          "type": "kernel",
+          "key": "├ 󰒋 Kernel",
+          "keyColor": "blue"
+        },
+        {
+          "type": "de",
+          "key": "├ 󰧨 DE",
+          "keyColor": "blue"
+        },
+        {
+          "type": "shell",
+          "key": "├ 󱆃 Shell",
+          "keyColor": "blue"
+        },
+        {
+          "type": "terminal",
+          "key": "├ 󰆍 Terminal",
+          "keyColor": "blue"
+        },
+        {
+          "type": "media",
+          "key": "└ 󰝚 Music",
+          "keyColor": "blue"
+        },
+        "break",
+        {
+          "type": "custom",
+          "format": "╭─ Hardware"
+        },
+        {
+          "type": "cpu",
+          "key": "├ 󰍛 CPU",
+          "keyColor": "cyan",
+          "format": "{name} @ {freq-max}{?temperature} - {temperature}{?}",
+          "temp": true
+        },
+        {
+          "type": "gpu",
+          "key": "├ 󰢮 GPU",
+          "keyColor": "cyan",
+          "temp": true
+        },
+        {
+          "type": "memory",
+          "key": "├ 󰑭 RAM",
+          "keyColor": "cyan"
+        },
+        {
+          "type": "disk",
+          "key": "└ 󰋊 Disk",
+          "keyColor": "cyan"
+        },
+        "break",
+        {
+          "type": "custom",
+          "format": "╭─ Uptime / Age"
+        },
+        {
+          "type": "uptime",
+          "key": "├ 󰔚 Uptime",
+          "keyColor": "blue"
+        },
+        {
+          "type": "command",
+          "key": "└ 󰋚 OS Age",
+          "keyColor": "blue",
+          "text": "birth=$(stat -c %W /etc/machine-id); now=$(date +%s); age=$((now-birth)); days=$((age/86400)); hours=$(((age%86400)/3600)); if [ $days -gt 0 ]; then [ $days -eq 1 ] && echo \"1 day\" || echo \"$days days\"; else [ $hours -eq 1 ] && echo \"1 hour\" || echo \"$hours hours\"; fi"
+        }
+      ]
+    }
   '';
 
   # Sunshine user service (start/stop/restart via KDE Connect commands; no auto-start)
