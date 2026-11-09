@@ -27,6 +27,7 @@
   fileSystems."/games" =
     { device = "/dev/disk/by-uuid/e599e845-a396-4bbe-a7ab-a505d8fc0ea0";
       fsType = "ext4";
+      options = [ "nofail" "x-systemd.device-timeout=5s" ];
     };
 
   swapDevices = [ ];

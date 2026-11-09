@@ -2,25 +2,35 @@
 {
   networking.firewall = {
     enable = true;
-    # app/streaming/sync ports (from current system). adjust if you change app settings.
+    # Home-network-first: management/streaming/LAN app ports restricted to LAN interface (eno1).
+    # Torrent peer port kept global for incoming peers. Syncthing sync (22000) kept global to preserve
+    # remote syncing connectivity; review separately if you only sync on LAN/VPN.
+    # Verify interface/LAN: ip -br addr; ip route show default
     allowedTCPPorts = [
-      1716              # KDE Connect
-      22000             # Syncthing sync
-      53317             # LocalSend
-      22446             # qBittorrent listen (Session\Port)
-      8580              # qBittorrent WebUI (LAN; disable if not needed)
-      47984 47989 47990 48010  # Sunshine (web UI / HTTPS / RTSP / etc.)
+      22000             # Syncthing sync (global: preserves remote sync; restrict if LAN-only)
+      22446             # qBittorrent listen/peer port (global: incoming torrent peers)
     ];
-    allowedTCPPortRanges = [ { from = 1714; to = 1764; } ]; # KDE Connect range
     allowedUDPPorts = [
-      1716              # KDE Connect
-      21027             # Syncthing discovery
-      22000             # Syncthing QUIC/sync
-      53317             # LocalSend
-      22446             # qBittorrent listen
-      47998 47999 48000 48002 48010  # Sunshine
+      22000             # Syncthing QUIC/sync (global)
+      22446             # qBittorrent listen/peer port (global)
     ];
-    allowedUDPPortRanges = [ { from = 1714; to = 1764; } ]; # KDE Connect range
+
+    interfaces.eno1 = {
+      allowedTCPPorts = [
+        1716              # KDE Connect
+        53317             # LocalSend
+        8580              # qBittorrent WebUI (home LAN only)
+        47984 47989 47990 48010  # Sunshine (web UI/HTTPS/RTSP etc., home LAN only)
+      ];
+      allowedTCPPortRanges = [ { from = 1714; to = 1764; } ]; # KDE Connect range
+      allowedUDPPorts = [
+        1716              # KDE Connect
+        21027             # Syncthing discovery (LAN)
+        53317             # LocalSend
+        47998 47999 48000 48002 48010  # Sunshine (home LAN only)
+      ];
+      allowedUDPPortRanges = [ { from = 1714; to = 1764; } ]; # KDE Connect range
+    };
   };
 
   services.fail2ban.enable = true;

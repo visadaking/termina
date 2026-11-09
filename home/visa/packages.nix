@@ -78,7 +78,6 @@
     itch             # verify attr on search.nixos.org (26.11/unstable)
     moonlight-qt     # Moonlight client (pairs with Sunshine host; ports opened in modules/security.nix)
     bottles          # verify attr/unfree
-    mangohud
     # Lutris skipped (Heroic only). Sober/Roblox - no reliable main nixpkgs package; use flatpak/appimage if needed.
 
     # VPN (Proton VPN) - verify attr on search.nixos.org (26.11/unstable); common attrs: protonvpn-gui, proton-vpn-gtk-app, proton-vpn-cli

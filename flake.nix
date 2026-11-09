@@ -2,7 +2,7 @@
   description = "termina - personal NixOS flake (multi-host, flakes + home-manager, KDE)";
 
   inputs = {
-    # NixOS 26.11 "Zokor" (base) + unstable for select packages (pkgs.unstable.<name>)
+    # nixos-unstable (rolling). Note: an overlay providing pkgs.unstable is not configured.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 

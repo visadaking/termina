@@ -8,6 +8,11 @@
   };
   programs.gamemode.enable = true;
 
+  # mesa shader cache size (not VRAM-reserved)
+  environment.sessionVariables = {
+    MESA_SHADER_CACHE_MAX_SIZE = "12G";
+  };
+
   # libratbag daemon for gaming mouse configuration (Piper GUI optional/not installed)
   services.ratbagd.enable = true;
 
