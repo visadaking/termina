@@ -8,6 +8,9 @@
   };
   programs.gamemode.enable = true;
 
+  # libratbag daemon for gaming mouse configuration (Piper GUI optional/not installed)
+  services.ratbagd.enable = true;
+
   # kernel support
   boot.kernelModules = [ "ntsync" ];
 
@@ -21,7 +24,12 @@
     mangohud
     gamescope
     # Wine staging (64-bit + 32-bit/WoW64) from unstable. 32-bit graphics enabled in common.nix.
-    unstable.wineWowPackages.staging
+    unstable.wineWow64Packages.staging
     winetricks
+    # common gaming/audio libs
+    openal
+    SDL2
+    alsa-lib
+    libpulseaudio
   ];
 }

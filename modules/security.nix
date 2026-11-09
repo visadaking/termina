@@ -34,9 +34,11 @@
   # Alternatively connect once with NetworkManager's portal flow, then revert interface settings.
   services.resolved = {
     enable = true;
-    dnssec = "true";
-    dnsovertls = "true";
-    fallbackDns = [ "9.9.9.9" "149.112.112.112" ];
+    settings.Resolve = {
+      DNSSEC = "true";
+      DNSOverTLS = "true";
+      FallbackDNS = [ "9.9.9.9" "149.112.112.112" ];
+    };
   };
   networking.nameservers = [ "9.9.9.9#dns.quad9.net" "149.112.112.112#dns.quad9.net" ];
 }

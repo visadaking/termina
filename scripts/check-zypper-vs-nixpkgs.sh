@@ -55,7 +55,7 @@ report() {
   row "steam" "steam" "programs.steam ✅" "system; /games untouched"
   row "ProtonPlus" "ProtonPlus|protonplus" "protonplus ✅" "gaming"
   row "mangohud/gamescope" "mangohud|gamescope" "mangohud/gamescope ✅" "gaming"
-  row "wine-staging(32/64)" "wine-staging" "wineWowPackages.staging ✅" "pkgs.unstable in termina"
+  row "wine-staging(32/64)" "wine-staging" "wineWow64Packages.staging ✅" "pkgs.unstable in termina"
   row "obs-studio" "obs-studio" "obs-studio ✅" "media"
   row "vlc/mpv" "vlc$|mpv" "vlc/mpv ✅" "media"
   row "audacity" "audacity" "audacity (add if wanted)" "native"

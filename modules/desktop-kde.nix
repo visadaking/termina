@@ -5,6 +5,20 @@
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  # exclude KDE/PIM apps you don't want (attr names may vary by nixpkgs rev)
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    akonadiconsole
+    ark
+    elisa
+    kmail
+    kontact
+    merkuro
+    okular
+  ];
+
+  # exclude xterm (pulled in by X11 defaults)
+  services.xserver.excludePackages = [ pkgs.xterm ];
+
   # kde connect
   programs.kdeconnect.enable = true;
 

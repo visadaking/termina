@@ -6,16 +6,42 @@
 
   programs.home-manager.enable = true;
 
-  # shells + termina aliases (adjust path if you clone elsewhere)
+  # shells + termina aliases (repo lives at ~/termina)
   programs.zsh = {
     enable = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    oh-my-zsh = {
+      enable = true;
+      theme = "agnoster";
+      plugins = [ "git" ];
+    };
+    initContent = ''
+      # KDE Connect helpers (kdeconnect-cli)
+      kc-devices() { kdeconnect-cli --list-devices "$@"; }
+      kc-ping() {
+        local dev="''${1:?usage: kc-ping <device-name-or-id> [message]}"
+        local msg="''${2:-ping from $(hostname)}"
+        kdeconnect-cli -n "$dev" --ping-msg "$msg"
+      }
+
+      # custom prompt: Maidware/Tokyo palette with NixOS logo (no text)
+      # [  ] (blue) > [ ~ ] (teal) >  on next line
+      PROMPT=$'%K{#7aa2f7}%F{#1a1b26}  %F{#7aa2f7}%K{#5cb9ae}%F{#1a1b26} %~ %F{#5cb9ae}%k%f\n%F{#c0caf5}>%f '
+    '';
     shellAliases = {
-      t-edit = "nvim $HOME/Documents/GitHub/termina";
-      t-check = "nix flake check $HOME/Documents/GitHub/termina";
-      t-dry = "sudo nixos-rebuild dry-build --flake $HOME/Documents/GitHub/termina#termina";
-      t-switch = "sudo nixos-rebuild switch --flake $HOME/Documents/GitHub/termina#termina --refresh";
+      t-edit = "nvim $HOME/termina";
+      t-check = "nix flake check $HOME/termina";
+      t-dry = "sudo nixos-rebuild dry-build --flake $HOME/termina#termina";
+      t-switch = "sudo nixos-rebuild switch --flake $HOME/termina#termina --refresh";
       t-clean = "sudo nix-collect-garbage --delete-older-than 30d";
-      t-update = "nix flake update --flake $HOME/Documents/GitHub/termina";
+      t-update = "nix flake update --flake $HOME/termina";
+      t-status = "git -C $HOME/termina status";
+      t-log = "git -C $HOME/termina log --oneline --decorate -10";
+      t-push = "git -C $HOME/termina push";
+      t-pull = "git -C $HOME/termina pull --ff-only";
+      # usage: t-commit "message"  (stages tracked changes in termina repo)
+      t-commit = "f(){ git -C $HOME/termina add -A && git -C $HOME/termina commit -m \"\${1:?usage: t-commit \\\"message\\\"}\"; }; f";
       # strict DNS kept; temporary captive-portal workaround (runtime-only, no rebuild/degrade). usage: t-dns-relax wlan0
       t-dns-relax = "f(){ i=\${1:?usage: t-dns-relax <iface> (nmcli device status)}; sudo resolvectl dns \"$i\" '' && sudo resolvectl dnsovertls \"$i\" no && sudo resolvectl dnssec \"$i\" no && echo relaxed: $i; }; f";
       t-dns-revert = "f(){ i=\${1:?usage: t-dns-revert <iface>}; sudo resolvectl revert \"$i\" && echo reverted: $i; }; f";
@@ -41,26 +67,56 @@
   };
   programs.direnv = { enable = true; nix-direnv.enable = true; };
 
+  # OBS Studio (wrapped with plugins)
+  programs.obs-studio = {
+    enable = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      obs-aitum-multistream
+      obs-multi-rtmp
+      obs-vkcapture
+      obs-vaapi
+      obs-pipewire-audio-capture
+      obs-source-record
+      obs-vertical-canvas
+      obs-teleport
+      obs-shaderfilter
+      obs-composite-blur
+    ];
+  };
+
+  # GTK theme (Tokyo Night)
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Tokyonight-Dark-B";
+      package = pkgs.tokyonight-gtk-theme.override {
+        colorVariants = [ "dark" ];
+        themeVariants = [ "default" ];
+        tweakVariants = [ "storm" ];
+      };
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+    cursorTheme = {
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
+    };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+  };
+
   # syncthing (user service, secrets/device IDs configured outside repo)
   services.syncthing = {
     enable = true;
     # configure folders/devices via the Syncthing UI or a private local override; do not commit IDs/keys.
   };
 
-  # Maidware tools (flakes, auto-update on rebuild with: nix flake update && nixos-rebuild/home-manager switch --refresh)
-  imports = [
-    inputs.maid-bt.homeManagerModules.default
-    inputs.maid-runner.homeManagerModules.default
-    inputs.maidshare.homeManagerModules.default
-    inputs.maid-suite.homeManagerModules.default
-  ];
-  programs.maid-bt.enable = true;
-  services.maid-bt.watcher.enable = true;
-  services.maid-bt.maidWatcher.enable = true;
-  # services.maid-bt.intentListener.enable = true; # only if you use phone intent (LAN) - configure token out of repo
-  programs.maid-runner.enable = true;
-  programs.maidshare.enable = true;
-  programs.maid-suite.enable = true;
 
   # KDE Plasma via plasma-manager: keybinds + theme basics only (start small).
   # declarative can conflict with GUI changes - keep scope minimal.
@@ -71,10 +127,13 @@
     workspace = {
       clickItemTo = "select";
       wallpaper = "${config.home.homeDirectory}/Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png";
-      # Tokyo Night - set to the exact installed names on your NixOS system:
-      # lookAndFeel = "org.kde.breezedark.desktop";
-      # cursor = { theme = "YOUR_TOKYO_NIGHT_CURSOR"; size = 24; };
-      # colorScheme = "YOUR_TOKYO_NIGHT_SCHEME";
+      cursor = {
+        theme = "Bibata-Modern-Classic";
+        size = 24;
+      };
+      # Tokyo Night - GTK theme handled via programs.gtk above
+      # lookAndFeel = "org.kde.breezedark.desktop"; # third-party; install/set if available
+      # colorScheme = "TokyoNightStorm";             # set if a Plasma color scheme is installed
       # theme = "default";
     };
     shortcuts = {
@@ -120,12 +179,20 @@
         ResetOldOptions.value = true;
         SwitchMode.value = "Global";
       };
+      # Tokyo Night / old dotfiles accent (teal #5cb9ae)
+      kdeglobals.General.AccentColor = "92,185,174";
     };
   };
 
   # apps (nixpkgs/native). Flatpak is enabled system-wide but no Flatpak apps declared here.
   # verify attr names on nixpkgs 26.11 / unstable: nix search nixpkgs <name> (use pkgs.unstable.<pkg> if needed)
   home.packages = with pkgs; [
+    # themes
+    tokyonight-gtk-theme
+    bibata-cursors
+    kdePackages.breeze-icons
+    papirus-icon-theme
+
     # browsers
     firefox
     vivaldi
@@ -142,14 +209,14 @@
     simplex-chat-desktop  # verify attr name on 26.11/unstable (simplex-chat-desktop or simplex-chat)
 
     # media
-    obs-studio
     vlc
     mpv
     nuclear
     spotify        # unfree
     fooyin
     krita
-    audacity
+    audacity_3
+    handbrake
     jellyfin-media-player  # org.jellyfin.JellyfinDesktop
     nicotine-plus
 
@@ -157,9 +224,10 @@
     keepassxc
     localsend
     obsidian              # unfree/electron caveats
+    onlyoffice-desktopeditors
     ente-auth             # verify attr (ente-auth / pkgs.unstable.ente-auth)
     peazip                # verify attr
-    # freac               # verify attr (org.freac.freac) - uncomment if needed
+    freac                 # audio converter (org.freac.freac)
 
     # dev/tools
     vim
@@ -167,42 +235,33 @@
     podman
     distrobox
     gh
-    github-desktop
     vscodium
     filezilla
-    remmina
+    home-manager
+    android-tools         # adb, fastboot, etc.
+    android-cli
+    # github-desktop      # replaced by GH Desktop Plus (Flatpak: org.desktop_plus.desktop-plus)
     # anydesk               # unfree/proprietary; verify attr (anydesk) if you need it - can break on some channels
 
     # terminal/tools + configs to migrate
     ghostty
     fastfetch
     hyfetch
-    kitty
+    wakeonlan             # send magic packets to wake other machines (wol)
 
     # gaming/helpers (Steam enabled system-wide); /games data untouched
     prismlauncher
     itch             # verify attr on search.nixos.org (26.11/unstable)
     moonlight-qt     # Moonlight client (pairs with Sunshine host; ports opened in modules/security.nix)
     bottles          # verify attr/unfree
-    amethyst-mod-manager  # verify attr on 26.11/unstable (pkgs.unstable.amethyst-mod-manager)
     # Lutris skipped (Heroic only). Sober/Roblox - no reliable main nixpkgs package; use flatpak/appimage if needed.
-
-    # personal (downloadable Nix flake from GitHub: visadaking/ihaveacreditcard)
-    inputs.ihaveacreditcard.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # VPN (Proton VPN) - verify attr on search.nixos.org (26.11/unstable); common attrs: protonvpn-gui, proton-vpn-gtk-app, proton-vpn-cli
     proton-vpn
 
-    # creative (Affinity via affinity-nix flake)
-    inputs.affinity-nix.packages.${pkgs.stdenv.hostPlatform.system}.affinity-v3
-    inputs.affinity-nix.packages.${pkgs.stdenv.hostPlatform.system}.affinity-photo
-    inputs.affinity-nix.packages.${pkgs.stdenv.hostPlatform.system}.affinity-designer
-    inputs.affinity-nix.packages.${pkgs.stdenv.hostPlatform.system}.affinity-publisher
-
     # native replacements/helpers for former AppImages/niche (verify attrs on 26.11/unstable)
-    music-presence   # was music_presence.appimage (nixpkgs attr is usually music-presence)
-    redact           # was redact.appimage (verify attr/licensing)
-    openlogi         # niche; verify attr exists (pkgs.unstable.openlogi if needed)
+    musicpresence    # Discord/music rich presence (was music_presence.appimage)
+    redact           # image/pdf redaction
     cameractrls      # verify attr
     xclicker         # verify attr
     # upscaler? peazip/freac/niche - verify attrs; Goose/Azahar/Sober/Reaper handled case-by-case (see docs)

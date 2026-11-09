@@ -29,7 +29,7 @@ nix search github:NixOS/nixpkgs/nixos-unstable <name>
 | git, gh, lazygit, ripgrep, fd, jq, nodejs, python, gcc/clang/cmake/ninja/cargo | included/baseline; add `rustup`/`cargo`/`go` as needed | stable |
 | podman, distrobox, virt-manager/qemu/libvirt | included (virtualisation module) | stable |
 | steam, ProtonPlus, mangohud, gamescope | included | stable |
-| wine-staging + wine-staging-32bit, winetricks | `wineWowPackages.staging`, `winetricks` (included) | stable/`unstable.wineWowPackages.staging` |
+| wine-staging + wine-staging-32bit, winetricks | `wineWow64Packages.staging`, `winetricks` (included) | stable/`unstable.wineWow64Packages.staging` |
 | obs-studio, vlc, mpv, audacity | `obs-studio`,`vlc`,`mpv`,`audacity` included | stable |
 | fastfetch, hyfetch | included | stable |
 | keepassxc (flatpak user) | `keepassxc` included; migrate DB/keys **manually** | stable |

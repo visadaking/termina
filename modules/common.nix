@@ -15,7 +15,8 @@
   # boot (UEFI, systemd-boot) - no dualboot
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.loader.efi.efiSysMountPoint = "/boot";
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   time.timeZone = "Asia/Jerusalem";
   # system in English; keyboard supports English (US) + Hebrew
@@ -28,6 +29,10 @@
 
   # networking
   networking.networkmanager.enable = true;
+
+  # Wake-on-LAN for eno1 (MAC bc:fc:e7:b2:cf:4c). BIOS/UEFI must also allow WoL,
+  # and the machine must be in a WoL-capable sleep/power state.
+  networking.interfaces.eno1.wakeOnLan.enable = true;
 
   # audio (PipeWire) - high-quality defaults (Fiio K11 USB DAC etc.)
   # adjust allowed-rates/quantum if a device misbehaves; check with: pw-metadata -n settings 0
@@ -52,6 +57,13 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   boot.kernelModules = [ "btusb" "sr_mod" "cdrom" ]; # btusb for USB BT; sr_mod/cdrom for USB optical (e.g. ASUS ZenDrive U8M SDRW-08U8M-U)
+
+  # Logitech G515 TKL (046d:c358): user access + disable USB autosuspend
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c358", TAG+="uaccess"
+    KERNEL=="hidraw*", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c358", TAG+="uaccess", MODE="0660"
+    SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c358", TEST=="power/control", ATTR{power/control}="on"
+  '';
 
   # no printer
   services.printing.enable = false;

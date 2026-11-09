@@ -3,11 +3,11 @@
 
   inputs = {
     # NixOS 26.11 "Zokor" (base) + unstable for select packages (pkgs.unstable.<name>)
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -16,18 +16,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-
-    # Maidware tools (track main; auto-update on rebuild with --refresh)
-    maid-bt.url = "github:Maidware-Project/Maid-BT";
-    maid-runner.url = "github:Maidware-Project/Maid-Runner";
-    maidshare.url = "github:Maidware-Project/Maidshare";
-    maid-suite.url = "github:Maidware-Project/Maid-Suite";
-
-    # personal project (downloadable from GitHub)
-    ihaveacreditcard.url = "github:visadaking/ihaveacreditcard";
-
-    # Affinity apps via affinity-nix (downloadable flake)
-    affinity-nix.url = "github:mrshmllow/affinity-nix";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, plasma-manager, ... }:
@@ -43,7 +31,9 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
+            home-manager.sharedModules = [ plasma-manager.homeModules.plasma-manager ];
+            # avoid HM activation failures when a previous backup file already exists
+            home-manager.backupCommand = "${nixpkgs.legacyPackages.${system}.bash}/bin/bash -c 'mv -- \"$1\" \"$1.bak-$(date +%s)\"' --";
             home-manager.users.visa = import ./home/visa;
           }
         ];

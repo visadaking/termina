@@ -7,14 +7,14 @@
     python3 ffmpeg-full zip unzip ripgrep fd nil playerctl jq nodejs libnotify
 
     # system/tools
-    vim neovim pciutils usbutils btop fastfetch
+    vim neovim pciutils usbutils btop fastfetch ethtool
     ntfs3g exfatprogs # NTFS/exFAT support
 
     # productivity/dev
     vscodium keepassxc gh lazygit opencode  # verify attr on 26.11/unstable (pkgs.unstable.opencode if needed)
 
     # media / streaming / sharing
-    vlc mpv obs-studio nuclear
+    vlc mpv nuclear
     qbittorrent
     sunshine    # host (Moonlight client is moonlight-qt in home/visa; verify sunshine attr on 26.11/unstable)
   ];
