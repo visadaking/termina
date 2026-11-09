@@ -251,6 +251,7 @@
     audacity_3
     handbrake
     reaper                # DAW (unfree)
+    eartag                # audio file tag editor
     jellyfin-media-player  # org.jellyfin.JellyfinDesktop
     nicotine-plus
 
