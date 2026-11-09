@@ -13,6 +13,7 @@
     syntaxHighlighting.enable = true;
     oh-my-zsh = {
       enable = true;
+      theme = "agnoster";
       plugins = [ "git" ];
     };
     initContent = ''
@@ -23,6 +24,10 @@
         local msg="''${2:-ping from $(hostname)}"
         kdeconnect-cli -n "$dev" --ping-msg "$msg"
       }
+
+      # custom prompt: Maidware/Tokyo palette with NixOS logo (no text)
+      # [  ] (blue) > [ ~ ] (teal) >  on next line
+      PROMPT=$'%K{#7aa2f7}%F{#1a1b26}  %F{#7aa2f7}%K{#5cb9ae}%F{#1a1b26} %~ %F{#5cb9ae}%k%f\n%F{#c0caf5}>%f '
     '';
     shellAliases = {
       t-edit = "nvim $HOME/termina";
@@ -61,10 +66,6 @@
     # or add a private module; keep tokens/credentials out of repo.
   };
   programs.direnv = { enable = true; nix-direnv.enable = true; };
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-  };
 
   # Sunshine user service (start/stop/restart via KDE Connect commands; no auto-start)
   systemd.user.services.sunshine = {
@@ -284,7 +285,9 @@
     ghostty
     fastfetch
     hyfetch
+    starship
     cowsay
+    wget
     wakeonlan             # send magic packets to wake other machines (wol)
     # gearlever           # temporarily disabled: fails to build due to dwarfs-0.15.8 tests in current nixpkgs (upstream issue)
 
