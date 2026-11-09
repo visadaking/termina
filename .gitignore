@@ -26,3 +26,8 @@ secrets.nix
 .direnv
 *.swp
 *~
+
+# local editor/config backup files
+*.bak
+*.backup-*
+*.hm-bak.stale-*

@@ -17,12 +17,7 @@
     };
   };
 
-  # automatic system updates (flake). ADJUST path to your clone; --commit-lock-file needs a writable git repo/creds.
-  # consider setting enable = false if you prefer manual updates.
-  system.autoUpgrade = {
-    enable = true;
-    flake = "/home/visa/Documents/GitHub/termina#termina";
-    flags = [ "--print-build-logs" "--commit-lock-file" "--refresh" ];
-    allowReboot = false;
-  };
+  # automatic system updates disabled; prefer manual control with t-update/t-dry/t-switch.
+  # (auto-upgrade + --commit-lock-file in an active git repo can create surprise commits/conflicts)
+  system.autoUpgrade.enable = false;
 }
