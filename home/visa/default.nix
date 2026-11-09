@@ -250,6 +250,7 @@
     krita
     audacity_3
     handbrake
+    reaper                # DAW (unfree)
     jellyfin-media-player  # org.jellyfin.JellyfinDesktop
     nicotine-plus
 
