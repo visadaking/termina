@@ -181,6 +181,9 @@
       };
       # Tokyo Night / old dotfiles accent (teal #5cb9ae)
       kdeglobals.General.AccentColor = "92,185,174";
+      # Spectacle: stupid fucking pop up
+      spectaclerc.General.clipboardGroup = "PostScreenshotCopyImage";
+      spectaclerc.GuiConfig.quitAfterSaveCopyExport = true;
     };
   };
 
@@ -207,6 +210,7 @@
     zapzap                # WhatsApp client (verify attr: zapzap / pkgs.unstable.zapzap)
     zoom-us               # unfree
     simplex-chat-desktop  # verify attr name on 26.11/unstable (simplex-chat-desktop or simplex-chat)
+    halloy                # IRC client
 
     # media
     vlc
@@ -248,6 +252,7 @@
     fastfetch
     hyfetch
     wakeonlan             # send magic packets to wake other machines (wol)
+    # gearlever           # temporarily disabled: fails to build due to dwarfs-0.15.8 tests in current nixpkgs (upstream issue)
 
     # gaming/helpers (Steam enabled system-wide); /games data untouched
     prismlauncher
