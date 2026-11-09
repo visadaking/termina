@@ -16,9 +16,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    sunshine-screen = {
+      url = "github:visadaking/sunshine-screen";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, plasma-manager, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, plasma-manager, sunshine-screen, ... }:
     let
       system = "x86_64-linux";
       mkHost = hostName: nixpkgs.lib.nixosSystem {
@@ -31,7 +35,10 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.sharedModules = [ plasma-manager.homeModules.plasma-manager ];
+            home-manager.sharedModules = [
+              plasma-manager.homeModules.plasma-manager
+              sunshine-screen.homeModules.default
+            ];
             # avoid HM activation failures when a previous backup file already exists
             home-manager.backupCommand = "${nixpkgs.legacyPackages.${system}.bash}/bin/bash -c 'mv -- \"$1\" \"$1.bak-$(date +%s)\"' --";
             home-manager.users.visa = import ./home/visa;

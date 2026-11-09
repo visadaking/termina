@@ -68,6 +68,9 @@
   hardware.bluetooth.powerOnBoot = true;
   boot.kernelModules = [ "btusb" "sr_mod" "cdrom" ]; # btusb for USB BT; sr_mod/cdrom for USB optical (e.g. ASUS ZenDrive U8M SDRW-08U8M-U)
 
+  # i2c/DDC access (for ddcutil / sunshine-screen)
+  hardware.i2c.enable = true;
+
   # Logitech G515 TKL (046d:c358): user access + disable USB autosuspend
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c358", TAG+="uaccess"
@@ -92,7 +95,7 @@
   users.users.visa = {
     isNormalUser = true;
     description = "visa";
-    extraGroups = [ "wheel" "networkmanager" "input" "video" "audio" ];
+    extraGroups = [ "wheel" "networkmanager" "input" "video" "audio" "i2c" ];
     shell = pkgs.zsh;
   };
 

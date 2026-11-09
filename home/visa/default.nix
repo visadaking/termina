@@ -80,11 +80,14 @@
     };
   };
 
+  # sunshine-screen (ddcutil dim/restore; config at ~/.config/sunshine-screen.conf)
+  programs.sunshine-screen.enable = true;
+
   # KDE Connect run commands (device-specific: 5356cbe09e0a454cbcf086511c34833e)
-  # Adds reboot/poweroff (systemctl, polkit/session-dependent) + Sunshine user service controls.
+  # Adds reboot/poweroff (systemctl, polkit/session-dependent), Sunshine controls, sunshine-screen dim/restore.
   xdg.configFile."kdeconnect/5356cbe09e0a454cbcf086511c34833e/kdeconnect_runcommand/config".text = ''
     [General]
-    commands=@ByteArray({"8a05428f_5569_471f_8e19_0f3f18f7743c":{"command":"loginctl lock-session","name":"Lock Screen"},"c0c0d80a_8139_4c3d_8834_6efb34cfa197":{"command":"loginctl unlock-session","name":"Unlock Screen"},"d6c72055_a741_4584_8207_1a8933b95986":{"command":"systemctl reboot","name":"Reboot"},"032d737c_5b31_470a_a024_49d00a50162b":{"command":"systemctl poweroff","name":"Power Off"},"a8d40325_b018_49ca_a0c3_a7c7cedf0dbd":{"command":"systemctl --user start sunshine","name":"Sunshine Start"},"643440b3_4fc8_4fd6_84d9_804a6b30503d":{"command":"systemctl --user restart sunshine","name":"Sunshine Restart"},"6ac9a6ba_878a_4e38_8acd_0cfa67c76cf0":{"command":"systemctl --user stop sunshine","name":"Sunshine Stop"}})
+    commands=@ByteArray({"8a05428f_5569_471f_8e19_0f3f18f7743c":{"command":"loginctl lock-session","name":"Lock Screen"},"c0c0d80a_8139_4c3d_8834_6efb34cfa197":{"command":"loginctl unlock-session","name":"Unlock Screen"},"d6c72055_a741_4584_8207_1a8933b95986":{"command":"systemctl reboot","name":"Reboot"},"032d737c_5b31_470a_a024_49d00a50162b":{"command":"systemctl poweroff","name":"Power Off"},"a8d40325_b018_49ca_a0c3_a7c7cedf0dbd":{"command":"systemctl --user start sunshine","name":"Sunshine Start"},"643440b3_4fc8_4fd6_84d9_804a6b30503d":{"command":"systemctl --user restart sunshine","name":"Sunshine Restart"},"6ac9a6ba_878a_4e38_8acd_0cfa67c76cf0":{"command":"systemctl --user stop sunshine","name":"Sunshine Stop"},"b1f0d2a4_3c6e_4f8a_9b1d_2e4f6a8c0d1e":{"command":"sunshine-screen off","name":"Sunshine Screen Dim"},"e2a1b3c4_5d6f_4789_8a0b_1c2d3e4f5a6b":{"command":"sunshine-screen on","name":"Sunshine Screen Restore"}})
   '';
 
   # OBS Studio (wrapped with plugins)
