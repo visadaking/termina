@@ -67,6 +67,26 @@
   };
   programs.direnv = { enable = true; nix-direnv.enable = true; };
 
+  # Sunshine user service (start/stop/restart via KDE Connect commands; no auto-start)
+  systemd.user.services.sunshine = {
+    Unit = {
+      Description = "Sunshine game streaming host";
+      After = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.sunshine}/bin/sunshine";
+      Restart = "on-failure";
+      RestartSec = 5;
+    };
+  };
+
+  # KDE Connect run commands (device-specific: 5356cbe09e0a454cbcf086511c34833e)
+  # Adds reboot/poweroff (systemctl, polkit/session-dependent) + Sunshine user service controls.
+  xdg.configFile."kdeconnect/5356cbe09e0a454cbcf086511c34833e/kdeconnect_runcommand/config".text = ''
+    [General]
+    commands=@ByteArray({"8a05428f_5569_471f_8e19_0f3f18f7743c":{"command":"loginctl lock-session","name":"Lock Screen"},"c0c0d80a_8139_4c3d_8834_6efb34cfa197":{"command":"loginctl unlock-session","name":"Unlock Screen"},"d6c72055_a741_4584_8207_1a8933b95986":{"command":"systemctl reboot","name":"Reboot"},"032d737c_5b31_470a_a024_49d00a50162b":{"command":"systemctl poweroff","name":"Power Off"},"a8d40325_b018_49ca_a0c3_a7c7cedf0dbd":{"command":"systemctl --user start sunshine","name":"Sunshine Start"},"643440b3_4fc8_4fd6_84d9_804a6b30503d":{"command":"systemctl --user restart sunshine","name":"Sunshine Restart"},"6ac9a6ba_878a_4e38_8acd_0cfa67c76cf0":{"command":"systemctl --user stop sunshine","name":"Sunshine Stop"}})
+  '';
+
   # OBS Studio (wrapped with plugins)
   programs.obs-studio = {
     enable = true;
