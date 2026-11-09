@@ -2,7 +2,7 @@
   description = "termina - personal NixOS flake (multi-host, flakes + home-manager, KDE)";
 
   inputs = {
-    # nixos-unstable (rolling). Note: an overlay providing pkgs.unstable is not configured.
+    # nixos-unstable (rolling)
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
