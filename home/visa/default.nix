@@ -130,9 +130,11 @@ in
         dir
         vcs
         node_version
+        my_bun
         rust_version
         go_version
         php_version
+        newline
         prompt_char
       )
       typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
@@ -148,14 +150,14 @@ in
       typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=' '
       typeset -g POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=' '
       typeset -g POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=$'\u2591\u2592\u2593'
-      typeset -g POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=$'\ue0b4 '
+      typeset -g POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=$'\ue0b4'
 
-      # os_icon (starship: bg:#a3aed2 fg:#090c0c)
+      # os_icon (starship: bg:#a3aed2 fg:#090c0c, " $symbol ")
       typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND='#090c0c'
       typeset -g POWERLEVEL9K_OS_ICON_BACKGROUND='#a3aed2'
-      typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION=''${P9K_CONTENT}
+      typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION=' ''${P9K_CONTENT} '
 
-      # dir (starship: fg:#e3e5e5 bg:#769ff0, truncation 3, substitutions)
+      # dir (starship: fg:#e3e5e5 bg:#769ff0, truncation 3, " $path ")
       typeset -g POWERLEVEL9K_DIR_BACKGROUND='#769ff0'
       typeset -g POWERLEVEL9K_DIR_FOREGROUND='#e3e5e5'
       typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
@@ -163,14 +165,15 @@ in
       typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND='#e3e5e5'
       typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND='#e3e5e5'
       typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=false
+      typeset -g POWERLEVEL9K_DIR_CONTENT_EXPANSION=' ''${P9K_CONTENT} '
 
-      # vcs (git) (starship: fg:#769ff0 bg:#394260)
+      # vcs (git) (starship: fg:#769ff0 bg:#394260, "  $branch " + status)
       typeset -g POWERLEVEL9K_VCS_BACKGROUND='#394260'
       typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND='#769ff0'
       typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='#769ff0'
       typeset -g POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='#769ff0'
       typeset -g POWERLEVEL9K_VCS_LOADING_FOREGROUND='#769ff0'
-      typeset -g POWERLEVEL9K_VCS_BRANCH_ICON=$'\uf418 '
+      typeset -g POWERLEVEL9K_VCS_BRANCH_ICON=$'\uf418'
       typeset -g POWERLEVEL9K_VCS_BACKENDS=(git)
 
       function my_git_formatter() {
@@ -180,40 +183,51 @@ in
           return
         fi
         local branch="''${VCS_STATUS_LOCAL_BRANCH:-''${VCS_STATUS_COMMIT[1,8]}}"
-        local res=" ''${POWERLEVEL9K_VCS_BRANCH_ICON}''${branch} "
-        if (( VCS_STATUS_NUM_STAGED || VCS_STATUS_NUM_UNSTAGED || VCS_STATUS_NUM_UNTRACKED || VCS_STATUS_NUM_CONFLICTED || VCS_STATUS_COMMITS_AHEAD || VCS_STATUS_COMMITS_BEHIND )); then
-          (( VCS_STATUS_NUM_STAGED )) && res+="+"
-          (( VCS_STATUS_NUM_UNSTAGED )) && res+="!"
-          (( VCS_STATUS_NUM_UNTRACKED )) && res+="?"
-          (( VCS_STATUS_COMMITS_AHEAD )) && res+="⇡''${VCS_STATUS_COMMITS_AHEAD}"
-          (( VCS_STATUS_COMMITS_BEHIND )) && res+="⇣''${VCS_STATUS_COMMITS_BEHIND}"
-          res+=" "
-        fi
+        local res=" ''${POWERLEVEL9K_VCS_BRANCH_ICON} ''${branch}"
+        local st=""
+        (( VCS_STATUS_NUM_STAGED )) && st+="+"
+        (( VCS_STATUS_NUM_UNSTAGED )) && st+="!"
+        (( VCS_STATUS_NUM_UNTRACKED )) && st+="?"
+        (( VCS_STATUS_COMMITS_AHEAD )) && st+="⇡''${VCS_STATUS_COMMITS_AHEAD}"
+        (( VCS_STATUS_COMMITS_BEHIND )) && st+="⇣''${VCS_STATUS_COMMITS_BEHIND}"
+        [[ -n $st ]] && res+=" $st"
+        res+=" "
         typeset -g my_git_format=$res
       }
       functions -M my_git_formatter 2>/dev/null
       typeset -g POWERLEVEL9K_VCS_CONTENT_EXPANSION=''${$((my_git_formatter()))+''${my_git_format}}
 
-      # language/tool versions (starship: fg:#769ff0 bg:#212736)
+      # language/tool versions (starship: fg:#769ff0 bg:#212736, " $symbol ($version) ")
       typeset -g POWERLEVEL9K_NODE_VERSION_BACKGROUND='#212736'
       typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND='#769ff0'
       typeset -g POWERLEVEL9K_NODE_VERSION_PROJECT_ONLY=true
       typeset -g POWERLEVEL9K_NODE_VERSION_VISUAL_IDENTIFIER_EXPANSION=$'\ue718'
+      typeset -g POWERLEVEL9K_NODE_VERSION_CONTENT_EXPANSION=' ''${P9K_VISUAL_IDENTIFIER} ''${P9K_CONTENT} '
+
+      function prompt_my_bun() {
+        (( $+commands[bun] )) || return
+        local v=''${''${$(bun --version 2>/dev/null)}%%$'\n'*}
+        [[ -n $v ]] || return
+        p10k segment -b '#212736' -f '#769ff0' -i $'\ue76f' -t " $v "
+      }
 
       typeset -g POWERLEVEL9K_RUST_VERSION_BACKGROUND='#212736'
       typeset -g POWERLEVEL9K_RUST_VERSION_FOREGROUND='#769ff0'
       typeset -g POWERLEVEL9K_RUST_VERSION_PROJECT_ONLY=true
       typeset -g POWERLEVEL9K_RUST_VERSION_VISUAL_IDENTIFIER_EXPANSION=$'\ue7a8'
+      typeset -g POWERLEVEL9K_RUST_VERSION_CONTENT_EXPANSION=' ''${P9K_VISUAL_IDENTIFIER} ''${P9K_CONTENT} '
 
       typeset -g POWERLEVEL9K_GO_VERSION_BACKGROUND='#212736'
       typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND='#769ff0'
       typeset -g POWERLEVEL9K_GO_VERSION_PROJECT_ONLY=true
       typeset -g POWERLEVEL9K_GO_VERSION_VISUAL_IDENTIFIER_EXPANSION=$'\ue627'
+      typeset -g POWERLEVEL9K_GO_VERSION_CONTENT_EXPANSION=' ''${P9K_VISUAL_IDENTIFIER} ''${P9K_CONTENT} '
 
       typeset -g POWERLEVEL9K_PHP_VERSION_BACKGROUND='#212736'
       typeset -g POWERLEVEL9K_PHP_VERSION_FOREGROUND='#769ff0'
       typeset -g POWERLEVEL9K_PHP_VERSION_PROJECT_ONLY=true
       typeset -g POWERLEVEL9K_PHP_VERSION_VISUAL_IDENTIFIER_EXPANSION=$'\ue608'
+      typeset -g POWERLEVEL9K_PHP_VERSION_CONTENT_EXPANSION=' ''${P9K_VISUAL_IDENTIFIER} ''${P9K_CONTENT} '
 
       # prompt char on new line (starship: \n$character)
       typeset -g POWERLEVEL9K_PROMPT_ON_NEWLINE=true
