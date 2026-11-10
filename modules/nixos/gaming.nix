@@ -18,6 +18,27 @@ in
     MESA_SHADER_CACHE_MAX_SIZE = "12G";
   };
 
+  # Gaming-friendly kernel tunables:
+  # - vm.max_map_count: many Proton/Wine/Unreal/Unity/modded games need more memory mappings
+  #   than the default (65530) and crash or stutter when they hit the limit. 16M is the
+  #   common recommendation (SteamOS/Proton/Fedora gamescope session/GLF-OS); it's a ceiling,
+  #   not reserved RAM, so safe to raise.
+  boot.kernel.sysctl = {
+    "vm.max_map_count" = 16777216;
+  };
+
+  # Ignore DualSense/DualShock 4 touchpad as a libinput pointer device (USB + Bluetooth)
+  # so it doesn't act as a mouse / cause phantom cursor movement on the desktop.
+  # Controller/gamepad input for games (via hid-playstation/SDL/Steam Input) is unaffected.
+  services.udev.extraRules = ''
+    # USB
+    ATTRS{name}=="Sony Interactive Entertainment Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
+    ATTRS{name}=="Sony Interactive Entertainment DualSense Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
+    # Bluetooth
+    ATTRS{name}=="Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
+    ATTRS{name}=="DualSense Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
+  '';
+
   # libratbag daemon for gaming mouse configuration (Piper GUI optional/not installed)
   services.ratbagd.enable = true;
 
