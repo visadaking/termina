@@ -67,6 +67,8 @@ in
       t-check = "nix flake check $HOME/termina";
       t-dry = "sudo nixos-rebuild dry-build --flake $HOME/termina#termina";
       t-switch = "sudo nixos-rebuild switch --flake $HOME/termina#termina --refresh";
+      t-boot = "sudo nixos-rebuild boot --flake $HOME/termina#termina";
+      t-syu = "nix flake update --flake $HOME/termina && sudo nixos-rebuild boot --flake $HOME/termina#termina";
       t-clean = "sudo nix-collect-garbage --delete-older-than 30d";
       t-update = "nix flake update --flake $HOME/termina";
       t-status = "git -C $HOME/termina status";
