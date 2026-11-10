@@ -35,16 +35,8 @@
 
   services.fail2ban.enable = true;
 
-  # Defense-in-depth: blacklist kernel modules with a history of local exploit surface
-  # (e.g. Dirty Frag CVEs in esp4/esp6/rxrpc) when you don't use them.
-  # - esp4/esp6: kernel IPsec ESP - only needed for IPsec VPNs (strongSwan/Libreswan etc.);
-  #   most home setups use WireGuard/OpenVPN and don't load these.
-  # - rxrpc: AFS/Kerberos remote procedure call - very niche.
-  # If you ever need IPsec ESP or AFS, remove the relevant module from this list.
-  boot.blacklistedKernelModules = [ "esp4" "esp6" "rxrpc" ];
-
   # passwordless rebuild for the KDE Connect "Switch" phone command.
-  # NOTE: no "#termina" here - sudoers treats '#' as a comment and truncates the
+  # note: no "#termina" here - sudoers treats '#' as a comment and truncates the
   # rule (hostname attr resolution is used instead). Match the phone command exactly.
   security.sudo.extraRules = [
     {
