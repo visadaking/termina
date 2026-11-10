@@ -18,11 +18,13 @@
 
     settings = {
       # Disable cgroup-based process placement: on systemd's unified cgroup v2 hierarchy
-      # ananicy-cpp's moves to /sys/fs/cgroup/cgroup.procs fail with EINVAL at startup
-      # (and conflict with systemd-managed slices). Nice/ionice/sched/oom adjustments
-      # still apply - which is the main desktop-responsiveness win.
+      # ananicy-cpp's moves fail with EINVAL at startup (and conflict with systemd-managed
+      # slices). Nice/ionice/sched/oom adjustments still apply - the main responsiveness win.
       apply_cgroup = false;
       cgroup_load = false;
+      # The realtime workaround also moves RT processes to the root cgroup (""), which
+      # fails the same way on cgroup v2; disable it to keep startup/journal clean.
+      cgroup_realtime_workaround = false;
     };
 
     extraRules = [
