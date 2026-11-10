@@ -82,6 +82,10 @@ in
       t-dns-relax = "f(){ i=\${1:?usage: t-dns-relax <iface> (nmcli device status)}; sudo resolvectl dns \"$i\" '' && sudo resolvectl dnsovertls \"$i\" no && sudo resolvectl dnssec \"$i\" no && echo relaxed: $i; }; f";
       t-dns-revert = "f(){ i=\${1:?usage: t-dns-revert <iface>}; sudo resolvectl revert \"$i\" && echo reverted: $i; }; f";
       fixaudio = "systemctl --user restart wireplumber pipewire pipewire-pulse";
+
+      # wallpapers (runtime switch, Plasma 6)
+      wallpaper-ergo = "plasma-apply-wallpaperimage \"$HOME/Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png\"";
+      wallpaper-715139 = "plasma-apply-wallpaperimage \"$HOME/Pictures/Wallpapers/715139.jpg\"";
     };
   };
   programs.bash = {
@@ -394,9 +398,11 @@ in
 
   # apps (nixpkgs/native). Flatpak is enabled system-wide but no Flatpak apps declared here.
   # verify attr names on nixpkgs 26.11 / unstable: nix search nixpkgs <name> (use pkgs.unstable.<pkg> if needed)
-  # wallpaper (Ergo Proxy) - managed file
+  # wallpapers (managed files)
   home.file."Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png".source =
     ../../assets/wallpapers/ergo-proxy-kw9yj7-1920x1080.png;
+  home.file."Pictures/Wallpapers/715139.jpg".source =
+    ../../assets/wallpapers/715139.jpg;
 
   # default applications (declarative)
   xdg.mimeApps = {
