@@ -62,10 +62,6 @@ in
         local msg="''${2:-ping from $(hostname)}"
         kdeconnect-cli -n "$dev" --ping-msg "$msg"
       }
-
-      # powerlevel10k prompt (mirrors previous starship layout)
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      [[ -f ~/.config/p10k.zsh ]] && source ~/.config/p10k.zsh
     '';
     shellAliases = {
       t-edit = "nvim $HOME/termina";
@@ -110,145 +106,117 @@ in
   };
   programs.direnv = { enable = true; nix-direnv.enable = true; };
 
-  # prompt: powerlevel10k (configured to mirror the previous starship prompt)
-  xdg.configFile."p10k.zsh".text = ''
-    # Powerlevel10k config approximating the previous Starship prompt.
-    # Generated for termina. Based on p10k lean/classic options.
-    'builtin' 'local' '-a' 'p10k_config_opts'
-    [[ ! -o 'aliases'         ]] || p10k_config_opts+=('aliases')
-    [[ ! -o 'sh_glob'         ]] || p10k_config_opts+=('sh_glob')
-    [[ ! -o 'no_brace_expand' ]] || p10k_config_opts+=('no_brace_expand')
-    'builtin' 'setopt' 'no_aliases' 'no_sh_glob' 'brace_expand'
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
-    () {
-      emulate -L zsh -o extended_glob
+  xdg.configFile."starship.toml".text = ''
+    "$schema" = 'https://starship.rs/config-schema.json'
 
-      unset -m '(POWERLEVEL9K_*|DEFAULT_USER)~POWERLEVEL9K_GITSTATUS_DIR'
+    format = """
+    [░▒▓](#a3aed2)\
+    $os\
+    [](bg:#769ff0 fg:#a3aed2)\
+    $directory\
+    [](fg:#769ff0 bg:#394260)\
+    $git_branch\
+    $git_status\
+    [](fg:#394260 bg:#212736)\
+    $nodejs\
+    $bun\
+    $rust\
+    $golang\
+    $php\
+    [ ](fg:#212736)\
+    \n$character"""
 
-      typeset -g POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-      typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-        os_icon
-        dir
-        vcs
-        node_version
-        my_bun
-        rust_version
-        go_version
-        php_version
-        newline
-        prompt_char
-      )
-      typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+    [directory]
+    style = "fg:#e3e5e5 bg:#769ff0"
+    format = "[ $path ]($style)"
+    truncation_length = 3
+    truncation_symbol = "…/"
 
-      typeset -g POWERLEVEL9K_MODE=nerdfont-complete
-      typeset -g POWERLEVEL9K_ICON_PADDING=none
-      typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-      typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+    [directory.substitutions]
+    "Documents" = "󰈙 "
+    "Downloads" = " "
+    "Music" = " "
+    "Pictures" = " "
 
-      # Separators to mimic starship's  powerline segments
-      typeset -g POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=$'\ue0b4'
-      typeset -g POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=$'\ue0b6'
-      typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=' '
-      typeset -g POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=' '
-      typeset -g POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=$'\u2591\u2592\u2593'
-      typeset -g POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=$'\ue0b4'
+    [git_branch]
+    symbol = ""
+    style = "bg:#394260"
+    format = '[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'
 
-      # os_icon (starship: bg:#a3aed2 fg:#090c0c, " $symbol ")
-      typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND='#090c0c'
-      typeset -g POWERLEVEL9K_OS_ICON_BACKGROUND='#a3aed2'
-      typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION=' ''${P9K_CONTENT} '
+    [git_status]
+    style = "bg:#394260"
+    format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
 
-      # dir (starship: fg:#e3e5e5 bg:#769ff0, truncation 3, " $path ")
-      typeset -g POWERLEVEL9K_DIR_BACKGROUND='#769ff0'
-      typeset -g POWERLEVEL9K_DIR_FOREGROUND='#e3e5e5'
-      typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
-      typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
-      typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND='#e3e5e5'
-      typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND='#e3e5e5'
-      typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=false
-      typeset -g POWERLEVEL9K_DIR_CONTENT_EXPANSION=' ''${P9K_CONTENT} '
+    [jj_bookmark]
+    symbol = ""
+    style = "bg:#394260"
+    format = '[[ $symbol $bookmark(@$remote)$diverged( \\(+$overflow_count others\\)) ](fg:#769ff0 bg:#394260)]($style)'
 
-      # vcs (git) (starship: fg:#769ff0 bg:#394260, "  $branch " + status)
-      typeset -g POWERLEVEL9K_VCS_BACKGROUND='#394260'
-      typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND='#769ff0'
-      typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='#769ff0'
-      typeset -g POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='#769ff0'
-      typeset -g POWERLEVEL9K_VCS_LOADING_FOREGROUND='#769ff0'
-      typeset -g POWERLEVEL9K_VCS_BRANCH_ICON=$'\uf418'
-      typeset -g POWERLEVEL9K_VCS_BACKENDS=(git)
+    [jj_status]
+    style = "bg:#394260"
+    format = '[[($all )](fg:#769ff0 bg:#394260)]($style)'
 
-      function my_git_formatter() {
-        emulate -L zsh
-        if [[ -n $P9K_CONTENT ]]; then
-          typeset -g my_git_format=$P9K_CONTENT
-          return
-        fi
-        local branch="''${VCS_STATUS_LOCAL_BRANCH:-''${VCS_STATUS_COMMIT[1,8]}}"
-        local res=" ''${POWERLEVEL9K_VCS_BRANCH_ICON} ''${branch}"
-        local st=""
-        (( VCS_STATUS_NUM_STAGED )) && st+="+"
-        (( VCS_STATUS_NUM_UNSTAGED )) && st+="!"
-        (( VCS_STATUS_NUM_UNTRACKED )) && st+="?"
-        (( VCS_STATUS_COMMITS_AHEAD )) && st+="⇡''${VCS_STATUS_COMMITS_AHEAD}"
-        (( VCS_STATUS_COMMITS_BEHIND )) && st+="⇣''${VCS_STATUS_COMMITS_BEHIND}"
-        [[ -n $st ]] && res+=" $st"
-        res+=" "
-        typeset -g my_git_format=$res
-      }
-      functions -M my_git_formatter 2>/dev/null
-      typeset -g POWERLEVEL9K_VCS_CONTENT_EXPANSION=''${$((my_git_formatter()))+''${my_git_format}}
+    [nodejs]
+    symbol = ""
+    style = "bg:#212736"
+    format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
 
-      # language/tool versions (starship: fg:#769ff0 bg:#212736, " $symbol ($version) ")
-      typeset -g POWERLEVEL9K_NODE_VERSION_BACKGROUND='#212736'
-      typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND='#769ff0'
-      typeset -g POWERLEVEL9K_NODE_VERSION_PROJECT_ONLY=true
-      typeset -g POWERLEVEL9K_NODE_VERSION_VISUAL_IDENTIFIER_EXPANSION=$'\ue718'
-      typeset -g POWERLEVEL9K_NODE_VERSION_CONTENT_EXPANSION=' ''${P9K_VISUAL_IDENTIFIER} ''${P9K_CONTENT} '
+    [bun]
+    symbol = ""
+    style = "bg:#212736"
+    format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
 
-      function prompt_my_bun() {
-        (( $+commands[bun] )) || return
-        local v=''${''${$(bun --version 2>/dev/null)}%%$'\n'*}
-        [[ -n $v ]] || return
-        p10k segment -b '#212736' -f '#769ff0' -i $'\ue76f' -t " $v "
-      }
+    [rust]
+    symbol = ""
+    style = "bg:#212736"
+    format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
 
-      typeset -g POWERLEVEL9K_RUST_VERSION_BACKGROUND='#212736'
-      typeset -g POWERLEVEL9K_RUST_VERSION_FOREGROUND='#769ff0'
-      typeset -g POWERLEVEL9K_RUST_VERSION_PROJECT_ONLY=true
-      typeset -g POWERLEVEL9K_RUST_VERSION_VISUAL_IDENTIFIER_EXPANSION=$'\ue7a8'
-      typeset -g POWERLEVEL9K_RUST_VERSION_CONTENT_EXPANSION=' ''${P9K_VISUAL_IDENTIFIER} ''${P9K_CONTENT} '
+    [golang]
+    symbol = ""
+    style = "bg:#212736"
+    format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
 
-      typeset -g POWERLEVEL9K_GO_VERSION_BACKGROUND='#212736'
-      typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND='#769ff0'
-      typeset -g POWERLEVEL9K_GO_VERSION_PROJECT_ONLY=true
-      typeset -g POWERLEVEL9K_GO_VERSION_VISUAL_IDENTIFIER_EXPANSION=$'\ue627'
-      typeset -g POWERLEVEL9K_GO_VERSION_CONTENT_EXPANSION=' ''${P9K_VISUAL_IDENTIFIER} ''${P9K_CONTENT} '
+    [php]
+    symbol = ""
+    style = "bg:#212736"
+    format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
 
-      typeset -g POWERLEVEL9K_PHP_VERSION_BACKGROUND='#212736'
-      typeset -g POWERLEVEL9K_PHP_VERSION_FOREGROUND='#769ff0'
-      typeset -g POWERLEVEL9K_PHP_VERSION_PROJECT_ONLY=true
-      typeset -g POWERLEVEL9K_PHP_VERSION_VISUAL_IDENTIFIER_EXPANSION=$'\ue608'
-      typeset -g POWERLEVEL9K_PHP_VERSION_CONTENT_EXPANSION=' ''${P9K_VISUAL_IDENTIFIER} ''${P9K_CONTENT} '
+    [time]
+    disabled = true
 
-      # prompt char on new line (starship: \n$character)
-      typeset -g POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-      typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=
-      typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=
-      typeset -g POWERLEVEL9K_PROMPT_CHAR_BACKGROUND=
-      typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=76
-      typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=196
-      typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='❯'
-      typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='❮'
-      typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=''''
+    [os]
+    style = "bg:#a3aed2 fg:#090c0c"
+    format = "[ $symbol ]($style)"
+    disabled = false
 
-      # transient prompt off to keep it simple
-      typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=off
-
-      (( ! $+functions[p10k] )) || p10k reload
-    }
-
-    (( ''${#p10k_config_opts} )) && setopt ''${p10k_config_opts[@]}
-    'builtin' 'unset' 'p10k_config_opts'
+    [os.symbols]
+    Windows = "󰍲"
+    Ubuntu = "󰕈"
+    SUSE = ""
+    Raspbian = "󰐿"
+    Mint = "󰣭"
+    Macos = "󰀵"
+    Manjaro = ""
+    Linux = "󰌽"
+    Gentoo = "󰣨"
+    Fedora = "󰣛"
+    Alpine = ""
+    Amazon = ""
+    Android = ""
+    AOSC = ""
+    Arch = "󰣇"
+    Artix = "󰣇"
+    EndeavourOS = ""
+    CentOS = ""
+    Debian = "󰣚"
+    Redhat = "󱄛"
+    RedHatEnterprise = "󱄛"
+    Pop = ""
   '';
 
   # fastfetch config (portable across machines/users)
