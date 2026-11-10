@@ -1,6 +1,6 @@
 # termina
 
-Personal NixOS flake configuration.
+personal nixos config 
 
 ## layout
 ```
