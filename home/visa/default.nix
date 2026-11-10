@@ -125,6 +125,7 @@ in
 
       unset -m '(POWERLEVEL9K_*|DEFAULT_USER)~POWERLEVEL9K_GITSTATUS_DIR'
 
+      typeset -g POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
       typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
         os_icon
         dir
