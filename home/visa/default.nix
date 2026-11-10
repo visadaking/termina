@@ -99,6 +99,10 @@ in
     enable = true;
     # set identity locally (not committed here): git config --global user.name/user.email
     # or add a private module; keep tokens/credentials out of repo.
+    settings = {
+      init.defaultBranch = "main";
+      pull.rebase = false;
+    };
   };
   programs.direnv = { enable = true; nix-direnv.enable = true; };
 
@@ -356,10 +360,16 @@ in
   programs.maid-runner.enable = true;
 
   # KDE Connect run commands (device-specific: 5356cbe09e0a454cbcf086511c34833e)
-  # Adds reboot/poweroff (systemctl, polkit/session-dependent), Sunshine controls, sunshine-screen dim/restore.
-  xdg.configFile."kdeconnect/5356cbe09e0a454cbcf086511c34833e/kdeconnect_runcommand/config".text = ''
-    [General]
-    commands="${kdeconnectCommandsIni}"
+  # Managed via activation (not xdg.configFile symlink) so the file is always a
+  # regular, writable config even if a previous activation left a backup/regular
+  # file in place. kdeconnectd reads this with QSettings (IniFormat).
+  home.activation.kdeconnectRuncommand = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    kde_dir="$HOME/.config/kdeconnect/5356cbe09e0a454cbcf086511c34833e/kdeconnect_runcommand"
+    $DRY_RUN_CMD mkdir -p "$kde_dir"
+    $DRY_RUN_CMD install -m 600 ${pkgs.writeText "kdeconnect-runcommand-config" ''
+      [General]
+      commands="${kdeconnectCommandsIni}"
+    ''} "$kde_dir/config"
   '';
 
   # OBS Studio (wrapped with plugins)
@@ -392,8 +402,21 @@ in
   home.file."Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png".source =
     ../../assets/wallpapers/ergo-proxy-kw9yj7-1920x1080.png;
 
+  # default applications (declarative)
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = [ "firefox.desktop" ];
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "x-scheme-handler/about" = [ "firefox.desktop" ];
+      "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+    };
+  };
+
   # keep secrets out of repo; browser passwords/keys/cookies/sessions excluded by migration script
   home.sessionVariables = {
     EDITOR = "nvim";
+    BROWSER = "firefox";
   };
 }

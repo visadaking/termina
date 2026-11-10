@@ -92,5 +92,7 @@
         termina = mkHost "termina";
         # add more hosts here: other = mkHost "other";
       };
+
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
     };
 }
