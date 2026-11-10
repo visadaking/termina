@@ -56,6 +56,7 @@
     android-cli
     uad-ng               # Universal Android Debloater Next Generation (GUI; adb wrapped)
     nh                    # Nix helper
+    speedtest-cli
     discordchatexporter-desktop
     # github-desktop      # replaced by GH Desktop Plus (Flatpak: org.desktop_plus.desktop-plus)
     # anydesk               # unfree/proprietary; verify attr (anydesk) if you need it - can break on some channels
