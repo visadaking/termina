@@ -16,6 +16,15 @@
     package = pkgs.ananicy-cpp;
     rulesProvider = pkgs.ananicy-rules-cachyos;
 
+    settings = {
+      # Disable cgroup-based process placement: on systemd's unified cgroup v2 hierarchy
+      # ananicy-cpp's moves to /sys/fs/cgroup/cgroup.procs fail with EINVAL at startup
+      # (and conflict with systemd-managed slices). Nice/ionice/sched/oom adjustments
+      # still apply - which is the main desktop-responsiveness win.
+      apply_cgroup = false;
+      cgroup_load = false;
+    };
+
     extraRules = [
       # Sunshine game streaming host - latency sensitive (not in CachyOS rules).
       # "Game" type => nice -5, ioclass best-effort, sched normal (responsive, not RT-aggressive).
