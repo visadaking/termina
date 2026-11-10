@@ -27,6 +27,8 @@ Personal NixOS flake configuration.
 │       ├── security.nix
 │       ├── services.nix
 │       └── virtualisation.nix
+├── pkgs/
+│   └── simp1e-tokyo-night-storm.nix
 ├── .gitignore
 ├── README.md
 ├── flake.lock

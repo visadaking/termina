@@ -3,9 +3,9 @@
   home.packages = with pkgs; [
     # themes
     tokyonight-gtk-theme
-    bibata-cursors
     kdePackages.breeze-icons
     papirus-icon-theme
+    # (cursor theme: Simp1e Tokyo Night Storm via desktop.nix, pkgs/simp1e-tokyo-night-storm.nix)
 
     # browsers
     firefox

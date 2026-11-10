@@ -1,4 +1,8 @@
 { config, pkgs, lib, ... }:
+let
+  # Simp1e (capitaine successor) cursors, Tokyo Night Storm scheme - matches the GTK theme/accent
+  simp1e-tokyo-night-storm = pkgs.callPackage ../../pkgs/simp1e-tokyo-night-storm.nix { };
+in
 {
   # GTK theme (Tokyo Night)
   gtk = {
@@ -16,8 +20,8 @@
       package = pkgs.papirus-icon-theme;
     };
     cursorTheme = {
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-cursors;
+      name = "Simp1e-Tokyo-Night-Storm";
+      package = simp1e-tokyo-night-storm;
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
@@ -38,7 +42,7 @@
       clickItemTo = "select";
       wallpaper = "${config.home.homeDirectory}/Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png";
       cursor = {
-        theme = "Bibata-Modern-Classic";
+        theme = "Simp1e-Tokyo-Night-Storm";
         size = 24;
       };
       # Tokyo Night - GTK theme handled via programs.gtk above
