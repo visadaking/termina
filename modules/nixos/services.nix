@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   # zram (in common) + memory pressure handling
   services.earlyoom.enable = false;
@@ -23,8 +23,9 @@
       apply_cgroup = false;
       cgroup_load = false;
       # The realtime workaround also moves RT processes to the root cgroup (""), which
-      # fails the same way on cgroup v2; disable it to keep startup/journal clean.
-      cgroup_realtime_workaround = false;
+      # fails the same way on cgroup v2; mkForce needed because the module sets this to
+      # true for ananicy-cpp by default.
+      cgroup_realtime_workaround = lib.mkForce false;
     };
 
     extraRules = [
