@@ -94,6 +94,7 @@
     "app.fluxer.Fluxer"
     "org.desktop_plus.desktop-plus"
     "org.vinegarhq.Sober"
+    "com.nuclearplayer.Nuclear"
   ];
   services.flatpak.update.auto = {
     enable = true;

@@ -24,7 +24,6 @@
     # media
     vlc
     mpv
-    nuclear
     spotify        # unfree
     fooyin
     krita
