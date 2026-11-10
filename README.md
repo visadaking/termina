@@ -42,7 +42,7 @@ sudo nixos-install --flake /path/to/termina#termina
 ```
 
 ## commands
-i got some aliases set up so i dont have to type the whole thing every time
+im lazy
 
 ```sh
 t-switch   # rebuild and switch now
