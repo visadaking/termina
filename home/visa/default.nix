@@ -23,8 +23,14 @@ let
     "c4d5e6f7_8a9b_4c0d_1e2f_3a4b5c6d7ea6" = { name = "Update"; command = "ghostty -e bash -c 'nix flake update --flake /home/visa/termina; echo; echo \"update done - press Enter to close\"; read x'"; };
     "d6e7f8a9_b0c1_4d2e_3f4a_5b6c7d8e9fb7" = { name = "Switch"; command = "ghostty -e bash -c 'sudo -n /run/current-system/sw/bin/nixos-rebuild switch --flake /home/visa/termina; echo; echo \"switch done - press Enter to close\"; read x'"; };
   };
-  # escape inner quotes for the INI-quoted value
-  kdeconnectCommandsIni = lib.replaceStrings [ "\"" ] [ "\\\"" ] (builtins.toJSON kdeconnectCommands);
+  # Escape for the INI-quoted value. kdeconnectd reads this file with QSettings
+  # (IniFormat), which UNESCAPES the raw value when reading - so the JSON's own
+  # escapes must survive that pass: '\' -> '\\' and '"' -> '\"'.
+  # Quote-only escaping is not enough once a command contains quotes (e.g. the
+  # ghostty popups): toJSON's \" would become \" in the file, QSettings reads a
+  # bare quote, the value gets truncated mid-string and the phone receives
+  # invalid JSON => empty command list.
+  kdeconnectCommandsIni = lib.replaceStrings [ "\\" "\"" ] [ "\\\\" "\\\"" ] (builtins.toJSON kdeconnectCommands);
 in
 {
   imports = [
