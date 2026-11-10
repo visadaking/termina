@@ -35,6 +35,18 @@
 
   services.fail2ban.enable = true;
 
+  # passwordless rebuild for the KDE Connect "Nix Switch" phone command.
+  # scoped to this exact nixos-rebuild invocation only (flake lives in ~/termina).
+  security.sudo.extraRules = [
+    {
+      users = [ "visa" ];
+      commands = [{
+        command = "/run/current-system/sw/bin/nixos-rebuild switch --flake /home/visa/termina#termina --refresh";
+        options = [ "NOPASSWD" ];
+      }];
+    }
+  ];
+
   # DNSSEC + DNS-over-TLS (Quad9) - strict (kept strict; do not degrade declaratively)
   # Captive portal / broken-network workaround (TEMPORARY, runtime-only, reverts on reboot or when undone):
   #   sudo resolvectl dns <iface> ""          # or set portal/DHCP DNS for the interface

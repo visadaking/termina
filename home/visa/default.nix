@@ -20,6 +20,8 @@ let
     "7e9f1a2b_4c5d_4e6f_8a0b_2c3d4e5f6a73" = { name = "Bluetooth Off"; command = "bluetooth-toggle.sh off"; };
     "9a1b2c3d_5e4f_4a6b_8c7d_3e4f5a6b7c84" = { name = "Bluetooth Release"; command = "bluetooth-toggle.sh release"; };
     "b2c3d4e5_6f7a_4b8c_9d0e_4f5a6b7c8d95" = { name = "Bluetooth Toggle"; command = "bluetooth-toggle.sh toggle"; };
+    "c4d5e6f7_8a9b_4c0d_1e2f_3a4b5c6d7ea6" = { name = "Nix Update"; command = "nix flake update --flake /home/visa/termina"; };
+    "d6e7f8a9_b0c1_4d2e_3f4a_5b6c7d8e9fb7" = { name = "Nix Switch"; command = "sudo -n /run/current-system/sw/bin/nixos-rebuild switch --flake /home/visa/termina#termina --refresh"; };
   };
   # escape inner quotes for the INI-quoted value
   kdeconnectCommandsIni = lib.replaceStrings [ "\"" ] [ "\\\"" ] (builtins.toJSON kdeconnectCommands);
