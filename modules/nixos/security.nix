@@ -35,13 +35,14 @@
 
   services.fail2ban.enable = true;
 
-  # passwordless rebuild for the KDE Connect "Nix Switch" phone command.
-  # scoped to this exact nixos-rebuild invocation only (flake lives in ~/termina).
+  # passwordless rebuild for the KDE Connect "Switch" phone command.
+  # NOTE: no "#termina" here - sudoers treats '#' as a comment and truncates the
+  # rule (hostname attr resolution is used instead). Match the phone command exactly.
   security.sudo.extraRules = [
     {
       users = [ "visa" ];
       commands = [{
-        command = "/run/current-system/sw/bin/nixos-rebuild switch --flake /home/visa/termina#termina --refresh";
+        command = "/run/current-system/sw/bin/nixos-rebuild switch --flake /home/visa/termina";
         options = [ "NOPASSWD" ];
       }];
     }
