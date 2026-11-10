@@ -65,11 +65,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794249093,
-        "narHash": "sha256-5f2EdqVSiEp6k2nAbtCqt2sDakkARPRvCBhcdUloHw4=",
+        "lastModified": 1794338838,
+        "narHash": "sha256-UqO7fIC4oA4cAkxiaKyRNpuNqwCGhevMtVVUAvKtNEk=",
         "owner": "Maidware-Project",
         "repo": "Maid-Runner",
-        "rev": "130de3e61068afd764d444bb017628e74bcd14fb",
+        "rev": "a22a705a4a34a833cde1e6fa1a75ec2336f86396",
         "type": "github"
       },
       "original": {
@@ -85,11 +85,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794249093,
-        "narHash": "sha256-Hh57+ondX53eTTkvUY3CmgpoWZfCUDKjGtxqOP+p3dY=",
+        "lastModified": 1794338838,
+        "narHash": "sha256-y13dgAU8eaG74wNhKeGhWKfyePgmODlsrb6Hw5RrnIM=",
         "owner": "Maidware-Project",
         "repo": "Maid-Suite",
-        "rev": "6aca981d171e57a9d174392f9f35591730b9e312",
+        "rev": "77d5a3e23a0c5b86a9204be0511a16f02e3a0cc0",
         "type": "github"
       },
       "original": {
@@ -105,11 +105,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794249093,
-        "narHash": "sha256-UMkYNoxewXdEA9Vt6GZkS7mH1cdiJlaPf53p7+Jzfl4=",
+        "lastModified": 1794338802,
+        "narHash": "sha256-U5vmNf8PO+tRtu9a/mavBgPBqdhQ3K0mJtWY4rZFY8k=",
         "owner": "Maidware-Project",
         "repo": "Maidshare",
-        "rev": "be6e114ff40fc9336d8419e67a56df5117832d7a",
+        "rev": "fcf29378ec93c50f38dc4d52b0b341c060c1f371",
         "type": "github"
       },
       "original": {
