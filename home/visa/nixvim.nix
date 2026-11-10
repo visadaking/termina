@@ -114,6 +114,22 @@
       };
     };
 
+    extraConfigLua = ''
+      local ok, dashboard = pcall(require, "alpha.themes.dashboard")
+      if ok then
+        dashboard.section.header.val = {
+          "████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ",
+          "╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗",
+          "   ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║",
+          "   ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██╔══██║",
+          "   ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║",
+          "   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝",
+        }
+        dashboard.section.footer.val = "termina"
+        pcall(require("alpha").setup, dashboard.config)
+      end
+    '';
+
     keymaps = [
       # VSCode-like basics
       { mode = [ "n" "i" "v" ]; key = "<C-s>"; action = "<cmd>w<cr><esc>"; options.desc = "Save file"; }
