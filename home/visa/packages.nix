@@ -17,11 +17,9 @@
     element-desktop
     signal-desktop
     telegram-desktop
-    mumble
     zapzap                # WhatsApp client (verify attr: zapzap / pkgs.unstable.zapzap)
     zoom-us               # unfree
     simplex-chat-desktop  # verify attr name on 26.11/unstable (simplex-chat-desktop or simplex-chat)
-    halloy                # IRC client
 
     # media
     vlc
