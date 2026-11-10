@@ -10,7 +10,7 @@ in
     enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = false;
-    # declarative compatibility tools (Steam still manages its own Valve Proton builds).
+    # declarative compatibility
     # ProtonPlus remains installed for on-demand installs/updates (e.g. Proton-CachyOS).
     extraCompatPackages = with pkgs; [
       proton-ge-bin
