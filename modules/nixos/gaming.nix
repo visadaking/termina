@@ -1,4 +1,9 @@
 { pkgs, ... }:
+
+let
+  # native OpenAL Soft (Windows DLLs) for wine prefixes; see pkgs/openal-win.nix
+  openal-win = pkgs.callPackage ../../pkgs/openal-win.nix { };
+in
 {
   # gaming (optional/labeled). /games is mounted in hardware.nix and NEVER touched.
   programs.steam = {
@@ -29,8 +34,13 @@
     mangohud
     gamescope
     # Wine staging (64-bit + 32-bit/WoW64) from unstable. 32-bit graphics enabled in common.nix.
+    # OpenGL: built in (winePackagesFor base passes openglSupport; opengl32.dll ships in the
+    #   prefix for both arches; system mesa drivers via hardware.graphics 64+32bit).
+    # OpenAL: wine has no builtin openal32.dll (removed upstream) - run `wine-openal`
+    #   per prefix to install native OpenAL Soft (pkgs/openal-win.nix).
     unstable.wineWow64Packages.staging
     winetricks
+    openal-win
     # common gaming/audio libs
     openal
     SDL2
