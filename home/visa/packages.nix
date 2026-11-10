@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  whyd = pkgs.callPackage ../../pkgs/whyd.nix { };
+in
 {
   home.packages = with pkgs; [
     # themes
@@ -57,6 +60,7 @@
     uad-ng               # Universal Android Debloater Next Generation (GUI; adb wrapped)
     nh                    # Nix helper
     speedtest-cli
+    whyd                  # diagnose previous-boot freeze/crash/shutdown from journal (vmaltarello/whyd)
     discordchatexporter-desktop
     # github-desktop      # replaced by GH Desktop Plus (Flatpak: org.desktop_plus.desktop-plus)
     # anydesk               # unfree/proprietary; verify attr (anydesk) if you need it - can break on some channels
