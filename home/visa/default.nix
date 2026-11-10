@@ -15,7 +15,7 @@ let
     "6ac9a6ba_878a_4e38_8acd_0cfa67c76cf0" = { name = "Sunshine Stop"; command = "systemctl --user stop sunshine"; };
     "b1f0d2a4_3c6e_4f8a_9b1d_2e4f6a8c0d1e" = { name = "Screen Off"; command = "sunshine-screen off"; };
     "e2a1b3c4_5d6f_4789_8a0b_1c2d3e4f5a6b" = { name = "Screen On"; command = "sunshine-screen on"; };
-    "3f5e2a1b_7c4d_4e8f_9a0b_1c2d3e4f5a61" = { name = "Sleep"; command = "systemctl sleep"; };
+    "3f5e2a1b_7c4d_4e8f_9a0b_1c2d3e4f5a61" = { name = "Sleep"; command = "systemctl suspend"; };
     "5c7d9e1f_2a3b_4c5d_8e9f_0a1b2c3d4e52" = { name = "Bluetooth On"; command = "bluetooth-toggle.sh on"; };
     "7e9f1a2b_4c5d_4e6f_8a0b_2c3d4e5f6a73" = { name = "Bluetooth Off"; command = "bluetooth-toggle.sh off"; };
     "9a1b2c3d_5e4f_4a6b_8c7d_3e4f5a6b7c84" = { name = "Bluetooth Release"; command = "bluetooth-toggle.sh release"; };
