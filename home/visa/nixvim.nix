@@ -3,8 +3,8 @@
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
+    viAlias = false;
+    vimAlias = false;
     # avoid nixvim/nixpkgs follows warning when using HM with global pkgs
     nixpkgs.pkgs = pkgs;
 
