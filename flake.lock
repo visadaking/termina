@@ -216,7 +216,8 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "plasma-manager": "plasma-manager",
-        "sunshine-screen": "sunshine-screen"
+        "sunshine-screen": "sunshine-screen",
+        "uad-ng": "uad-ng"
       }
     },
     "sunshine-screen": {
@@ -250,6 +251,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "uad-ng": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793910952,
+        "narHash": "sha256-0HLDh1BjykzgyhEEZV4bunIgkMmyr/XZHAF5eAdZ9zg=",
+        "owner": "Universal-Debloater-Alliance",
+        "repo": "universal-android-debloater-next-generation",
+        "rev": "9fcad87bf78c52c4270504bc8880139d95a27a29",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Universal-Debloater-Alliance",
+        "repo": "universal-android-debloater-next-generation",
         "type": "github"
       }
     }

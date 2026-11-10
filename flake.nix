@@ -42,6 +42,12 @@
       url = "github:Maidware-Project/Maid-Runner";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Universal Android Debloater Next Generation (GUI + CLI)
+    uad-ng = {
+      url = "github:Universal-Debloater-Alliance/universal-android-debloater-next-generation";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, plasma-manager, sunshine-screen, nix-flatpak, maid-bt, maidshare, maid-suite, maid-runner, ... }:
@@ -54,6 +60,15 @@
           ./hosts/${hostName}
           nix-flatpak.nixosModules.nix-flatpak
           home-manager.nixosModules.home-manager
+          {
+            # expose uad-ng GUI + uad CLI (flake input) as pkgs.uad-ng / pkgs.uad-cli
+            nixpkgs.overlays = [
+              (final: prev: {
+                uad-ng = inputs.uad-ng.packages.${system}.uad-ng;
+                uad-cli = inputs.uad-ng.packages.${system}.uad-cli;
+              })
+            ];
+          }
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

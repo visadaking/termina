@@ -54,6 +54,7 @@
     home-manager
     android-tools         # adb, fastboot, etc.
     android-cli
+    uad-ng               # Universal Android Debloater Next Generation (GUI; adb wrapped)
     nh                    # Nix helper
     discordchatexporter-desktop
     # github-desktop      # replaced by GH Desktop Plus (Flatpak: org.desktop_plus.desktop-plus)
