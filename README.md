@@ -1,6 +1,6 @@
 # termina
 
-personal nixos config 
+personal nixos config using home manager and flakes
 
 ## layout
 ```
