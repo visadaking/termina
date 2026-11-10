@@ -18,12 +18,12 @@ in
     MESA_SHADER_CACHE_MAX_SIZE = "12G";
   };
 
-  # Gaming-friendly kernel tunable:
-  # - vm.max_map_count: many Proton/Wine/Unreal/Unity/modded games need more memory mappings
-  #   than the default (65530) and can crash or misbehave when they hit the limit. Raising it
-  #   improves compatibility for affected games (not a general fps boost). It's a limit, not
-  #   preallocated RAM. 1048576 is a conservative general-purpose choice (Fedora's commonly cited
-  #   gaming value); some setups use higher ceilings (e.g. SteamOS uses a much larger value).
+  # small gaming tweak:
+  # vm.max_map_count: some Proton/Wine/Unreal/Unity/modded games need more memory mappings
+  # than the default (65530) and can crash or misbehave when they hit the limit. Raising it
+  # improves compatibility for affected games (not a general fps boost). It's a limit, not
+  # preallocated RAM. 1048576 is a conservative choice (often cited on Fedora); some setups
+  # use a higher ceiling (e.g. SteamOS uses a much larger value).
   boot.kernel.sysctl = {
     "vm.max_map_count" = 1048576;
   };
