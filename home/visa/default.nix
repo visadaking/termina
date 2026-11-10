@@ -8,17 +8,17 @@ let
   kdeconnectCommands = {
     "8a05428f_5569_471f_8e19_0f3f18f7743c" = { name = "Lock Screen"; command = "loginctl lock-session"; };
     "c0c0d80a_8139_4c3d_8834_6efb34cfa197" = { name = "Unlock Screen"; command = "loginctl unlock-session"; };
-    "d6c72055_a741_4584_8207_1a8933b95986" = { name = "Reboot"; command = "systemctl reboot"; };
+    "d6c72055_a741_4584_8207_1a8933b95986" = { name = "Restart"; command = "systemctl reboot"; };
     "032d737c_5b31_470a_a024_49d00a50162b" = { name = "Power Off"; command = "systemctl poweroff"; };
     "a8d40325_b018_49ca_a0c3_a7c7cedf0dbd" = { name = "Sunshine Start"; command = "systemctl --user start sunshine"; };
     "643440b3_4fc8_4fd6_84d9_804a6b30503d" = { name = "Sunshine Restart"; command = "systemctl --user restart sunshine"; };
     "6ac9a6ba_878a_4e38_8acd_0cfa67c76cf0" = { name = "Sunshine Stop"; command = "systemctl --user stop sunshine"; };
-    "b1f0d2a4_3c6e_4f8a_9b1d_2e4f6a8c0d1e" = { name = "Sunshine Screen Dim"; command = "sunshine-screen off"; };
-    "e2a1b3c4_5d6f_4789_8a0b_1c2d3e4f5a6b" = { name = "Sunshine Screen Restore"; command = "sunshine-screen on"; };
+    "b1f0d2a4_3c6e_4f8a_9b1d_2e4f6a8c0d1e" = { name = "Screen Off"; command = "sunshine-screen off"; };
+    "e2a1b3c4_5d6f_4789_8a0b_1c2d3e4f5a6b" = { name = "Screen On"; command = "sunshine-screen on"; };
     "3f5e2a1b_7c4d_4e8f_9a0b_1c2d3e4f5a61" = { name = "Sleep"; command = "systemctl sleep"; };
-    "5c7d9e1f_2a3b_4c5d_8e9f_0a1b2c3d4e52" = { name = "Buds On"; command = "bluetooth-toggle.sh on"; };
-    "7e9f1a2b_4c5d_4e6f_8a0b_2c3d4e5f6a73" = { name = "Buds Off"; command = "bluetooth-toggle.sh off"; };
-    "9a1b2c3d_5e4f_4a6b_8c7d_3e4f5a6b7c84" = { name = "Buds Release"; command = "bluetooth-toggle.sh release"; };
+    "5c7d9e1f_2a3b_4c5d_8e9f_0a1b2c3d4e52" = { name = "Bluetooth On"; command = "bluetooth-toggle.sh on"; };
+    "7e9f1a2b_4c5d_4e6f_8a0b_2c3d4e5f6a73" = { name = "Bluetooth Off"; command = "bluetooth-toggle.sh off"; };
+    "9a1b2c3d_5e4f_4a6b_8c7d_3e4f5a6b7c84" = { name = "Bluetooth Release"; command = "bluetooth-toggle.sh release"; };
     "b2c3d4e5_6f7a_4b8c_9d0e_4f5a6b7c8d95" = { name = "Bluetooth Toggle"; command = "bluetooth-toggle.sh toggle"; };
   };
   # escape inner quotes for the INI-quoted value
