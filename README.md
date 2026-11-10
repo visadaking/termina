@@ -43,5 +43,3 @@ sudo nixos-install --flake /path/to/termina#termina
 # rebuild
 sudo nixos-rebuild switch --flake .#termina --refresh
 ```
-
-Migration/helper scripts live in [visadaking/nixos-scripts](https://github.com/visadaking/nixos-scripts).
