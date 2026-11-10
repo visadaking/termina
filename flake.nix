@@ -48,9 +48,14 @@
       url = "github:Universal-Debloater-Alliance/universal-android-debloater-next-generation";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, plasma-manager, sunshine-screen, nix-flatpak, maid-bt, maidshare, maid-suite, maid-runner, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, plasma-manager, sunshine-screen, nix-flatpak, maid-bt, maidshare, maid-suite, maid-runner, nixvim, ... }:
     let
       system = "x86_64-linux";
       mkHost = hostName: nixpkgs.lib.nixosSystem {
@@ -80,6 +85,7 @@
               maidshare.homeModules.default
               maid-suite.homeModules.default
               maid-runner.homeModules.default
+              nixvim.homeModules.nixvim
             ];
             # avoid HM activation failures when a previous backup file already exists
             home-manager.backupCommand = "${nixpkgs.legacyPackages.${system}.bash}/bin/bash -c 'mv -- \"$1\" \"$1.bak-$(date +%s)\"' --";

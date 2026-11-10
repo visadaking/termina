@@ -36,6 +36,7 @@ in
   imports = [
     ./desktop.nix
     ./packages.nix
+    ./nixvim.nix
   ];
 
   home.username = "visa";
@@ -88,13 +89,8 @@ in
     shellAliases = config.programs.zsh.shellAliases;
   };
 
-  # dev: vim + LazyVim (neovim + LazyVim starter handled by user config; we provide tools)
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-  };
+  # dev: neovim configured declaratively via nixvim (see nixvim.nix)
+  # (vim kept in system packages; nixvim provides nvim as default editor)
   programs.git = {
     enable = true;
     # set identity locally (not committed here): git config --global user.name/user.email
