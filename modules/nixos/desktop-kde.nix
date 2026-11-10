@@ -16,6 +16,7 @@
     kontact
     merkuro
     okular
+    kwrite
   ];
 
   # exclude xterm (pulled in by X11 defaults)
