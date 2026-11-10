@@ -12,7 +12,7 @@
     })
   ];
 
-  # boot (UEFI, systemd-boot) - no dualboot
+  # boot (UEFI, systemd-boot)
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
