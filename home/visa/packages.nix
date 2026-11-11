@@ -40,7 +40,7 @@ in
 
     # files/sync/productivity
     keepassxc
-    localsend
+    # localsend enabled system-wide via programs.localsend in modules/nixos/common.nix (opens firewall)
     obsidian              # unfree/electron caveats
     onlyoffice-desktopeditors
     ente-auth             # verify attr (ente-auth / pkgs.unstable.ente-auth)

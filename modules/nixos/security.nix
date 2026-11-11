@@ -18,7 +18,6 @@
     interfaces.eno1 = {
       allowedTCPPorts = [
         1716              # KDE Connect
-        53317             # LocalSend
         8580              # qBittorrent WebUI (home LAN only)
         47984 47989 47990 48010  # Sunshine (web UI/HTTPS/RTSP etc., home LAN only)
       ];
@@ -26,7 +25,6 @@
       allowedUDPPorts = [
         1716              # KDE Connect
         21027             # Syncthing discovery (LAN)
-        53317             # LocalSend
         47998 47999 48000 48002 48010  # Sunshine (home LAN only)
       ];
       allowedUDPPortRanges = [ { from = 1714; to = 1764; } ]; # KDE Connect range
