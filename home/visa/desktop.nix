@@ -32,6 +32,9 @@ in
   };
 
 
+  # Monitor: G25F2 (DP-1) - VRR disabled (Never), as set in KDE Plasma
+  xdg.configFile."kwinoutputconfig.json".source = ./kwinoutputconfig-g25f2.json;
+
   # KDE Plasma via plasma-manager: keybinds + theme basics only (start small).
   # declarative can conflict with GUI changes - keep scope minimal.
   # keybinds imported from current kglobalshortcutsrc (verify after first login).
