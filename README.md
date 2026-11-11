@@ -51,6 +51,8 @@ t-update   # update flake inputs (flake.lock)
 t-syu      # t-update + t-boot
 t-dry      # dry build, see if it actually builds
 t-clean    # clean old generations (>30d) and free space
+t-backup   # push to origin + rond + codeberg
+t-pushall  # alias for t-backup
 ```
 
 ### nvim
