@@ -2,7 +2,7 @@
 {
   virtualisation.libvirtd.enable = true;
 
-  # Add vm-curator, a terminal-based VM manager, instead of virt-manager
+  # add vm-curator, instead of virt-manager
   environment.systemPackages = with pkgs; [
     vm-curator
   ];
