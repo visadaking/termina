@@ -91,9 +91,9 @@ in
     goverlay
     dualsensectl     # control PS5 DualSense (battery, leds, triggers, etc.)
     osu-lazer
-    # Lutris skipped (Heroic only). Sober/Roblox - no reliable main nixpkgs package; use flatpak/appimage if needed.
 
-    # VPN (Proton VPN) - verify attr on search.nixos.org (26.11/unstable); common attrs: protonvpn-gui, proton-vpn-gtk-app, proton-vpn-cli
+
+    # VPN
     proton-vpn
 
     # native replacements/helpers for former AppImages/niche (verify attrs on 26.11/unstable)
