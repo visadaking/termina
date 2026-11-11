@@ -121,7 +121,7 @@
   # fwupd/LVFS firmware updates
   services.fwupd.enable = true;
 
-  # LocalSend (open source cross-platform file sharing; opens firewall port 53317)
+  # LocalSend (opens firewall port 53317)
   programs.localsend.enable = true;
 
   # AppImage support (Gear Lever / appimage-run integration)
