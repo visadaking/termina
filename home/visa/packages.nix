@@ -68,7 +68,6 @@ in
     fd
     ripgrep
     yt-dlp
-    hyperfine
     tokei
     typos
     # direnv already enabled declaratively via programs.direnv (+ nix-direnv) in home/visa/default.nix
