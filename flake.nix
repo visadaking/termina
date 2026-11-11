@@ -77,6 +77,13 @@
                 uad-ng = inputs.uad-ng.packages.${system}.uad-ng;
                 uad-cli = inputs.uad-ng.packages.${system}.uad-cli;
                 kopuz = inputs.kopuz.packages.${system}.default;
+                # workaround: localsend 1.18.0 missing libz.so.1 at runtime on this nixpkgs rev
+                localsend = prev.localsend.overrideAttrs (old: {
+                  nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ prev.makeWrapper ];
+                  postFixup = (old.postFixup or "") + ''
+                    wrapProgram $out/bin/localsend_app --prefix LD_LIBRARY_PATH : ${prev.lib.makeLibraryPath [ prev.zlib ]}
+                  '';
+                });
               })
             ];
           }
