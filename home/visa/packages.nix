@@ -85,6 +85,7 @@ in
     # gaming/helpers (Steam enabled system-wide); /games data untouched
     prismlauncher
     itch             # verify attr on search.nixos.org (26.11/unstable)
+    itch-dl
     moonlight-qt     # Moonlight client (pairs with Sunshine host; ports opened in modules/security.nix)
     bottles          # verify attr/unfree
     goverlay

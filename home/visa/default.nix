@@ -75,6 +75,8 @@ in
       t-status = "git -C $HOME/termina status";
       t-log = "git -C $HOME/termina log --oneline --decorate -10";
       t-push = "git -C $HOME/termina push";
+      t-backup = "git -C $HOME/termina push origin main && git -C $HOME/termina push rond main && git -C $HOME/termina push codeberg main";
+      t-pushall = "t-backup";
       t-pull = "git -C $HOME/termina pull --ff-only";
       # usage: t-commit "message"  (stages tracked changes in termina repo)
       t-commit = "f(){ git -C $HOME/termina add -A && git -C $HOME/termina commit -m \"\${1:?usage: t-commit \\\"message\\\"}\"; }; f";
