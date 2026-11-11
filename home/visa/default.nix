@@ -109,6 +109,20 @@ in
   };
   programs.direnv = { enable = true; nix-direnv.enable = true; };
 
+  programs.btop = {
+    enable = true;
+    settings = {
+      color_theme = "tokyo-night";
+      theme_background = false;
+      truecolor = true;
+      vim_keys = false;
+      rounded_corners = true;
+      graph_symbol = "braille";
+    };
+  };
+
+  xdg.configFile."btop/themes/tokyo-night.theme".source = ./btop/tokyo-night.theme;
+
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
