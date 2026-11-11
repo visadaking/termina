@@ -57,6 +57,7 @@ in
     home-manager
     android-tools         # adb, fastboot, etc.
     android-cli
+    scrcpy                # Android screen mirroring/control over adb
     uad-ng               # Universal Android Debloater Next Generation (GUI; adb wrapped)
     nh                    # Nix helper
     speedtest-cli
