@@ -64,6 +64,13 @@ in
     discordchatexporter-desktop
     # github-desktop      # replaced by GH Desktop Plus (Flatpak: org.desktop_plus.desktop-plus)
     # anydesk               # unfree/proprietary; verify attr (anydesk) if you need it - can break on some channels
+    fd
+    ripgrep
+    yt-dlp
+    hyperfine
+    tokei
+    typos
+    # direnv already enabled declaratively via programs.direnv (+ nix-direnv) in home/visa/default.nix
 
     # terminal/tools + configs to migrate
     ghostty
