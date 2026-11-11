@@ -45,6 +45,9 @@ in
     ATTRS{name}=="DualSense Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
   '';
 
+  # udev rules for Steam-supported controllers/VR devices (improved device access in Steam)
+  hardware.steam-hardware.enable = true;
+
   # libratbag daemon for gaming mouse configuration (Piper GUI optional/not installed)
   services.ratbagd.enable = true;
 

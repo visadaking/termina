@@ -4,6 +4,9 @@
   services.earlyoom.enable = false;
   systemd.oomd.enable = true;
 
+  # removable disk management (automount/mount/unmount, notifications; KDE/Solid integration)
+  services.udisks2.enable = true;
+
   # Automatic process priority management (nice/ionice/sched/oom) for desktop responsiveness.
   # Uses ananicy-cpp + CachyOS rules (curated baseline covering browsers, compilers, nix, games, etc.).
   # Safeguards against mis-prioritization:
