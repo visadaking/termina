@@ -405,6 +405,29 @@ in
   home.file."Pictures/Wallpapers/715139.jpg".source =
     ../../assets/wallpapers/715139.jpg;
 
+  # Kopuz (declarative settings; HM symlink is immutable to Kopuz, so managed keys stay pinned)
+  xdg.configFile."kopuz/settings.toml".text = ''
+    theme = "tokyo-night-storm"
+
+    [custom_themes.tokyo-night-storm]
+    name = "Tokyo Night Storm"
+
+    [custom_themes.tokyo-night-storm.vars]
+    bg = "#24283b"
+    text = "#c0caf5"
+    text-muted = "#565f89"
+    surface = "#414868"
+    progress = "#9ece6a"
+    accent-soft = "#7dcfff"
+    accent = "#7aa2f7"
+    accent-alt = "#3d59a1"
+    accent-deep = "#1f2335"
+    highlight = "#bb9af7"
+    highlight-dark = "#9d7cd8"
+    danger = "#f7768e"
+    raised = "#1f2335"
+  '';
+
   # default applications (declarative)
   xdg.mimeApps = {
     enable = true;

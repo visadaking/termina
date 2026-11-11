@@ -53,9 +53,14 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    kopuz = {
+      url = "github:temidaradev/kopuz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, plasma-manager, sunshine-screen, nix-flatpak, maid-bt, maidshare, maid-suite, maid-runner, nixvim, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, plasma-manager, sunshine-screen, nix-flatpak, maid-bt, maidshare, maid-suite, maid-runner, nixvim, kopuz, ... }:
     let
       system = "x86_64-linux";
       mkHost = hostName: nixpkgs.lib.nixosSystem {
@@ -66,11 +71,12 @@
           nix-flatpak.nixosModules.nix-flatpak
           home-manager.nixosModules.home-manager
           {
-            # expose uad-ng GUI + uad CLI (flake input) as pkgs.uad-ng / pkgs.uad-cli
+            # expose uad-ng GUI + uad CLI and kopuz (flake inputs) as pkgs
             nixpkgs.overlays = [
               (final: prev: {
                 uad-ng = inputs.uad-ng.packages.${system}.uad-ng;
                 uad-cli = inputs.uad-ng.packages.${system}.uad-cli;
+                kopuz = inputs.kopuz.packages.${system}.default;
               })
             ];
           }

@@ -28,7 +28,7 @@ in
     vlc
     mpv
     spotify        # unfree
-    fooyin
+    kopuz
     krita
     audacity_3
     handbrake
