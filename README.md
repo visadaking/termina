@@ -118,7 +118,6 @@ sudo nixos-install --flake .#termina
 t-test
 t-switch   # or t-boot
 ```
-- set/change passwords and restore any secrets manually (secrets are intentionally not stored in this repo).
 
 ## environment / quirks (non-secret, termina host)
 - **host/platform:** `termina`, `x86_64-linux`, AMD CPU (`kvm-amd`, AMD microcode), UEFI + systemd-boot (`/boot` vfat, editor disabled, 5 configs kept), latest kernel.
