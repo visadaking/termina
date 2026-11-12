@@ -8,9 +8,6 @@ personal nixos config using home manager and flakes
 ├── assets/
 │   ├── nvim-logo.png
 │   └── wallpapers/
-│       ├── 715139.jpg
-│       ├── ergo-proxy-kw9yj7-1920x1080.png
-│       └── fastfetch-logo.jpg
 ├── home/
 │   └── visa/
 │       ├── btop/
