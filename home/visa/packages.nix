@@ -93,6 +93,10 @@ in
     goverlay
     dualsensectl     # control PS5 DualSense (battery, leds, triggers, etc.)
     osu-lazer
+    dolphin-emu      # GameCube / Wii emulator
+    rpcs3            # PlayStation 3 emulator
+    mupen64plus      # Nintendo 64 emulator
+    ryubing          # Nintendo Switch emulator (nixpkgs)
 
 
     # VPN
