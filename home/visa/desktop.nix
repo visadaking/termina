@@ -125,7 +125,7 @@ in
         MuteMode = 5;
         FillBlur = false;
         ScreenOffPausesVideo = true;
-        BatteryPausesVideo = true;
+        BatteryPausesVideo = false;
       };
     };
   };
