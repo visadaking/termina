@@ -389,10 +389,10 @@
         },
         "NoReplyMention": {
             "enabled": false,
-            "userList": "1234567890123445,1234567890123445",
+            "userList": "",
             "shouldPingListed": false,
             "inverseShiftReply": false,
-            "roleList": "1234567890123445,1234567890123445"
+            "roleList": ""
         },
         "NoServerEmojis": {
             "enabled": false
