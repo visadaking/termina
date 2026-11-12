@@ -20,7 +20,8 @@
     vlc mpv nuclear
     qbittorrent
     sunshine    # host (Moonlight client is moonlight-qt in home/visa; verify sunshine attr on 26.11/unstable)
-    pkgs."gpu-screen-recorder"
+    gpu-screen-recorder
+    gpu-screen-recorder-ui
   ];
 
   # filesystems
