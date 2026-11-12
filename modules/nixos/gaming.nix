@@ -14,7 +14,6 @@ in
     # ProtonPlus remains installed for on-demand installs/updates (e.g. Proton-CachyOS).
     extraCompatPackages = with pkgs; [
       proton-ge-bin
-      pkgs.proton-cachyos_x86_64_v3
     ];
   };
   programs.gamemode.enable = true;
