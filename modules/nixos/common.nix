@@ -90,7 +90,6 @@
       ReconnectIntervals = "1,2,4,8,16,32,64";
     };
   };
-  services.blueman.enable = true;
   boot.kernelModules = [ "btusb" "sr_mod" "cdrom" "uvcvideo" ]; # btusb for USB BT; sr_mod/cdrom for USB optical; uvcvideo for USB webcams
 
   # i2c/DDC access (for ddcutil / sunshine-screen)
