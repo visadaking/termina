@@ -72,6 +72,8 @@ in
       t-syu = "nix flake update --flake $HOME/termina && sudo nixos-rebuild boot --flake $HOME/termina#termina";
       t-clean = "sudo nix-collect-garbage --delete-older-than 30d";
       t-update = "nix flake update --flake $HOME/termina";
+      t-update-input = "f(){ nix flake lock --update-input \"\${1:?usage: t-update-input <input>}\" $HOME/termina; }; f";
+      t-test = "nix flake check $HOME/termina && sudo nixos-rebuild dry-build --flake $HOME/termina#termina";
       t-status = "git -C $HOME/termina status";
       t-log = "git -C $HOME/termina log --oneline --decorate -10";
       t-push = "git -C $HOME/termina push";
@@ -461,5 +463,6 @@ in
   home.sessionVariables = {
     EDITOR = "nvim";
     BROWSER = "firefox";
+    NH_FLAKE = "$HOME/termina";
   };
 }
