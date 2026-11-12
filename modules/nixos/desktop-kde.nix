@@ -28,5 +28,6 @@
     kdePackages.kate
     kdePackages.discover
     gparted
+    (callPackage ../../pkgs/plasma-smart-video-wallpaper-reborn.nix { })
   ];
 }
