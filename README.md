@@ -128,4 +128,3 @@ t-switch   # or t-boot
 - **stability tweaks:** `sp5100_tco` watchdog blacklisted; reduced system/user `DefaultTimeoutStopSec` to avoid long shutdown hangs.
 - **device-specific notes:** Wake-on-LAN configured for `eno1` (BIOS/UEFI must also allow WoL and appropriate power state); udev rules for BT USB autosuspend and Logitech G515 TKL access/power.
 - **updates/policy:** flakes enabled, binary caches configured, GC weekly (>30d), `system.autoUpgrade` disabled (manual `t-update`/`t-test`/`t-boot|t-switch` flow preferred).
-- **not in git by design:** secrets/credentials, SSH/GPG private material, browser/app session data, and personal files/backups.
