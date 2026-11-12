@@ -108,6 +108,9 @@
       toggleterm.enable = true;
       trouble.enable = true;
 
+      # Discord Rich Presence
+      cord.enable = true;
+
       alpha = {
         enable = true;
         theme = "dashboard";
