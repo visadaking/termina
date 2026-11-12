@@ -20,6 +20,15 @@
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # AMD SP5100 TCO watchdog: not used here and can spam "watchdog did not stop!" on shutdown.
+  boot.blacklistedKernelModules = [ "sp5100_tco" ];
+
+  # Avoid long shutdown hangs when a service/app misbehaves (e.g. plasmashell timeout).
+  systemd.settings.Manager.DefaultTimeoutStopSec = "20s";
+  systemd.user.extraConfig = ''
+    DefaultTimeoutStopSec=20s
+  '';
+
   time.timeZone = "Asia/Jerusalem";
   # system in English; keyboard supports English (US) + Hebrew
   i18n.defaultLocale = "en_US.UTF-8";
