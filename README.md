@@ -9,8 +9,6 @@ personal nixos config using home manager and flakes
 │   └── wallpapers/
 ├── home/
 │   └── visa/
-│       ├── btop/
-│       │   └── tokyo-night.theme
 │       ├── default.nix
 │       ├── desktop.nix
 │       ├── kwinoutputconfig-g25f2.json
