@@ -8,6 +8,7 @@
 
     # system/tools
     vim neovim nano pciutils usbutils btop fastfetch ethtool
+    alsa-utils imagemagick lm_sensors
     ddrescue
     qdiskinfo qdirstat
     ntfs3g exfatprogs # NTFS/exFAT support
