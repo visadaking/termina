@@ -16,6 +16,9 @@
     };
   };
 
+  # Tailscale (VPN mesh; enable now, configure/auth with `tailscale up` when needed)
+  services.tailscale.enable = true;
+
   # Automatic process priority management (nice/ionice/sched/oom) for desktop responsiveness.
   # Uses ananicy-cpp + CachyOS rules (curated baseline covering browsers, compilers, nix, games, etc.).
   # Safeguards against mis-prioritization:
