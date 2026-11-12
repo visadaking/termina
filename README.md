@@ -6,7 +6,6 @@ personal nixos config using home manager and flakes
 ```
 .
 ├── assets/
-│   ├── nvim-logo.png
 │   └── wallpapers/
 ├── home/
 │   └── visa/
