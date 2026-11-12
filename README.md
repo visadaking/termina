@@ -47,9 +47,31 @@ personal nixos config using home manager and flakes
 └── install.sh
 ```
 
+## commands
+im lazy
+
+```sh
+t-switch        # rebuild and switch now
+t-boot          # rebuild and set it for next boot (doesnt switch right away)
+t-update        # update all flake inputs (flake.lock)
+t-update-input  # update one input: t-update-input nixpkgs-unstable
+t-syu           # t-update + t-boot
+t-check         # nix flake check
+t-dry           # dry build, see if it actually builds
+t-test          # t-check + t-dry (safe pre-switch check)
+t-clean         # clean old generations (>30d) and free space
+t-status        # git status for ~/termina
+t-commit "msg"  # stage + commit all changes in ~/termina
+t-backup        # push to origin + codeberg
+t-pushall       # alias for t-backup
+```
+
+`NH_FLAKE` is set to `~/termina`, so `nh` commands work without extra flake args.
+
+usually its just `t-switch` after changing stuff. for safer updates: `t-update` (or `t-update-input <input>`) -> `t-test` -> `t-boot`/`t-syu`, reboot when ready, then commit/push the lock if good.
+
 ## repositories
 - origin (GitHub): `https://github.com/visadaking/termina.git`
-- rond (private): `https://git.rond.cc/visa/termina.git`
 - codeberg: `https://codeberg.org/visa1337/termina.git`
 
 keep all remotes in sync with `t-backup` (or `t-pushall`).
@@ -67,8 +89,7 @@ keep all remotes in sync with `t-backup` (or `t-pushall`).
 ### 1. get the config
 ```sh
 # example (pick any remote)
-git clone https://git.rond.cc/visa/termina.git
-# or: git clone https://github.com/visadaking/termina.git
+git clone https://github.com/visadaking/termina.git
 # or: git clone https://codeberg.org/visa1337/termina.git
 cd termina
 ```
@@ -116,26 +137,3 @@ t-switch   # or t-boot
 - **device-specific notes:** Wake-on-LAN configured for `eno1` (BIOS/UEFI must also allow WoL and appropriate power state); udev rules for BT USB autosuspend and Logitech G515 TKL access/power.
 - **updates/policy:** flakes enabled, binary caches configured, GC weekly (>30d), `system.autoUpgrade` disabled (manual `t-update`/`t-test`/`t-boot|t-switch` flow preferred).
 - **not in git by design:** secrets/credentials, SSH/GPG private material, browser/app session data, and personal files/backups.
-
-## commands
-im lazy
-
-```sh
-t-switch        # rebuild and switch now
-t-boot          # rebuild and set it for next boot (doesnt switch right away)
-t-update        # update all flake inputs (flake.lock)
-t-update-input  # update one input: t-update-input nixpkgs-unstable
-t-syu           # t-update + t-boot
-t-check         # nix flake check
-t-dry           # dry build, see if it actually builds
-t-test          # t-check + t-dry (safe pre-switch check)
-t-clean         # clean old generations (>30d) and free space
-t-status        # git status for ~/termina
-t-commit "msg"  # stage + commit all changes in ~/termina
-t-backup        # push to origin + rond + codeberg
-t-pushall       # alias for t-backup
-```
-
-`NH_FLAKE` is set to `~/termina`, so `nh` commands work without extra flake args.
-
-usually its just `t-switch` after changing stuff. for safer updates: `t-update` (or `t-update-input <input>`) -> `t-test` -> `t-boot`/`t-syu`, reboot when ready, then commit/push the lock if good.
