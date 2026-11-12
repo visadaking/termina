@@ -11,6 +11,11 @@ personal nixos config using home manager and flakes
 │   └── visa/
 │       ├── btop/
 │       │   └── tokyo-night.theme
+│       ├── vesktop/                 # safe Vesktop settings backup (no session/cookies/secrets)
+│       │   ├── settings.json
+│       │   └── settings/
+│       │       ├── quickCss.css
+│       │       └── settings.json
 │       ├── default.nix
 │       ├── desktop.nix
 │       ├── kwinoutputconfig-g25f2.json
@@ -38,14 +43,79 @@ personal nixos config using home manager and flakes
 ├── .gitignore
 ├── README.md
 ├── flake.lock
-└── flake.nix
+├── flake.nix
+└── install.sh
 ```
 
-## use
+## repositories
+- origin (GitHub): `https://github.com/visadaking/termina.git`
+- rond (private): `https://git.rond.cc/visa/termina.git`
+- codeberg: `https://codeberg.org/visa1337/termina.git`
+
+keep all remotes in sync with `t-backup` (or `t-pushall`).
+
+## reinstall / bootstrap (from scratch)
+
+> `install.sh` is a helper, not an autopartitioner. disk partitioning/formatting is intentionally manual (hardware-specific and destructive).
+
+### 0. prerequisites
+- NixOS live ISO (recommended), network access, and this repo cloned/available.
+- know which host you are installing:
+  - `termina` = current desktop (AMD/x86_64, UEFI + systemd-boot, KDE Plasma 6, existing disk layout in `hosts/termina/hardware.nix`)
+  - future machines (e.g. Intel/AMD laptop) should get their own `hosts/<name>/` + `hardware.nix` and be wired in `flake.nix`
+
+### 1. get the config
 ```sh
-# verify hosts/termina/hardware.nix (UUIDs, disk IDs, kernel modules) before install
-sudo nixos-install --flake /path/to/termina#termina
+# example (pick any remote)
+git clone https://git.rond.cc/visa/termina.git
+# or: git clone https://github.com/visadaking/termina.git
+# or: git clone https://codeberg.org/visa1337/termina.git
+cd termina
 ```
+
+### 2. partition, format, and mount (manual)
+- create/format partitions for the target machine and mount them under `/mnt` (including `/mnt/boot` for EFI when applicable).
+- **do not blindly reuse `hosts/termina/hardware.nix` UUIDs/layout on different hardware/disks.**
+
+### 3. verify or generate hardware config for the target host
+- existing host: review `hosts/<host>/hardware.nix` (UUIDs, disk IDs, kernel modules, CPU microcode, filesystems).
+- new machine/host: generate and review, then place into the correct host:
+```sh
+sudo nixos-generate-config --root /mnt
+# review /mnt/etc/nixos/hardware-configuration.nix and adapt hosts/<host>/hardware.nix
+```
+
+### 4. install
+```sh
+# helper (recommended): checks host/flake and runs nixos-install with confirmation
+sudo ./install.sh --flake . --host termina
+
+# dry run/check only
+./install.sh --flake . --host termina --no-install
+
+# direct command
+sudo nixos-install --flake .#termina
+```
+
+### 5. first boot / post-install
+- log in as the configured user, verify network/display/audio/input.
+- clone or copy this repo to `~/termina` if needed, check remotes/status, and use the normal workflow:
+```sh
+t-test
+t-switch   # or t-boot
+```
+- set/change passwords and restore any secrets manually (secrets are intentionally not stored in this repo).
+
+## environment / quirks (non-secret, termina host)
+- **host/platform:** `termina`, `x86_64-linux`, AMD CPU (`kvm-amd`, AMD microcode), UEFI + systemd-boot (`/boot` vfat, editor disabled, 5 configs kept), latest kernel.
+- **storage/layout:** ext4 root + vfat `/boot` + ext4 `/games` (`nofail`, 5s device timeout), zram swap; verify UUIDs in `hosts/termina/hardware.nix` before reinstall.
+- **desktop/session:** KDE Plasma 6 on Wayland (SDDM), XWayland enabled, PipeWire (Pulse/ALSA, 32-bit ALSA, HiFi clock rates), NetworkManager, Flatpak (declarative via nix-flatpak).
+- **locale/input:** timezone `Asia/Jerusalem`, locale `en_US.UTF-8`, keyboard `us,il` with `grp:alt_shift_toggle`.
+- **hardware/services quirks:** bluetooth enabled (BlueZ tuning, `btusb`), i2c/DDC enabled, fwupd enabled, LocalSend enabled, AppImage binfmt enabled, `gsr-global-hotkeys` wrapper for gpu-screen-recorder-ui hotkeys on Wayland.
+- **stability tweaks:** `sp5100_tco` watchdog blacklisted; reduced system/user `DefaultTimeoutStopSec` to avoid long shutdown hangs.
+- **device-specific notes:** Wake-on-LAN configured for `eno1` (BIOS/UEFI must also allow WoL and appropriate power state); udev rules for BT USB autosuspend and Logitech G515 TKL access/power.
+- **updates/policy:** flakes enabled, binary caches configured, GC weekly (>30d), `system.autoUpgrade` disabled (manual `t-update`/`t-test`/`t-boot|t-switch` flow preferred).
+- **not in git by design:** secrets/credentials, SSH/GPG private material, browser/app session data, and personal files/backups.
 
 ## commands
 im lazy
