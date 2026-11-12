@@ -6,16 +6,24 @@ personal nixos config using home manager and flakes
 ```
 .
 ├── assets/
+│   ├── nvim-logo.png
 │   └── wallpapers/
+│       ├── 715139.jpg
+│       ├── ergo-proxy-kw9yj7-1920x1080.png
+│       └── fastfetch-logo.jpg
+├── home/
+│   └── visa/
+│       ├── btop/
+│       │   └── tokyo-night.theme
+│       ├── default.nix
+│       ├── desktop.nix
+│       ├── kwinoutputconfig-g25f2.json
+│       ├── nixvim.nix
+│       └── packages.nix
 ├── hosts/
 │   └── termina/
 │       ├── default.nix
 │       └── hardware.nix
-├── home/
-│   └── visa/
-│       ├── default.nix
-│       ├── desktop.nix
-│       └── packages.nix
 ├── modules/
 │   └── nixos/
 │       ├── common.nix
@@ -28,7 +36,9 @@ personal nixos config using home manager and flakes
 │       ├── services.nix
 │       └── virtualisation.nix
 ├── pkgs/
-│   └── simp1e-tokyo-night-storm.nix
+│   ├── openal-win.nix
+│   ├── simp1e-tokyo-night-storm.nix
+│   └── whyd.nix
 ├── .gitignore
 ├── README.md
 ├── flake.lock
