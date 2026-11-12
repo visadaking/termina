@@ -25,9 +25,7 @@
 
   # Avoid long shutdown hangs when a service/app misbehaves (e.g. plasmashell timeout).
   systemd.settings.Manager.DefaultTimeoutStopSec = "20s";
-  systemd.user.extraConfig = ''
-    DefaultTimeoutStopSec=20s
-  '';
+  systemd.user.settings.Manager.DefaultTimeoutStopSec = "20s";
 
   time.timeZone = "Asia/Jerusalem";
   # system in English; keyboard supports English (US) + Hebrew
