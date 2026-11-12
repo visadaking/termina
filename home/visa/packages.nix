@@ -34,6 +34,8 @@ in
     handbrake
     reaper                # DAW (unfree)
     eartag                # audio file tag editor
+    beets                 # music library manager/tagger
+    mediainfo             # media file metadata
     kdePackages.kdenlive
     jellyfin-media-player  # org.jellyfin.JellyfinDesktop
     nicotine-plus
