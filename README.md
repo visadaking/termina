@@ -11,11 +11,6 @@ personal nixos config using home manager and flakes
 │   └── visa/
 │       ├── btop/
 │       │   └── tokyo-night.theme
-│       ├── vesktop/                 # safe Vesktop settings backup (no session/cookies/secrets)
-│       │   ├── settings.json
-│       │   └── settings/
-│       │       ├── quickCss.css
-│       │       └── settings.json
 │       ├── default.nix
 │       ├── desktop.nix
 │       ├── kwinoutputconfig-g25f2.json
