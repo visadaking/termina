@@ -85,6 +85,7 @@ in
       t-dns-revert = "f(){ i=\${1:?usage: t-dns-revert <iface>}; sudo resolvectl revert \"$i\" && echo reverted: $i; }; f";
       fixaudio = "systemctl --user restart wireplumber pipewire pipewire-pulse";
       cls = "clear";
+      ff = "fastfetch";
 
       # wallpapers (runtime switch, Plasma 6)
       wallpaper-ergo = "plasma-apply-wallpaperimage \"$HOME/Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png\"";
