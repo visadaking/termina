@@ -6,6 +6,7 @@
       auto-optimise-store = true;
       keep-outputs = true;
       keep-derivations = true;
+      warn-dirty = false;
       # binary caches
       extra-substituters = [
         "https://nix-gaming.cachix.org"
