@@ -86,11 +86,6 @@
   services.blueman.enable = true;
   boot.kernelModules = [ "btusb" "sr_mod" "cdrom" "uvcvideo" ]; # btusb for USB BT; sr_mod/cdrom for USB optical; uvcvideo for USB webcams
 
-  # Disable autosuspend for Bluetooth USB adapters only (Wireless Controller, bDeviceClass 0xe0).
-  services.udev.extraRules = lib.mkAfter ''
-    SUBSYSTEM=="usb", ATTR{bDeviceClass}=="e0", ATTR{bDeviceSubClass}=="01", ATTR{bDeviceProtocol}=="01", TEST=="power/control", ATTR{power/control}="on"
-  '';
-
   # i2c/DDC access (for ddcutil / sunshine-screen)
   hardware.i2c.enable = true;
 
@@ -108,8 +103,12 @@
     source = "${pkgs.gpu-screen-recorder-ui}/bin/gsr-global-hotkeys";
   };
 
-  # Logitech G515 TKL (046d:c358): user access + disable USB autosuspend
-  services.udev.extraRules = ''
+  # udev rules: Bluetooth USB adapter autosuspend + Logitech G515 TKL access/power
+  services.udev.extraRules = lib.mkAfter ''
+    # Disable autosuspend for Bluetooth USB adapters only (Wireless Controller, bDeviceClass 0xe0).
+    SUBSYSTEM=="usb", ATTR{bDeviceClass}=="e0", ATTR{bDeviceSubClass}=="01", ATTR{bDeviceProtocol}=="01", TEST=="power/control", ATTR{power/control}="on"
+
+    # Logitech G515 TKL (046d:c358): user access + disable USB autosuspend
     SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c358", TAG+="uaccess"
     KERNEL=="hidraw*", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c358", TAG+="uaccess", MODE="0660"
     SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c358", TEST=="power/control", ATTR{power/control}="on"
