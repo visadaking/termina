@@ -16,7 +16,7 @@
     };
   };
 
-  # Tailscale (VPN mesh; enable now, configure/auth with `tailscale up` when needed)
+  # tailscale
   services.tailscale.enable = true;
 
   # Automatic process priority management (nice/ionice/sched/oom) for desktop responsiveness.
