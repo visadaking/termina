@@ -113,7 +113,7 @@ in
         MuteMode = 5;
         FillBlur = false;
         ScreenOffPausesVideo = true;
-        BatteryPausesVideo = true;
+        BatteryPausesVideo = false;
       };
 
       # Smart Video Wallpaper Reborn (lock screen)
