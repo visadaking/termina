@@ -166,4 +166,28 @@
   # LocalSend (opens firewall port 53317)
   programs.localsend.enable = true;
 
+  # fonts (broad coverage: UI/emoji/symbols/CJK/coding/compat)
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    noto-fonts-color-emoji
+    dejavu_fonts
+    liberation_ttf
+    corefonts
+    font-awesome
+    nerd-fonts.symbols-only
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
+  ];
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts = {
+      serif = [ "Noto Serif" "DejaVu Serif" ];
+      sansSerif = [ "Noto Sans" "DejaVu Sans" ];
+      monospace = [ "JetBrainsMono Nerd Font" "FiraCode Nerd Font" "DejaVu Sans Mono" ];
+      emoji = [ "Noto Color Emoji" ];
+    };
+  };
+
 }
