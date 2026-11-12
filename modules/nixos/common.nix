@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ lib, pkgs, inputs, ... }:
 {
   # nix settings/gc/cachix/autoUpgrade -> modules/nix.nix
 
@@ -67,10 +67,46 @@
   # bluetooth (incl. USB adapters e.g. TP-Link UB600 / RTL8761BU)
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth.settings = {
+    General = {
+      Enable = "Source,Sink,Media,Socket";
+      Experimental = true;
+      AutoEnable = true;
+      ControllerMode = "dual";
+      FastConnectable = false;
+      Privacy = "device";
+      ResumeDelay = 2;
+    };
+    Policy = {
+      AutoEnable = true;
+      ReconnectAttempts = 7;
+      ReconnectIntervals = "1,2,4,8,16,32,64";
+    };
+  };
+  services.blueman.enable = true;
   boot.kernelModules = [ "btusb" "sr_mod" "cdrom" "uvcvideo" ]; # btusb for USB BT; sr_mod/cdrom for USB optical; uvcvideo for USB webcams
+
+  # Disable autosuspend for Bluetooth USB adapters only (Wireless Controller, bDeviceClass 0xe0).
+  services.udev.extraRules = lib.mkAfter ''
+    SUBSYSTEM=="usb", ATTR{bDeviceClass}=="e0", ATTR{bDeviceSubClass}=="01", ATTR{bDeviceProtocol}=="01", TEST=="power/control", ATTR{power/control}="on"
+  '';
 
   # i2c/DDC access (for ddcutil / sunshine-screen)
   hardware.i2c.enable = true;
+
+  # AppImage support (binfmt registration so .AppImage files run directly)
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+
+  # gpu-screen-recorder-ui global hotkeys helper needs elevated privileges on Wayland
+  security.wrappers.gsr-global-hotkeys = {
+    owner = "root";
+    group = "root";
+    setuid = true;
+    source = "${pkgs.gpu-screen-recorder-ui}/bin/gsr-global-hotkeys";
+  };
 
   # Logitech G515 TKL (046d:c358): user access + disable USB autosuspend
   services.udev.extraRules = ''
