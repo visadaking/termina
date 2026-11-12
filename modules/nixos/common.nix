@@ -160,9 +160,4 @@
   # LocalSend (opens firewall port 53317)
   programs.localsend.enable = true;
 
-  # AppImage support (Gear Lever / appimage-run integration)
-  programs.appimage = {
-    enable = true;
-    binfmt = true;
-  };
 }
