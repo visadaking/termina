@@ -53,9 +53,14 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, plasma-manager, sunshine-screen, nix-flatpak, maid-bt, maidshare, maid-suite, maid-runner, nixvim, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, plasma-manager, sunshine-screen, nix-flatpak, maid-bt, maidshare, maid-suite, maid-runner, nixvim, nix-index-database, ... }:
     let
       system = "x86_64-linux";
       mkHost = hostName: nixpkgs.lib.nixosSystem {
@@ -68,6 +73,8 @@
           ./hosts/${hostName}
           nix-flatpak.nixosModules.nix-flatpak
           home-manager.nixosModules.home-manager
+          nix-index-database.nixosModules.nix-index
+          { programs.nix-index-database.comma.enable = true; }
           {
             # expose uad-ng GUI + uad CLI (flake inputs) as pkgs
             nixpkgs.overlays = [
@@ -107,6 +114,12 @@
       nixosConfigurations = {
         termina = mkHost "termina";
         # add more hosts here: other = mkHost "other";
+      };
+
+      packages.${system} = {
+        whyd = nixpkgs.legacyPackages.${system}.callPackage ./pkgs/whyd.nix { };
+        openal-win = nixpkgs.legacyPackages.${system}.callPackage ./pkgs/openal-win.nix { };
+        simp1e-tokyo-night-storm = nixpkgs.legacyPackages.${system}.callPackage ./pkgs/simp1e-tokyo-night-storm.nix { };
       };
 
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
