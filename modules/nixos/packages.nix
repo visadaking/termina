@@ -19,9 +19,7 @@
     # media / streaming / sharing
     vlc mpv
     qbittorrent
-    sunshine    # host (Moonlight client is moonlight-qt in home/visa; verify sunshine attr on 26.11/unstable)
-    gpu-screen-recorder
-    gpu-screen-recorder-ui
+    sunshine
   ];
 
   # filesystems

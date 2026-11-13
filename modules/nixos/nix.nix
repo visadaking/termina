@@ -10,11 +10,9 @@
       # binary caches
       extra-substituters = [
         "https://nix-gaming.cachix.org"
-        "https://kopuz.cachix.org"
       ];
       extra-trusted-public-keys = [
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-        "kopuz.cachix.org-1:J2X3AnAYhKTJW5S3aCLoA1ckonQXVNZMQvhZA0YAufw="
       ];
     };
     gc = {

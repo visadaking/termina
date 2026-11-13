@@ -124,7 +124,7 @@ t-switch   # or t-boot
 - **storage/layout:** ext4 root + vfat `/boot` + ext4 `/games` (`nofail`, 5s device timeout), zram swap; verify UUIDs in `hosts/termina/hardware.nix` before reinstall.
 - **desktop/session:** KDE Plasma 6 on Wayland (SDDM), XWayland enabled, PipeWire (Pulse/ALSA, 32-bit ALSA, HiFi clock rates), NetworkManager, Flatpak (declarative via nix-flatpak).
 - **locale/input:** timezone `Asia/Jerusalem`, locale `en_US.UTF-8`, keyboard `us,il` with `grp:alt_shift_toggle`.
-- **hardware/services quirks:** bluetooth enabled (BlueZ tuning, `btusb`), i2c/DDC enabled, fwupd enabled, LocalSend enabled, AppImage binfmt enabled, `gsr-global-hotkeys` wrapper for gpu-screen-recorder-ui hotkeys on Wayland.
+- **hardware/services quirks:** bluetooth enabled (BlueZ tuning, `btusb`), i2c/DDC enabled, fwupd enabled, LocalSend enabled, AppImage binfmt enabled.
 - **stability tweaks:** `sp5100_tco` watchdog blacklisted; reduced system/user `DefaultTimeoutStopSec` to avoid long shutdown hangs.
 - **device-specific notes:** Wake-on-LAN configured for `eno1` (BIOS/UEFI must also allow WoL and appropriate power state); udev rules for BT USB autosuspend and Logitech G515 TKL access/power.
 - **updates/policy:** flakes enabled, binary caches configured, GC weekly (>30d), `system.autoUpgrade` disabled (manual `t-update`/`t-test`/`t-boot|t-switch` flow preferred).

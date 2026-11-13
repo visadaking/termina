@@ -101,14 +101,6 @@
     binfmt = true;
   };
 
-  # gpu-screen-recorder-ui global hotkeys helper needs elevated privileges on Wayland
-  security.wrappers.gsr-global-hotkeys = {
-    owner = "root";
-    group = "root";
-    setuid = true;
-    source = "${pkgs.gpu-screen-recorder-ui}/bin/gsr-global-hotkeys";
-  };
-
   # udev rules: Bluetooth USB adapter autosuspend + Logitech G515 TKL access/power
   services.udev.extraRules = lib.mkAfter ''
     # Disable autosuspend for Bluetooth USB adapters only (Wireless Controller, bDeviceClass 0xe0).
