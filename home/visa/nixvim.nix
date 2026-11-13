@@ -8,9 +8,6 @@
     # avoid nixvim/nixpkgs follows warning when using HM with global pkgs
     nixpkgs.pkgs = pkgs;
 
-    # your photo (copied into repo): assets/nvim-logo.png
-    # can be used for a dashboard image/header with additional setup if desired.
-
     globals.mapleader = " ";
 
     clipboard.register = "unnamedplus";
