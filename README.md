@@ -53,7 +53,6 @@ t-syu           # t-update + t-test + t-boot (safe update, set for next boot)
 t-check         # nix flake check
 t-dry           # dry build, see if it actually builds
 t-test          # t-check + t-dry (safe pre-switch/boot check)
-t-clean         # clean old generations (>30d) and free space
 t-status        # git status for ~/termina
 t-log           # recent commits for ~/termina
 t-pull          # git pull --ff-only in ~/termina

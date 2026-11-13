@@ -70,7 +70,6 @@ in
       t-switch = "sudo nixos-rebuild switch --flake $HOME/termina#termina";
       t-boot = "sudo nixos-rebuild boot --flake $HOME/termina#termina";
       t-syu = "nix flake update --flake $HOME/termina && nix flake check $HOME/termina && sudo nixos-rebuild dry-build --flake $HOME/termina#termina && sudo nixos-rebuild boot --flake $HOME/termina#termina";
-      t-clean = "sudo nix-collect-garbage --delete-older-than 30d";
       t-update = "nix flake update --flake $HOME/termina";
       t-update-input = "f(){ nix flake lock --update-input \"\${1:?usage: t-update-input <input>}\" $HOME/termina; }; f";
       t-test = "nix flake check $HOME/termina && sudo nixos-rebuild dry-build --flake $HOME/termina#termina";
