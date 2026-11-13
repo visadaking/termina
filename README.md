@@ -48,20 +48,20 @@ t-switch        # rebuild and switch now
 t-boot          # rebuild and set it for next boot (doesnt switch right away)
 t-update        # update all flake inputs (flake.lock)
 t-update-input  # update one input: t-update-input nixpkgs-unstable
-t-syu           # t-update + t-boot
+t-syu           # t-update + t-test + t-boot (safe update, set for next boot)
 t-check         # nix flake check
 t-dry           # dry build, see if it actually builds
-t-test          # t-check + t-dry (safe pre-switch check)
+t-test          # t-check + t-dry (safe pre-switch/boot check)
 t-clean         # clean old generations (>30d) and free space
 t-status        # git status for ~/termina
 t-commit "msg"  # stage + commit all changes in ~/termina
-t-backup        # push to origin + codeberg
+t-backup        # push to origin + rond + codeberg
 t-pushall       # alias for t-backup
 ```
 
 `NH_FLAKE` is set to `~/termina`, so `nh` commands work without extra flake args.
 
-usually its just `t-switch` after changing stuff. for safer updates: `t-update` (or `t-update-input <input>`) -> `t-test` -> `t-boot`/`t-syu`, reboot when ready, then commit/push the lock if good.
+usually its just `t-switch` after changing stuff. for safer updates: `t-update` (or `t-update-input <input>`) -> `t-test` -> `t-boot` (or `t-syu` to do update+test+boot in one go), reboot when ready, then commit/push the lock if good.
 
 ## repositories
 - origin (GitHub): `https://github.com/visadaking/termina.git`
