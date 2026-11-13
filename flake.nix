@@ -60,8 +60,11 @@
       system = "x86_64-linux";
       mkHost = hostName: nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs self; };
         modules = [
+          ({ lib, ... }: {
+            system.configurationRevision = lib.mkDefault (self.shortRev or self.dirtyShortRev or "unknown");
+          })
           ./hosts/${hostName}
           nix-flatpak.nixosModules.nix-flatpak
           home-manager.nixosModules.home-manager
