@@ -78,6 +78,15 @@
                     wrapProgram $out/bin/localsend_app --prefix LD_LIBRARY_PATH : ${prev.lib.makeLibraryPath [ prev.zlib ]}
                   '';
                 });
+                # better Plasma/KDE Qt integration for native Telegram on this system
+                telegram-desktop = prev.telegram-desktop.overrideAttrs (old: {
+                  nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ prev.makeWrapper ];
+                  postFixup = (old.postFixup or "") + ''
+                    for p in "$out/bin/Telegram" "$out/bin/telegram-desktop"; do
+                      [ -x "$p" ] && wrapProgram "$p" --set QT_QPA_PLATFORMTHEME kde
+                    done
+                  '';
+                });
               })
             ];
           }
