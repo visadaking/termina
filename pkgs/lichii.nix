@@ -15,6 +15,35 @@ in
 appimageTools.wrapType2 {
   inherit pname version src;
 
+  extraPkgs = pkgs: with pkgs; [
+    libGL
+    vulkan-loader
+    libdrm
+    libusb1
+    zlib
+    libgpg-error
+    libgcrypt
+    xorg.libX11
+    xorg.libXext
+    xorg.libXrender
+    xorg.libXi
+    xorg.libXrandr
+    xorg.libXfixes
+    xorg.libXcursor
+    xorg.libxcb
+    libxkbcommon
+    wayland
+    fontconfig
+    freetype
+    harfbuzz
+    fribidi
+    dbus
+    alsa-lib
+    pipewire
+    pulseaudio
+    SDL2
+  ];
+
   extraInstallCommands = ''
     if [ -d ${appimageContents}/usr/share ]; then
       cp -r ${appimageContents}/usr/share $out/share
