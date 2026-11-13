@@ -1,6 +1,6 @@
 # termina
 
-personal nixos config using home manager and flakes
+personal nixos config using home manager and flakes and kde plasma
 
 ## layout
 ```
