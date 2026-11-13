@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  # Helps run unpatched dynamic binaries/AppImages (e.g. lichii in ~/Downloads) on NixOS.
+  # Helps run unpatched dynamic binaries/AppImages on NixOS.
   # Steam uses its own FHS env; this is for random/foreign binaries.
   programs.nix-ld = {
     enable = true;

@@ -1,7 +1,6 @@
 { pkgs, ... }:
 let
   whyd = pkgs.callPackage ../../pkgs/whyd.nix { };
-  lichii = pkgs.callPackage ../../pkgs/lichii.nix { };
 in
 {
   home.packages = with pkgs; [
@@ -97,7 +96,6 @@ in
     dolphin-emu      # GameCube / Wii emulator
     rpcs3            # PlayStation 3 emulator
     mupen64plus      # Nintendo 64 emulator
-    ryubing          # Nintendo Switch emulator (nixpkgs)
 
 
     # VPN
@@ -109,8 +107,7 @@ in
     cameractrls      # verify attr
     xclicker         # verify attr
     # upscaler? peazip/freac/niche - verify attrs; Goose/Azahar/Sober/Reaper handled case-by-case (see docs)
-    # emulators / AppImages
-    lichii
+    # AppImages
     appimage-run
 
     # fonts/themes helpers (add your Tokyo Night/cursor/font packages here as needed)
