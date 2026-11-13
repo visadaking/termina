@@ -44,6 +44,7 @@ personal nixos config using home manager and flakes
 im lazy
 
 ```sh
+t-edit          # open ~/termina in nvim
 t-switch        # rebuild and switch now
 t-boot          # rebuild and set it for next boot (doesnt switch right away)
 t-update        # update all flake inputs (flake.lock)
@@ -54,9 +55,14 @@ t-dry           # dry build, see if it actually builds
 t-test          # t-check + t-dry (safe pre-switch/boot check)
 t-clean         # clean old generations (>30d) and free space
 t-status        # git status for ~/termina
+t-log           # recent commits for ~/termina
+t-pull          # git pull --ff-only in ~/termina
 t-commit "msg"  # stage + commit all changes in ~/termina
-t-backup        # push to origin + rond + codeberg
+t-push          # git push in ~/termina
+t-backup        # push main to origin + rond + codeberg
 t-pushall       # alias for t-backup
+t-dns-relax i   # temporary DNS relax for captive portals (runtime-only)
+t-dns-revert i  # revert DNS relax for an interface
 ```
 
 `NH_FLAKE` is set to `~/termina`, so `nh` commands work without extra flake args.
@@ -65,6 +71,7 @@ usually its just `t-switch` after changing stuff. for safer updates: `t-update` 
 
 ## repositories
 - origin (GitHub): `https://github.com/visadaking/termina.git`
+- rond: `https://git.rond.cc/visa/termina.git`
 - codeberg: `https://codeberg.org/visa1337/termina.git`
 
 keep all remotes in sync with `t-backup` (or `t-pushall`).
