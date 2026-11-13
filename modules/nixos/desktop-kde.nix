@@ -11,6 +11,7 @@
   # exclude KDE/PIM apps you don't want (attr names may vary by nixpkgs rev)
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     akonadiconsole
+    ark
     elisa
     kmail
     kontact

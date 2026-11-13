@@ -431,11 +431,57 @@ in
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
+      # web browser
       "text/html" = [ "firefox.desktop" ];
       "x-scheme-handler/http" = [ "firefox.desktop" ];
       "x-scheme-handler/https" = [ "firefox.desktop" ];
       "x-scheme-handler/about" = [ "firefox.desktop" ];
       "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+
+      # music player
+      "audio/mpeg" = [ "org.fooyin.fooyin.desktop" ];
+      "audio/mp4" = [ "org.fooyin.fooyin.desktop" ];
+      "audio/flac" = [ "org.fooyin.fooyin.desktop" ];
+      "audio/ogg" = [ "org.fooyin.fooyin.desktop" ];
+      "audio/x-vorbis+ogg" = [ "org.fooyin.fooyin.desktop" ];
+      "audio/x-opus+ogg" = [ "org.fooyin.fooyin.desktop" ];
+      "audio/wav" = [ "org.fooyin.fooyin.desktop" ];
+      "audio/x-wav" = [ "org.fooyin.fooyin.desktop" ];
+      "audio/aac" = [ "org.fooyin.fooyin.desktop" ];
+      "audio/x-ms-wma" = [ "org.fooyin.fooyin.desktop" ];
+      "audio/x-matroska" = [ "org.fooyin.fooyin.desktop" ];
+
+      # video player
+      "video/mp4" = [ "mpv.desktop" ];
+      "video/x-matroska" = [ "mpv.desktop" ];
+      "video/webm" = [ "mpv.desktop" ];
+      "video/x-msvideo" = [ "mpv.desktop" ];
+      "video/quicktime" = [ "mpv.desktop" ];
+      "video/x-ms-wmv" = [ "mpv.desktop" ];
+      "video/mpeg" = [ "mpv.desktop" ];
+      "video/ogg" = [ "mpv.desktop" ];
+      "video/mp2t" = [ "mpv.desktop" ];
+
+      # pdf viewer
+      "application/pdf" = [ "onlyoffice-desktopeditors.desktop" ];
+
+      # archive manager
+      "application/zip" = [ "peazip.desktop" ];
+      "application/x-tar" = [ "peazip.desktop" ];
+      "application/x-compressed-tar" = [ "peazip.desktop" ];
+      "application/x-bzip-compressed-tar" = [ "peazip.desktop" ];
+      "application/x-xz-compressed-tar" = [ "peazip.desktop" ];
+      "application/x-zstd-compressed-tar" = [ "peazip.desktop" ];
+      "application/gzip" = [ "peazip.desktop" ];
+      "application/x-bzip2" = [ "peazip.desktop" ];
+      "application/x-xz" = [ "peazip.desktop" ];
+      "application/zstd" = [ "peazip.desktop" ];
+      "application/x-7z-compressed" = [ "peazip.desktop" ];
+      "application/vnd.rar" = [ "peazip.desktop" ];
+      "application/x-rar" = [ "peazip.desktop" ];
+      "application/x-archive" = [ "peazip.desktop" ];
+      "application/x-cpio" = [ "peazip.desktop" ];
+      "application/x-iso9660-image" = [ "peazip.desktop" ];
     };
   };
 
