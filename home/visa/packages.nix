@@ -1,6 +1,7 @@
 { pkgs, ... }:
 let
   whyd = pkgs.callPackage ../../pkgs/whyd.nix { };
+  lichii = pkgs.callPackage ../../pkgs/lichii.nix { };
 in
 {
   home.packages = with pkgs; [
@@ -108,7 +109,8 @@ in
     cameractrls      # verify attr
     xclicker         # verify attr
     # upscaler? peazip/freac/niche - verify attrs; Goose/Azahar/Sober/Reaper handled case-by-case (see docs)
-    # AppImages (you still have: lichii in ~/Downloads; keep as file + appimage-run)
+    # emulators / AppImages
+    lichii
     appimage-run
 
     # fonts/themes helpers (add your Tokyo Night/cursor/font packages here as needed)
