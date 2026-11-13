@@ -423,6 +423,10 @@ in
   home.file."Pictures/Wallpapers/715139.jpg".source =
     ../../assets/wallpapers/715139.jpg;
 
+  # Telegram Desktop theme generated to match current KDE Plasma colors (apply in Telegram settings)
+  xdg.dataFile."TelegramDesktop/tdata/themes/TokyoNightStormPlasma.tdesktop-theme".source =
+    ../../assets/telegram/TokyoNightStormPlasma.tdesktop-theme;
+
   # default applications (declarative)
   xdg.mimeApps = {
     enable = true;
