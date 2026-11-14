@@ -10,6 +10,9 @@
     };
   };
 
+  # Docker
+  virtualisation.docker.enable = true;
+
   # GUI for easier VM management (keeps vm-curator as a terminal option)
   programs.virt-manager.enable = true;
 
@@ -20,9 +23,14 @@
     vm-curator
     virt-viewer
     spice-gtk
+    docker-compose
   ];
 
-  users.users.visa.extraGroups = [ "libvirtd" "kvm" ];
+  users.users.visa.extraGroups = [
+    "libvirtd"
+    "kvm"
+    "docker"
+  ];
 
   # keep default networks (libvirt manages them); no changes to /games
 }
