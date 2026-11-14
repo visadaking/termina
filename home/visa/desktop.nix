@@ -7,6 +7,7 @@
 let
   # Simp1e (capitaine successor) cursors, Tokyo Night Storm scheme - matches the GTK theme/accent
   simp1e-tokyo-night-storm = pkgs.callPackage ../../pkgs/simp1e-tokyo-night-storm.nix { };
+  papirus-icon-theme-teal = pkgs.callPackage ../../pkgs/papirus-icon-theme-teal.nix { };
 in
 {
   # GTK theme (Tokyo Night)
@@ -22,7 +23,7 @@ in
     };
     iconTheme = {
       name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+      package = papirus-icon-theme-teal;
     };
     cursorTheme = {
       name = "Simp1e-Tokyo-Night-Storm";
