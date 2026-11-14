@@ -8,8 +8,9 @@
   programs.firefox = {
     enable = true;
 
-    profiles.visa = {
+    profiles.default = {
       isDefault = true;
+      path = "dNhbcrRJ.Profile 1";
 
       # declarative prefs (sanitized: excludes passwords/logins/cookies/sessions/sync/account tokens)
       settings = {
