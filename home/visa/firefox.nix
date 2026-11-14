@@ -243,6 +243,10 @@
               }
               {
                 name = "";
+                url = "https://github.com/feed";
+              }
+              {
+                name = "";
                 url = "https://www.reddit.com/";
               }
               {
@@ -420,11 +424,11 @@
                     name = "future setup upgrade";
                     bookmarks = [
                       {
-                        name = "Røde PodMic ";
+                        name = "Røde PodMic";
                         url = "https://ksp.co.il/web/item/341677";
                       }
                       {
-                        name = " Keychron C3 Pro ";
+                        name = "Keychron C3 Pro";
                         url = "https://ksp.co.il/web/item/483966";
                       }
                     ];
@@ -453,6 +457,19 @@
                         url = "https://diyhrt.info/";
                       }
                     ];
+                  }
+                ];
+              }
+              {
+                name = "nix";
+                bookmarks = [
+                  {
+                    name = " nix unstable pkgs";
+                    url = "https://search.nixos.org/packages?channel=unstable";
+                  }
+                  {
+                    name = "nix wiki";
+                    url = "https://wiki.nixos.org/wiki/NixOS_Wiki";
                   }
                 ];
               }
