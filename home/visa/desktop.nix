@@ -38,13 +38,12 @@ in
   # KDE Plasma via plasma-manager: keybinds + theme basics only (start small).
   # declarative can conflict with GUI changes - keep scope minimal.
   # keybinds imported from current kglobalshortcutsrc (verify after first login).
-  # wallpaper deployed via home.file below (Ergo Proxy; file added from /home/visa/trash/wallpapers/).
+  # wallpaper deployed via home.file (Ergo Proxy).
   programs.plasma = {
     enable = true;
     workspace = {
       clickItemTo = "select";
-      # Static wallpaper replaced by Smart Video Wallpaper Reborn (configured in configFile below)
-      # wallpaper = "${config.home.homeDirectory}/Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png";
+      wallpaper = "${config.home.homeDirectory}/Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png";
       cursor = {
         theme = "Simp1e-Tokyo-Night-Storm";
         size = 24;
@@ -102,31 +101,6 @@ in
       # Spectacle: stupid fucking pop up
       spectaclerc.General.clipboardGroup = "PostScreenshotCopyImage";
       spectaclerc.GuiConfig.quitAfterSaveCopyExport = true;
-
-      # Smart Video Wallpaper Reborn (desktop - containment 1)
-      # Video source: ~/Videos/Live Wallpapers/sephiroth-final-fantasy-vii.1920x1080.mp4
-      # Pause on maximized/fullscreen (PauseMode=0), muted (MuteMode=5), reduced background blur fill for lower RAM/GPU use.
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments][1".wallpaperplugin = "luisbocanegra.smart.video.wallpaper.reborn";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments][1][Wallpaper][luisbocanegra.smart.video.wallpaper.reborn][General" = {
-        VideoUrls = "[\"file:///home/visa/Videos/Live%20Wallpapers/sephiroth-final-fantasy-vii.1920x1080.mp4\"]";
-        PauseMode = 0;
-        MuteMode = 5;
-        FillBlur = false;
-        ScreenOffPausesVideo = true;
-        BatteryPausesVideo = false;
-      };
-
-      # Smart Video Wallpaper Reborn (lock screen)
-      # Video source: ~/Videos/Live Wallpapers/neon-harbor-city-pixel-art-moewalls-com.mp4
-      kscreenlockerrc.Greeter.WallpaperPlugin = "luisbocanegra.smart.video.wallpaper.reborn";
-      "kscreenlockerrc"."Greeter][Wallpaper][luisbocanegra.smart.video.wallpaper.reborn][General" = {
-        VideoUrls = "[\"file:///home/visa/Videos/Live%20Wallpapers/neon-harbor-city-pixel-art-moewalls-com.mp4\"]";
-        PauseMode = 0;
-        MuteMode = 5;
-        FillBlur = false;
-        ScreenOffPausesVideo = true;
-        BatteryPausesVideo = false;
-      };
     };
   };
 

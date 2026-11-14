@@ -122,6 +122,6 @@
         simp1e-tokyo-night-storm = nixpkgs.legacyPackages.${system}.callPackage ./pkgs/simp1e-tokyo-night-storm.nix { };
       };
 
-      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
     };
 }
