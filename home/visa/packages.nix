@@ -13,16 +13,16 @@ in
     # browsers
     firefox
     vivaldi
-    # chromium # you have chromium RPM; add if wanted (or pkgs.unstable.chromium)
 
-    # comms (from your flatpaks/RPMs - add what you use; some are unfree)
+    # comms 
     vesktop
     element-desktop
     signal-desktop
     telegram-desktop
-    zapzap                # WhatsApp client (verify attr: zapzap / pkgs.unstable.zapzap)
-    zoom-us               # unfree
-    simplex-chat-desktop  # verify attr name on 26.11/unstable (simplex-chat-desktop or simplex-chat)
+    zapzap                # WhatsApp client 
+    zoom-us               
+    simplex-chat-desktop  
+    quassel # IRC Cilent 
 
     # media
     vlc
@@ -32,12 +32,12 @@ in
     krita
     audacity_3
     handbrake
-    reaper                # DAW (unfree)
+    reaper                # Reaper DAW
     eartag                # audio file tag editor
     beets                 # music library manager/tagger
     mediainfo             # media file metadata
     kdePackages.kdenlive
-    jellyfin-media-player  # org.jellyfin.JellyfinDesktop
+    jellyfin-media-player  # jellyfin desktop not server
     nicotine-plus
 
     # files/sync/productivity
@@ -65,8 +65,6 @@ in
     speedtest-cli
     whyd                  # diagnose previous-boot freeze/crash/shutdown from journal (vmaltarello/whyd)
     discordchatexporter-desktop
-    # github-desktop      # replaced by GH Desktop Plus (Flatpak: org.desktop_plus.desktop-plus)
-    # anydesk               # unfree/proprietary; verify attr (anydesk) if you need it - can break on some channels
     fd
     ripgrep
     yt-dlp
@@ -102,12 +100,12 @@ in
     proton-vpn
 
     # native replacements/helpers for former AppImages/niche (verify attrs on 26.11/unstable)
-    musicpresence    # Discord/music rich presence (was music_presence.appimage)
+    musicpresence    # Discord/music rich presence 
     redact           # image/pdf redaction
     cameractrls      # verify attr
     xclicker         # verify attr
     # upscaler? peazip/freac/niche - verify attrs; Goose/Azahar/Sober/Reaper handled case-by-case (see docs)
-    # AppImages
+    # AppImages (appimage-run doesn't work but don't remove it)
     appimage-run
 
     # fonts/themes helpers (add your Tokyo Night/cursor/font packages here as needed)

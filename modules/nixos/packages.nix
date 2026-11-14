@@ -14,12 +14,12 @@
     ntfs3g exfatprogs # NTFS/exFAT support
 
     # productivity/dev
-    vscodium keepassxc gh lazygit opencode  # verify attr on 26.11/unstable (pkgs.unstable.opencode if needed)
+    vscodium keepassxc gh lazygit opencode quassel # IRC CIlent 
 
     # media / streaming / sharing
     vlc mpv
     qbittorrent
-    sunshine
+    sunshine 
   ];
 
   # filesystems
