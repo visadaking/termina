@@ -1,0 +1,37 @@
+{
+  "mode": "dark",
+  "extends": "defaultDark",
+  "colors": {
+    "background": "rgb(31, 35, 53)",
+    "background-alternate": "rgb(36, 40, 59)",
+    "surface": "rgb(36, 40, 59)",
+    "surface-foreground": "rgb(192, 202, 245)",
+    "foreground": "rgb(192, 202, 245)",
+    "foreground-muted": "rgb(128, 137, 179)",
+    "primary": "rgb(92, 185, 174)",
+    "black": "rgb(0, 0, 0)",
+    "white": "rgb(255, 255, 255)",
+    "state-error": "rgb(247, 118, 142)",
+    "state-info": "rgb(122, 162, 247)",
+    "state-success": "rgb(158, 206, 106)",
+    "state-warning": "rgb(224, 175, 104)"
+  },
+  "app": {
+    "overlay-header": "linear-gradient(rgb(31 35 53 / 55%) 0%, rgb(31 35 53 / 85%))",
+    "overlay-subheader": "linear-gradient(rgb(31 35 53 / 55%) 0%, rgb(31 35 53 / 85%))",
+    "scrollbar-size": "8px",
+    "scrollbar-handle-background": "rgba(92, 185, 174, 35%)",
+    "scrollbar-handle-hover-background": "rgba(92, 185, 174, 55%)",
+    "scrollbar-handle-active-background": "rgba(92, 185, 174, 75%)",
+    "scrollbar-handle-border-radius": "8px",
+    "scrollbar-track-background": "rgba(36, 40, 59, 35%)",
+    "scrollbar-track-hover-background": "rgba(36, 40, 59, 50%)",
+    "scrollbar-track-active-background": "rgba(36, 40, 59, 60%)",
+    "scrollbar-track-border-radius": "8px"
+  },
+  "mantineOverride": {
+    "primaryShade": {
+      "dark": 5
+    }
+  }
+}

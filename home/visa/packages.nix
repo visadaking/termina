@@ -27,7 +27,8 @@ in
     # media
     vlc
     mpv
-    spotify        # unfree
+    spotify        
+    feishin
     fooyin
     krita
     audacity_3
