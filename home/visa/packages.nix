@@ -22,7 +22,7 @@ in
     zapzap                # WhatsApp client 
     zoom-us               
     simplex-chat-desktop  
-    quassel # IRC Cilent 
+    quassel               # IRC client 
 
     # media
     vlc
