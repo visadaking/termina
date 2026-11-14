@@ -226,99 +226,99 @@
             toolbar = true;
             bookmarks = [
               {
-                name = "http://youtube.com/";
+                name = "";
                 url = "http://youtube.com/";
               }
               {
-                name = "https://discord.com/channels/@me";
+                name = "";
                 url = "https://discord.com/channels/@me";
               }
               {
-                name = "https://x.com/home";
+                name = "";
                 url = "https://x.com/home";
               }
               {
-                name = "https://bsky.app/";
+                name = "";
                 url = "https://bsky.app/";
               }
               {
-                name = "https://www.reddit.com/";
+                name = "";
                 url = "https://www.reddit.com/";
               }
               {
-                name = "https://www.twitch.tv/";
+                name = "";
                 url = "https://www.twitch.tv/";
               }
               {
-                name = "https://www.instagram.com/";
+                name = "";
                 url = "https://www.instagram.com/";
               }
               {
-                name = "https://open.spotify.com/";
+                name = "";
                 url = "https://open.spotify.com/";
               }
               {
-                name = "https://soundcloud.com/";
+                name = "";
                 url = "https://soundcloud.com/";
               }
               {
-                name = "https://bandcamp.com/?from=menubar_logo_logged_in";
+                name = "";
                 url = "https://bandcamp.com/?from=menubar_logo_logged_in";
               }
               {
-                name = "https://www.livechart.me/users/visa/library";
+                name = "";
                 url = "https://www.livechart.me/users/visa/library";
               }
               {
-                name = "https://www.miruro.cx/";
+                name = "";
                 url = "https://www.miruro.cx/";
               }
               {
-                name = "https://reanime.to/home";
+                name = "";
                 url = "https://reanime.to/home";
               }
               {
-                name = "https://hianime.at/";
+                name = "";
                 url = "https://hianime.at/";
               }
               {
-                name = "https://kaa.lt/";
+                name = "";
                 url = "https://kaa.lt/";
               }
               {
-                name = "https://store.steampowered.com/";
+                name = "";
                 url = "https://store.steampowered.com/";
               }
               {
-                name = "https://www.roblox.com/";
+                name = "";
                 url = "https://www.roblox.com/";
               }
               {
-                name = "http://fitgirl-repacks.site/";
+                name = "";
                 url = "http://fitgirl-repacks.site/";
               }
               {
-                name = "https://dodi-repacks.site/";
+                name = "";
                 url = "https://dodi-repacks.site/";
               }
               {
-                name = "https://1337x.to/home/";
+                name = "";
                 url = "https://1337x.to/home/";
               }
               {
-                name = "https://steamrip.com/";
+                name = "";
                 url = "https://steamrip.com/";
               }
               {
-                name = "https://nyaa.si/";
+                name = "";
                 url = "https://nyaa.si/";
               }
               {
-                name = "https://web.yts.gg/";
+                name = "";
                 url = "https://web.yts.gg/";
               }
               {
-                name = "https://streamable.com/";
+                name = "";
                 url = "https://streamable.com/";
               }
               {
