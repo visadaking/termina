@@ -19,6 +19,9 @@
   # tailscale
   services.tailscale.enable = true;
 
+  # netbird
+  services.netbird.enable = true;
+
   # Automatic process priority management (nice/ionice/sched/oom) for desktop responsiveness.
   # Uses ananicy-cpp + CachyOS rules (curated baseline covering browsers, compilers, nix, games, etc.).
   # Safeguards against mis-prioritization:
@@ -46,7 +49,10 @@
     extraRules = [
       # Sunshine game streaming host - latency sensitive (not in CachyOS rules).
       # "Game" type => nice -5, ioclass best-effort, sched normal (responsive, not RT-aggressive).
-      { name = "sunshine"; type = "Game"; }
+      {
+        name = "sunshine";
+        type = "Game";
+      }
     ];
   };
 }
