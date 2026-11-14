@@ -11,7 +11,7 @@ in
     # (cursor theme: Simp1e Tokyo Night Storm via desktop.nix, pkgs/simp1e-tokyo-night-storm.nix)
 
     # browsers
-    firefox
+    # firefox managed declaratively via programs.firefox (home/visa/firefox.nix)
     vivaldi
 
     # comms 

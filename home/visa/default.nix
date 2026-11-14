@@ -37,6 +37,7 @@ in
     ./desktop.nix
     ./packages.nix
     ./nixvim.nix
+    ./firefox.nix
   ];
 
   home.username = "visa";
