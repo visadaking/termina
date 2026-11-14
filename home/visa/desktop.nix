@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   # Simp1e (capitaine successor) cursors, Tokyo Night Storm scheme - matches the GTK theme/accent
   simp1e-tokyo-night-storm = pkgs.callPackage ../../pkgs/simp1e-tokyo-night-storm.nix { };
@@ -30,7 +35,6 @@ in
       gtk-application-prefer-dark-theme = true;
     };
   };
-
 
   # Monitor: G25F2 (DP-1) - VRR disabled (Never), as set in KDE Plasma
   xdg.configFile."kwinoutputconfig.json".source = ./kwinoutputconfig-g25f2.json;
@@ -80,7 +84,10 @@ in
         "decrease_volume" = "Volume Down";
         "increase_volume" = "Volume Up";
         "mute" = "Volume Mute";
-        "mic_mute" = [ "Microphone Mute" "Meta+Volume Mute" ];
+        "mic_mute" = [
+          "Microphone Mute"
+          "Meta+Volume Mute"
+        ];
       };
       "KDE Keyboard Layout Switcher" = {
         "Switch to Next Keyboard Layout" = "Alt+Shift";
@@ -101,6 +108,14 @@ in
       # Spectacle: stupid fucking pop up
       spectaclerc.General.clipboardGroup = "PostScreenshotCopyImage";
       spectaclerc.GuiConfig.quitAfterSaveCopyExport = true;
+
+      # Dolphin
+      dolphinrc.General.ShowStatusBar = "FullWidth";
+      "dolphinrc"."IconsMode".PreviewSize = 48;
+      "dolphinrc"."KFileDialog Settings"."Places Icons Auto-resize" = false;
+      "dolphinrc"."KFileDialog Settings"."Places Icons Static Size" = 22;
+      dolphinrc.MainWindow.MenuBar = "Disabled";
+      dolphinrc.PreviewSettings.Plugins = "appimagethumbnail,audiothumbnail,blenderthumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,fontthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,mltpreview,mobithumbnail,opendocumentthumbnail,gsthumbnail,rawthumbnail,svgthumbnail,ffmpegthumbs";
     };
   };
 
