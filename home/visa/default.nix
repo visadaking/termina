@@ -556,7 +556,7 @@ in
     NIXOS_SPEECH = "False";
   };
 
-  # Ensure GUI/systemd-user-launched apps also get the variable.
+  # ensure gui/systemd-user-launched apps also get the variable
   systemd.user.sessionVariables = {
     NIXOS_SPEECH = "False";
   };
