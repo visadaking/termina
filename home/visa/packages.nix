@@ -62,6 +62,7 @@ in
     android-cli
     scrcpy # Android screen mirroring/control over adb
     uad-ng # Universal Android Debloater Next Generation (GUI; adb wrapped)
+    gnirehtet # reverse tethering for Android over USB (adb)
     nh # Nix helper
     speedtest-cli
     whyd # diagnose previous-boot freeze/crash/shutdown from journal (vmaltarello/whyd)
