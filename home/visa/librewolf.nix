@@ -8,6 +8,8 @@
   # migrated from firefox.nix; local profile data (passwords/extensions/cookies/sessions/history)
   # lives outside git (e.g. ~/.librewolf/<profile>/) and must be migrated/backed up manually.
   programs.librewolf = {
+    enable = true;
+    package = pkgs.librewolf;
 
     profiles.default = {
       isDefault = true;
