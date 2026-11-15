@@ -10,8 +10,10 @@
     };
   };
 
-  # Docker
+  # Docker (installed/configured but do not autostart; start manually when needed)
   virtualisation.docker.enable = true;
+  systemd.services.docker.wantedBy = lib.mkForce [ ];
+  systemd.sockets.docker.wantedBy = lib.mkForce [ ];
 
   # GUI for easier VM management (keeps vm-curator as a terminal option)
   programs.virt-manager.enable = true;
