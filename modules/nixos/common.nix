@@ -157,7 +157,7 @@
   # LocalSend (opens firewall port 53317)
   programs.localsend.enable = true;
 
-  # Android (ADB/USB tethering via android-tools and systemd uaccess)
+  # Android enabled (ADB/USB tethering via android-tools and systemd uaccess)
 
   # fonts (broad coverage: UI/emoji/symbols/CJK/coding/compat)
   fonts.packages = with pkgs; [
