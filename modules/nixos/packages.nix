@@ -44,7 +44,6 @@
     qdirstat
     ntfs3g
     exfatprogs # NTFS/exFAT support
-    wireguard-tools
     netbird
     netbird-ui
 
