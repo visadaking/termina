@@ -95,6 +95,7 @@ in
     ./packages.nix
     ./nixvim.nix
     ./firefox.nix
+    ./thunderbird.nix
   ];
 
   home.username = "visa";
