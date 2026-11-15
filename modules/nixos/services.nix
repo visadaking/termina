@@ -24,6 +24,10 @@
   services.netbird.enable = true;
   systemd.services.netbird.wantedBy = lib.mkForce [ ];
 
+  # speech-dispatcher not needed; disable user service/socket to avoid startup failures
+  systemd.user.services.speech-dispatcher.enable = false;
+  systemd.user.sockets.speech-dispatcher.enable = false;
+
   # Automatic process priority management (nice/ionice/sched/oom) for desktop responsiveness.
   # Uses ananicy-cpp + CachyOS rules (curated baseline covering browsers, compilers, nix, games, etc.).
   # Safeguards against mis-prioritization:
