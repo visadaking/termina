@@ -58,11 +58,6 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    fetch = {
-      url = "github:areofyl/fetch";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -79,7 +74,6 @@
       maid-runner,
       nixvim,
       nix-index-database,
-      fetch,
       ...
     }:
     let
@@ -128,7 +122,6 @@
                 maid-suite.homeModules.default
                 maid-runner.homeModules.default
                 nixvim.homeModules.nixvim
-                fetch.homeManagerModules.default
               ];
               # avoid HM activation failures when a previous backup file already exists
               home-manager.backupCommand = "${

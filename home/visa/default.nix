@@ -186,15 +186,6 @@ in
     };
   };
 
-  # areofyl/fetch (3D system fetch) - themed to match system accent
-  programs.fetch = {
-    enable = true;
-    labelColor = "cyan";
-    separator = "─";
-    light = "top-left";
-    spin = "xy";
-  };
-
   xdg.configFile."btop/themes/tokyo-night.theme".source = ./btop/tokyo-night.theme;
 
   programs.starship = {
