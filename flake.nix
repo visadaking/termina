@@ -58,59 +58,88 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    fetch = {
+      url = "github:areofyl/fetch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, plasma-manager, sunshine-screen, nix-flatpak, maid-bt, maidshare, maid-suite, maid-runner, nixvim, nix-index-database, ... }:
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      home-manager,
+      plasma-manager,
+      sunshine-screen,
+      nix-flatpak,
+      maid-bt,
+      maidshare,
+      maid-suite,
+      maid-runner,
+      nixvim,
+      nix-index-database,
+      fetch,
+      ...
+    }:
     let
       system = "x86_64-linux";
-      mkHost = hostName: nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs self; };
-        modules = [
-          ({ lib, ... }: {
-            system.configurationRevision = lib.mkDefault (self.shortRev or self.dirtyShortRev or "unknown");
-          })
-          ./hosts/${hostName}
-          nix-flatpak.nixosModules.nix-flatpak
-          home-manager.nixosModules.home-manager
-          nix-index-database.nixosModules.nix-index
-          { programs.nix-index-database.comma.enable = true; }
-          {
-            # expose uad-ng GUI + uad CLI (flake inputs) as pkgs
-            nixpkgs.overlays = [
-              (final: prev: {
-                uad-ng = inputs.uad-ng.packages.${system}.uad-ng;
-                uad-cli = inputs.uad-ng.packages.${system}.uad-cli;
-                # workaround: localsend 1.18.0 missing libz.so.1 at runtime on this nixpkgs rev
-                localsend = prev.localsend.overrideAttrs (old: {
-                  nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ prev.makeWrapper ];
-                  postFixup = (old.postFixup or "") + ''
-                    wrapProgram $out/bin/localsend_app --prefix LD_LIBRARY_PATH : ${prev.lib.makeLibraryPath [ prev.zlib ]}
-                  '';
-                });
-              })
-            ];
-          }
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.sharedModules = [
-              plasma-manager.homeModules.plasma-manager
-              sunshine-screen.homeModules.default
-              maid-bt.homeModules.default
-              maidshare.homeModules.default
-              maid-suite.homeModules.default
-              maid-runner.homeModules.default
-              nixvim.homeModules.nixvim
-            ];
-            # avoid HM activation failures when a previous backup file already exists
-            home-manager.backupCommand = "${nixpkgs.legacyPackages.${system}.bash}/bin/bash -c 'mv -- \"$1\" \"$1.bak-$(date +%s)\"' --";
-            home-manager.users.visa = import ./home/visa;
-          }
-        ];
-      };
-    in {
+      mkHost =
+        hostName:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs self; };
+          modules = [
+            ({ lib, ... }: {
+              system.configurationRevision = lib.mkDefault (self.shortRev or self.dirtyShortRev or "unknown");
+            })
+            ./hosts/${hostName}
+            nix-flatpak.nixosModules.nix-flatpak
+            home-manager.nixosModules.home-manager
+            nix-index-database.nixosModules.nix-index
+            { programs.nix-index-database.comma.enable = true; }
+            {
+              # expose uad-ng GUI + uad CLI (flake inputs) as pkgs
+              nixpkgs.overlays = [
+                (final: prev: {
+                  uad-ng = inputs.uad-ng.packages.${system}.uad-ng;
+                  uad-cli = inputs.uad-ng.packages.${system}.uad-cli;
+                  # workaround: localsend 1.18.0 missing libz.so.1 at runtime on this nixpkgs rev
+                  localsend = prev.localsend.overrideAttrs (old: {
+                    nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ prev.makeWrapper ];
+                    postFixup = (old.postFixup or "") + ''
+                      wrapProgram $out/bin/localsend_app --prefix LD_LIBRARY_PATH : ${
+                        prev.lib.makeLibraryPath [ prev.zlib ]
+                      }
+                    '';
+                  });
+                })
+              ];
+            }
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.sharedModules = [
+                plasma-manager.homeModules.plasma-manager
+                sunshine-screen.homeModules.default
+                maid-bt.homeModules.default
+                maidshare.homeModules.default
+                maid-suite.homeModules.default
+                maid-runner.homeModules.default
+                nixvim.homeModules.nixvim
+                fetch.homeManagerModules.default
+              ];
+              # avoid HM activation failures when a previous backup file already exists
+              home-manager.backupCommand = "${
+                nixpkgs.legacyPackages.${system}.bash
+              }/bin/bash -c 'mv -- \"$1\" \"$1.bak-$(date +%s)\"' --";
+              home-manager.users.visa = import ./home/visa;
+            }
+          ];
+        };
+    in
+    {
       nixosConfigurations = {
         termina = mkHost "termina";
         # add more hosts here: other = mkHost "other";
@@ -119,7 +148,9 @@
       packages.${system} = {
         whyd = nixpkgs.legacyPackages.${system}.callPackage ./pkgs/whyd.nix { };
         openal-win = nixpkgs.legacyPackages.${system}.callPackage ./pkgs/openal-win.nix { };
-        simp1e-tokyo-night-storm = nixpkgs.legacyPackages.${system}.callPackage ./pkgs/simp1e-tokyo-night-storm.nix { };
+        simp1e-tokyo-night-storm =
+          nixpkgs.legacyPackages.${system}.callPackage ./pkgs/simp1e-tokyo-night-storm.nix
+            { };
       };
 
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
