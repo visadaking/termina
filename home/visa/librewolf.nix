@@ -17,6 +17,7 @@
 
       # declarative prefs (sanitized: excludes passwords/logins/cookies/sessions/sync/account tokens)
       settings = {
+        "ui.systemUsesDarkTheme" = 1;
         "accessibility.typeaheadfind" = true;
         "accessibility.typeaheadfind.flashBar" = 0;
         "app.shield.optoutstudies.enabled" = false;
@@ -96,6 +97,7 @@
         "browser.tabs.groups.smart.userEnabled" = false;
         "browser.tabs.hoverPreview.showThumbnails" = false;
         "browser.termsofuse.prefMigrationCheck" = true;
+        "browser.theme.content-theme" = 0;
         "browser.theme.toolbar-theme" = 0;
         "browser.toolbarbuttons.introduced.sidebar-button" = true;
         "browser.translations.enable" = false;
@@ -155,7 +157,7 @@
         "extensions.ui.theme.hidden" = false;
         "gecko.handlerService.defaultHandlersVersion" = 1;
         "general.autoScroll" = true;
-        "layout.css.prefers-color-scheme.content-override" = 0;
+        "layout.css.prefers-color-scheme.content-override" = 2;
         "media.eme.enabled" = true;
         "media.gmp-gmpopenh264.abi" = "x86_64-gcc3";
         "media.gmp-gmpopenh264.hashValue" =
