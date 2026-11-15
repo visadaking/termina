@@ -59,13 +59,13 @@
         "default.clock.max-quantum" = 2048;
       };
     };
-    # Bluetooth codec support (earbuds/headsets) - SBC-XQ, mSBC (HFP wideband), HW volume
+    # Bluetooth audio: prefer high-quality A2DP media profile (SBC-XQ) for playback.
+    # HFP/HSP headset roles disabled because a separate mic (PS22 Lite) is used.
     wireplumber.extraConfig."10-bluez" = {
       "monitor.bluez.properties" = {
         "bluez5.enable-sbc-xq" = true;
-        "bluez5.enable-msbc" = true;
         "bluez5.enable-hw-volume" = true;
-        "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" "a2dp_sink" "a2dp_source" ];
+        "bluez5.roles" = [ "a2dp_sink" "a2dp_source" ];
       };
     };
   };
