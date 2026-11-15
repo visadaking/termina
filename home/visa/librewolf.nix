@@ -93,6 +93,12 @@
         "browser.smartwindow.memories.generateFromHistory" = false;
         "browser.startup.couldRestoreSession.count" = 2;
         "browser.startup.page" = 3;
+        # keep logins/cookies/sessions across restarts (avoid being signed out)
+        "privacy.sanitize.sanitizeOnShutdown" = false;
+        "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
+        "privacy.clearOnShutdown_v2.cache" = false;
+        "privacy.clearOnShutdown_v2.formdata" = false;
+        "network.cookie.lifetimePolicy" = 0;
         "browser.tabs.groups.smart.enabled" = false;
         "browser.tabs.groups.smart.userEnabled" = false;
         "browser.tabs.hoverPreview.showThumbnails" = false;
