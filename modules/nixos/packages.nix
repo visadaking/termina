@@ -31,7 +31,6 @@
     nano
     pciutils
     usbutils
-    btop
     fastfetch
     ethtool
     alsa-utils

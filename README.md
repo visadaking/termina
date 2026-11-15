@@ -12,7 +12,6 @@ personal nix config  (flakes + home manager + plasma manager)
 │   └── wallpapers/
 ├── home/
 │   └── visa/
-│       ├── btop/
 │       ├── vesktop/
 │       ├── default.nix
 │       ├── desktop.nix
