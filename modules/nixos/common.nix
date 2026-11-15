@@ -25,9 +25,6 @@
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # AMD SP5100 TCO watchdog: not used here and can spam "watchdog did not stop!" on shutdown.
-  boot.blacklistedKernelModules = [ "sp5100_tco" ];
-
   # Avoid long shutdown hangs when a service/app misbehaves (e.g. plasmashell timeout).
   systemd.settings.Manager.DefaultTimeoutStopSec = "20s";
   systemd.user.settings.Manager.DefaultTimeoutStopSec = "20s";
@@ -43,10 +40,6 @@
 
   # networking
   networking.networkmanager.enable = true;
-
-  # Wake-on-LAN for eno1 (MAC bc:fc:e7:b2:cf:4c). BIOS/UEFI must also allow WoL,
-  # and the machine must be in a WoL-capable sleep/power state.
-  networking.interfaces.eno1.wakeOnLan.enable = true;
 
   # audio (PipeWire) - high-quality defaults (Fiio K11 USB DAC etc.)
   # adjust allowed-rates/quantum if a device misbehaves; check with: pw-metadata -n settings 0
@@ -105,32 +98,11 @@
       ReconnectIntervals = "1,2,4,8,16,32,64";
     };
   };
-  boot.kernelModules = [
-    "btusb"
-    "sr_mod"
-    "cdrom"
-    "uvcvideo"
-  ]; # btusb for USB BT; sr_mod/cdrom for USB optical; uvcvideo for USB webcams
-
-  # i2c/DDC access (for ddcutil / sunshine-screen)
-  hardware.i2c.enable = true;
-
   # AppImage support (binfmt registration so .AppImage files run directly)
   programs.appimage = {
     enable = true;
     binfmt = true;
   };
-
-  # udev rules: Bluetooth USB adapter autosuspend + Logitech G515 TKL access/power
-  services.udev.extraRules = lib.mkAfter ''
-    # Disable autosuspend for Bluetooth USB adapters only (Wireless Controller, bDeviceClass 0xe0).
-    SUBSYSTEM=="usb", ATTR{bDeviceClass}=="e0", ATTR{bDeviceSubClass}=="01", ATTR{bDeviceProtocol}=="01", TEST=="power/control", ATTR{power/control}="on"
-
-    # Logitech G515 TKL (046d:c358): user access + disable USB autosuspend
-    SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c358", TAG+="uaccess"
-    KERNEL=="hidraw*", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c358", TAG+="uaccess", MODE="0660"
-    SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c358", TEST=="power/control", ATTR{power/control}="on"
-  '';
 
   # no printer
   services.printing.enable = false;
