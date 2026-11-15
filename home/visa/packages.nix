@@ -60,6 +60,7 @@ in
     home-manager
     android-tools # adb, fastboot, etc.
     android-cli
+    android-studio
     scrcpy # Android screen mirroring/control over adb
     uad-ng # Universal Android Debloater Next Generation (GUI; adb wrapped)
     nh # Nix helper
