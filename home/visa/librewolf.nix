@@ -197,7 +197,6 @@
         "privacy.annotate_channels.strict_list.enabled" = true;
         "privacy.bounceTrackingProtection.hasMigratedUserActivationData" = true;
         "privacy.bounceTrackingProtection.mode" = 1;
-        "privacy.clearOnShutdown_v2.formdata" = true;
         "privacy.fingerprintingProtection" = true;
         "privacy.globalprivacycontrol.enabled" = true;
         "privacy.globalprivacycontrol.was_ever_enabled" = true;
