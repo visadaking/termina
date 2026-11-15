@@ -5,7 +5,7 @@
   ...
 }:
 {
-  programs.firefox = {
+  programs.librewolf = {
     enable = true;
 
     profiles.default = {
