@@ -555,4 +555,9 @@ in
     # disable speech-dispatcher integration in electron wrappers (avoids crashes, thank you discord.)
     NIXOS_SPEECH = "False";
   };
+
+  # Ensure GUI/systemd-user-launched apps also get the variable.
+  systemd.user.sessionVariables = {
+    NIXOS_SPEECH = "False";
+  };
 }
