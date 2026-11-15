@@ -138,7 +138,6 @@
       "video"
       "audio"
       "i2c"
-      "adbusers"
     ];
     shell = pkgs.zsh;
   };
@@ -157,9 +156,6 @@
 
   # LocalSend (opens firewall port 53317)
   programs.localsend.enable = true;
-
-  # Android (ADB/udev rules; enables USB debugging access and Android USB tethering device support)
-  programs.adb.enable = true;
 
   # fonts (broad coverage: UI/emoji/symbols/CJK/coding/compat)
   fonts.packages = with pkgs; [
