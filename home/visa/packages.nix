@@ -58,6 +58,7 @@ in
     vscodium
     filezilla
     home-manager
+    kdePackages.kcolorchooser # color picker
     android-tools # adb, fastboot, etc.
     android-cli
     android-studio
