@@ -16,11 +16,13 @@
     };
   };
 
-  # tailscale
+  # tailscale (installed/configured but do not autostart; start manually when needed)
   services.tailscale.enable = true;
+  systemd.services.tailscaled.wantedBy = lib.mkForce [ ];
 
-  # netbird
+  # netbird (installed/configured but do not autostart; start manually when needed)
   services.netbird.enable = true;
+  systemd.services.netbird.wantedBy = lib.mkForce [ ];
 
   # Automatic process priority management (nice/ionice/sched/oom) for desktop responsiveness.
   # Uses ananicy-cpp + CachyOS rules (curated baseline covering browsers, compilers, nix, games, etc.).
