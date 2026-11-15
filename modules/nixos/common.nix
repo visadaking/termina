@@ -1,4 +1,9 @@
-{ lib, pkgs, inputs, ... }:
+{
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   # nix settings/gc/cachix/autoUpgrade -> modules/nix.nix
 
@@ -53,7 +58,14 @@
     extraConfig.pipewire."92-hifi-audio" = {
       "context.properties" = {
         "default.clock.rate" = 48000;
-        "default.clock.allowed-rates" = [ 44100 48000 88200 96000 176400 192000 ];
+        "default.clock.allowed-rates" = [
+          44100
+          48000
+          88200
+          96000
+          176400
+          192000
+        ];
         "default.clock.quantum" = 1024;
         "default.clock.min-quantum" = 32;
         "default.clock.max-quantum" = 2048;
@@ -65,7 +77,10 @@
       "monitor.bluez.properties" = {
         "bluez5.enable-sbc-xq" = true;
         "bluez5.enable-hw-volume" = true;
-        "bluez5.roles" = [ "a2dp_sink" "a2dp_source" ];
+        "bluez5.roles" = [
+          "a2dp_sink"
+          "a2dp_source"
+        ];
       };
     };
   };
@@ -90,7 +105,12 @@
       ReconnectIntervals = "1,2,4,8,16,32,64";
     };
   };
-  boot.kernelModules = [ "btusb" "sr_mod" "cdrom" "uvcvideo" ]; # btusb for USB BT; sr_mod/cdrom for USB optical; uvcvideo for USB webcams
+  boot.kernelModules = [
+    "btusb"
+    "sr_mod"
+    "cdrom"
+    "uvcvideo"
+  ]; # btusb for USB BT; sr_mod/cdrom for USB optical; uvcvideo for USB webcams
 
   # i2c/DDC access (for ddcutil / sunshine-screen)
   hardware.i2c.enable = true;
@@ -139,7 +159,14 @@
   users.users.visa = {
     isNormalUser = true;
     description = "visa";
-    extraGroups = [ "wheel" "networkmanager" "input" "video" "audio" "i2c" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "input"
+      "video"
+      "audio"
+      "i2c"
+    ];
     shell = pkgs.zsh;
   };
 
@@ -175,9 +202,19 @@
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      serif = [ "Noto Serif" "DejaVu Serif" ];
-      sansSerif = [ "Noto Sans" "DejaVu Sans" ];
-      monospace = [ "JetBrainsMono Nerd Font" "FiraCode Nerd Font" "DejaVu Sans Mono" ];
+      serif = [
+        "Noto Serif"
+        "DejaVu Serif"
+      ];
+      sansSerif = [
+        "Noto Sans"
+        "DejaVu Sans"
+      ];
+      monospace = [
+        "JetBrainsMono Nerd Font"
+        "FiraCode Nerd Font"
+        "DejaVu Sans Mono"
+      ];
       emoji = [ "Noto Color Emoji" ];
     };
   };
