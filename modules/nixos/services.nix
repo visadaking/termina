@@ -7,14 +7,9 @@
   # removable disk management (automount/mount/unmount, notifications; KDE/Solid integration)
   services.udisks2.enable = true;
 
-  # SSH server (SFTP included)
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "no";
-      PasswordAuthentication = true;
-    };
-  };
+  # SSH server (SFTP included) - disabled by default; enable when needed:
+  #   services.openssh.enable = true; (and set auth/firewall rules as needed)
+  services.openssh.enable = false;
 
   # tailscale (installed/configured but do not autostart; start manually when needed)
   services.tailscale.enable = true;

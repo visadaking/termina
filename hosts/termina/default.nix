@@ -45,5 +45,5 @@
     SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c358", TEST=="power/control", ATTR{power/control}="on"
   '';
 
-  system.stateVersion = "26.05"; # NixOS 26.11 (Zokor)
+  system.stateVersion = "26.11"; # NixOS 26.11 (Zokor)
 }
