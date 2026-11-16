@@ -38,7 +38,7 @@ in
     };
   };
 
-  # Ensure X11/XWayland and GTK apps use the same cursor as Plasma/Wayland
+  # because of steam amazing support for wayland (no, they're both using X11/xwayland and GTK (hell) i had to set them the same cursor as wayland/plasma ¯\_(ツ)_/¯
   home.pointerCursor = {
     name = "Simp1e-Tokyo-Night-Storm";
     package = simp1e-tokyo-night-storm;
