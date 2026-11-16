@@ -77,6 +77,7 @@ in
 
     # terminal/tools + configs to migrate
     ghostty
+    maple-mono.NF
     hyfetch
     starship
     cowsay
