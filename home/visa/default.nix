@@ -96,7 +96,6 @@ in
     ./nixvim.nix
     ./librewolf.nix
     ./thunderbird.nix
-    ./cava.nix
     ./ghostty.nix
     ./sable.nix
     ./spicetify.nix

@@ -8,6 +8,8 @@ personal nix config  (flakes + home manager + plasma manager)
 .
 ├── assets/
 │   ├── feishin/
+│   ├── sable-themes/
+│   ├── spicetify-themes/
 │   ├── telegram/
 │   └── wallpapers/
 ├── home/
@@ -19,6 +21,8 @@ personal nix config  (flakes + home manager + plasma manager)
 │       ├── librewolf.nix
 │       ├── kwinoutputconfig-g25f2.json
 │       ├── nixvim.nix
+│       ├── sable.nix
+│       ├── spicetify.nix
 │       └── packages.nix
 ├── hosts/
 │   └── termina/
