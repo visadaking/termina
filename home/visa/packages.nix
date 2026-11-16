@@ -50,9 +50,10 @@ in
     peazip # verify attr
     freac # audio converter (org.freac.freac)
     mission-center
+    qbittorrent
+    netbird-ui
 
     # dev/tools
-    vim
     lazygit
     gh
     vscodium
@@ -68,8 +69,6 @@ in
     speedtest-cli
     whyd # diagnose previous-boot freeze/crash/shutdown from journal (vmaltarello/whyd)
     discordchatexporter-desktop
-    fd
-    ripgrep
     yt-dlp
     tokei
     typos
@@ -77,11 +76,9 @@ in
 
     # terminal/tools + configs to migrate
     ghostty
-    fastfetch
     hyfetch
     starship
     cowsay
-    wget
     wakeonlan # send magic packets to wake other machines (wol)
     # gearlever           # temporarily disabled: fails to build due to dwarfs-0.15.8 tests in current nixpkgs (upstream issue)
 

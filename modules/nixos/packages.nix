@@ -44,19 +44,9 @@
     ntfs3g
     exfatprogs # NTFS/exFAT support
     netbird
-    netbird-ui
 
-    # productivity/dev
-    vscodium
-    keepassxc
-    gh
-    lazygit
-    opencode
 
-    # media / streaming / sharing
-    vlc
-    mpv
-    qbittorrent
+    # media / streaming (service/app)
     sunshine
   ];
 
