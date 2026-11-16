@@ -40,6 +40,7 @@ in
 
   # because of steam amazing support for wayland (no, they're both using X11/xwayland and GTK (hell) i had to set them the same cursor as wayland/plasma ¯\_(ツ)_/¯
   home.pointerCursor = {
+    enable = true;
     name = "Simp1e-Tokyo-Night-Storm";
     package = simp1e-tokyo-night-storm;
     size = 24;
