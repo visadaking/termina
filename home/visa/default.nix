@@ -417,6 +417,9 @@ in
       ExecStart = "${pkgs.sunshine}/bin/sunshine";
       Restart = "on-failure";
       RestartSec = 5;
+      KillSignal = "SIGINT";
+      TimeoutStopSec = 15;
+      KillMode = "mixed";
     };
   };
 

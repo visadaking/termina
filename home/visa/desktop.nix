@@ -48,6 +48,11 @@ in
     x11.enable = true;
   };
 
+  # work around KWin/libX11 parsing a legacy iso8859-1 Compose table on UTF-8 locales.
+  home.sessionVariables = {
+    XCOMPOSEFILE = "${pkgs.libx11}/share/X11/locale/en_US.UTF-8/Compose";
+  };
+
   # Monitor: G25F2 (DP-1) - VRR disabled (Never), as set in KDE Plasma
   xdg.configFile."kwinoutputconfig.json".source = ./kwinoutputconfig-g25f2.json;
 
