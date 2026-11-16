@@ -86,11 +86,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794789538,
-        "narHash": "sha256-hKphnGcNlXtw1qsc6wvvA87Q7V8V3fqMqq//m5nrSpM=",
+        "lastModified": 1794827786,
+        "narHash": "sha256-XA8kIEf0r5+oMYi0WCxfz/sflNvE7wl+Ut0pco2aF8s=",
         "owner": "Maidware-Project",
         "repo": "Maid-Runner",
-        "rev": "55addafd13e43cb1d9628d5042f60b3845630384",
+        "rev": "f84954be828d987ffb78529dd4fff1b6912c450a",
         "type": "github"
       },
       "original": {
