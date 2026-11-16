@@ -101,7 +101,6 @@ in
 
     # native replacements/helpers for former AppImages/niche (verify attrs on 26.11/unstable)
     musicpresence # Discord/music rich presence
-    redact # image/pdf redaction
     cameractrls # verify attr
     xclicker # verify attr
     # upscaler? peazip/freac/niche - verify attrs; Goose/Azahar/Sober/Reaper handled case-by-case (see docs)
