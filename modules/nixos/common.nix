@@ -172,6 +172,7 @@
     nerd-fonts.symbols-only
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
+    maple-mono.NF
   ];
   fonts.fontconfig = {
     enable = true;
