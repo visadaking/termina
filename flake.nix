@@ -62,11 +62,6 @@
     sable-next = {
       url = "git+https://git.sable.moe/SableClient/sable-next";
     };
-
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -84,7 +79,6 @@
       nixvim,
       nix-index-database,
       sable-next,
-      spicetify-nix,
       ...
     }:
     let
@@ -134,7 +128,6 @@
                 maid-suite.homeModules.default
                 maid-runner.homeModules.default
                 nixvim.homeModules.nixvim
-                spicetify-nix.homeManagerModules.default
               ];
               # avoid HM activation failures when a previous backup file already exists
               home-manager.backupCommand = "${

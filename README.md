@@ -9,7 +9,6 @@ personal nix config  (flakes + home manager + plasma manager)
 ├── assets/
 │   ├── feishin/
 │   ├── sable-themes/
-│   ├── spicetify-themes/
 │   ├── telegram/
 │   └── wallpapers/
 ├── home/
@@ -22,7 +21,6 @@ personal nix config  (flakes + home manager + plasma manager)
 │       ├── kwinoutputconfig-g25f2.json
 │       ├── nixvim.nix
 │       ├── sable.nix
-│       ├── spicetify.nix
 │       └── packages.nix
 ├── hosts/
 │   └── termina/
@@ -61,9 +59,9 @@ t-edit          # open ~/termina in nvim
 switch/updates
 t-switch        # rebuild and switch now
 t-boot          # rebuild and set it for next boot (doesn't switch right away)
-t-update        # update flake inputs except pinned ones (sable-next, spicetify-nix)
+t-update        # update flake inputs except pinned one (sable-next)
 t-update-input  # update one input: t-update-input nixpkgs-unstable
-t-spu           # update pinned inputs: sable-next + spicetify-nix (spotify)
+t-spu           # update pinned input: sable-next
 t-syu           # t-update + t-test + t-boot (safe update, set for next boot)
 t-check         # nix flake check
 
