@@ -543,12 +543,6 @@
             "iconSpacing": 1,
             "iconSize": 32
         },
-        "ShowHiddenChannels": {
-            "enabled": true,
-            "hideUnreads": true,
-            "showMode": 0,
-            "defaultAllowedUsersAndRolesDropdownState": true
-        },
         "ShowHiddenThings": {
             "enabled": true,
             "showTimeouts": false,
