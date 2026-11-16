@@ -493,4 +493,8 @@
       };
     };
   };
+
+  # LibreWolf new-tab custom wallpaper (profile-local library file, referenced by UUID pref above)
+  home.file.".librewolf/dNhbcrRJ.Profile 1/wallpaper/library/v1-custom-dark-center-1-e636fb5e-cd40-4250-b4d1-eac49792bbf2".source =
+    ../../assets/wallpapers/overcast-suburban-powerlines-wallhaven-d889yo.jpg;
 }

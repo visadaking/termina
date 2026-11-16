@@ -154,6 +154,8 @@ in
       # wallpapers (runtime switch, Plasma 6)
       wallpaper-ergo = "plasma-apply-wallpaperimage \"$HOME/Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png\"";
       wallpaper-715139 = "plasma-apply-wallpaperimage \"$HOME/Pictures/Wallpapers/715139.jpg\"";
+      wallpaper-lain-suburban = "plasma-apply-wallpaperimage \"$HOME/Pictures/Wallpapers/lain-suburban-cool-blue-wallhaven-xelyx3.jpg\"";
+      wallpaper-overcast-powerlines = "plasma-apply-wallpaperimage \"$HOME/Pictures/Wallpapers/overcast-suburban-powerlines-wallhaven-d889yo.jpg\"";
     };
   };
   programs.bash = {
@@ -476,6 +478,10 @@ in
   home.file."Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png".source =
     ../../assets/wallpapers/ergo-proxy-kw9yj7-1920x1080.png;
   home.file."Pictures/Wallpapers/715139.jpg".source = ../../assets/wallpapers/715139.jpg;
+  home.file."Pictures/Wallpapers/lain-suburban-cool-blue-wallhaven-xelyx3.jpg".source =
+    ../../assets/wallpapers/lain-suburban-cool-blue-wallhaven-xelyx3.jpg;
+  home.file."Pictures/Wallpapers/overcast-suburban-powerlines-wallhaven-d889yo.jpg".source =
+    ../../assets/wallpapers/overcast-suburban-powerlines-wallhaven-d889yo.jpg;
 
   # Telegram Desktop theme generated to match current KDE Plasma colors (apply in Telegram settings)
   xdg.dataFile."TelegramDesktop/tdata/themes/TokyoNightStormPlasma.tdesktop-theme".source =
