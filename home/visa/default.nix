@@ -132,9 +132,11 @@ in
       t-dry = "sudo nixos-rebuild dry-build --flake $HOME/termina#termina";
       t-switch = "sudo nixos-rebuild switch --flake $HOME/termina#termina";
       t-boot = "sudo nixos-rebuild boot --flake $HOME/termina#termina";
-      t-syu = "nix flake update --flake $HOME/termina && nix flake check $HOME/termina && sudo nixos-rebuild dry-build --flake $HOME/termina#termina && sudo nixos-rebuild boot --flake $HOME/termina#termina";
-      t-update = "nix flake update --flake $HOME/termina";
+      # pinned inputs (selective updates only): sable-next, spicetify-nix
+      t-syu = "nix flake update --flake $HOME/termina home-manager maid-bt maid-runner maid-suite maidshare nix-flatpak nix-index-database nixpkgs nixpkgs-unstable nixvim plasma-manager sunshine-screen uad-ng && nix flake check $HOME/termina && sudo nixos-rebuild dry-build --flake $HOME/termina#termina && sudo nixos-rebuild boot --flake $HOME/termina#termina";
+      t-update = "nix flake update --flake $HOME/termina home-manager maid-bt maid-runner maid-suite maidshare nix-flatpak nix-index-database nixpkgs nixpkgs-unstable nixvim plasma-manager sunshine-screen uad-ng";
       t-update-input = "f(){ nix flake lock --update-input \"\${1:?usage: t-update-input <input>}\" $HOME/termina; }; f";
+      t-update-pinned = "nix flake update --flake $HOME/termina sable-next spicetify-nix";
       t-test = "nix flake check $HOME/termina && sudo nixos-rebuild dry-build --flake $HOME/termina#termina";
       t-status = "git -C $HOME/termina status";
       t-log = "git -C $HOME/termina log --oneline --decorate -10";
