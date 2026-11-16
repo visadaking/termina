@@ -28,6 +28,7 @@ in
     cursorTheme = {
       name = "Simp1e-Tokyo-Night-Storm";
       package = simp1e-tokyo-night-storm;
+      size = 24;
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
@@ -35,6 +36,15 @@ in
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = true;
     };
+  };
+
+  # Ensure X11/XWayland and GTK apps use the same cursor as Plasma/Wayland
+  home.pointerCursor = {
+    name = "Simp1e-Tokyo-Night-Storm";
+    package = simp1e-tokyo-night-storm;
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
   };
 
   # Monitor: G25F2 (DP-1) - VRR disabled (Never), as set in KDE Plasma
