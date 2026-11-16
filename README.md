@@ -53,14 +53,21 @@ im lazy
 
 ```sh
 t-edit          # open ~/termina in nvim
+
+switch/updates
 t-switch        # rebuild and switch now
 t-boot          # rebuild and set it for next boot (doesn't switch right away)
-t-update        # update all flake inputs (flake.lock)
+t-update        # update flake inputs except pinned ones (sable-next, spicetify-nix)
 t-update-input  # update one input: t-update-input nixpkgs-unstable
+t-spu           # update pinned inputs: sable-next + spicetify-nix (spotify)
 t-syu           # t-update + t-test + t-boot (safe update, set for next boot)
 t-check         # nix flake check
+
+dry tests
 t-dry           # dry build, see if it actually builds
 t-test          # t-check + t-dry (safe pre-switch/boot check)
+
+git
 t-status        # git status for ~/termina
 t-log           # recent commits for ~/termina
 t-pull          # git pull --ff-only in ~/termina
@@ -68,6 +75,8 @@ t-commit "msg"  # stage + commit all changes in ~/termina
 t-push          # git push in ~/termina
 t-backup        # push main to origin + rond + codeberg
 t-pushall       # alias for t-backup
+
+dns
 t-dns-relax i   # temporary DNS relax for captive portals (runtime-only)
 t-dns-revert i  # revert DNS relax for an interface
 ```
