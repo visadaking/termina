@@ -22,4 +22,7 @@
   # speech-dispatcher not needed; disable user service/socket to avoid startup failures
   systemd.user.services.speech-dispatcher.enable = false;
   systemd.user.sockets.speech-dispatcher.enable = false;
+
+  # avoid ksshaskpass GUI prompts/errors in terminal git/ssh flows
+  programs.ssh.enableAskPassword = false;
 }
