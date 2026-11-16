@@ -99,6 +99,7 @@ in
     ./cava.nix
     ./ghostty.nix
     ./sable.nix
+    ./spicetify.nix
   ];
 
   home.username = "visa";

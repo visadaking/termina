@@ -27,7 +27,7 @@ in
     # media
     vlc
     mpv
-    spotify
+    # spotify managed by spicetify (home/visa/spicetify.nix)
     feishin
     fooyin
     krita
