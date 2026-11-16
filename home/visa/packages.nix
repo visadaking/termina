@@ -57,6 +57,7 @@ in
     lazygit
     gh
     vscodium
+    opencode
     filezilla
     home-manager
     kdePackages.kcolorchooser # color picker
