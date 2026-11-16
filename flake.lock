@@ -304,11 +304,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1794848023,
-        "narHash": "sha256-SYADEfHgKsanO+hD15x/B7h1wZ2VMDUKO3+fvAtK6nA=",
+        "lastModified": 1794863435,
+        "narHash": "sha256-s5hs6tWZAeTZNOWO9nwEqGzFMcsSrdqwPnA2zjqHyec=",
         "ref": "refs/heads/main",
-        "rev": "f775939fc68c3339e615f2b23de3f5a98ad7367c",
-        "revCount": 8295,
+        "rev": "246eee2ba980e2d61a031b1969a6ab1f079b669a",
+        "revCount": 8327,
         "type": "git",
         "url": "https://git.sable.moe/SableClient/sable-next"
       },
