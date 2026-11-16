@@ -15,6 +15,7 @@ personal nix config  (flakes + home manager + plasma manager)
 │       ├── vesktop/
 │       ├── default.nix
 │       ├── desktop.nix
+│       ├── ghostty.nix
 │       ├── librewolf.nix
 │       ├── kwinoutputconfig-g25f2.json
 │       ├── nixvim.nix
