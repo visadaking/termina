@@ -58,6 +58,10 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sable-next = {
+      url = "git+https://git.sable.moe/SableClient/sable-next";
+    };
   };
 
   outputs =
@@ -74,6 +78,7 @@
       maid-runner,
       nixvim,
       nix-index-database,
+      sable-next,
       ...
     }:
     let
@@ -98,6 +103,7 @@
                 (final: prev: {
                   uad-ng = inputs.uad-ng.packages.${system}.uad-ng;
                   uad-cli = inputs.uad-ng.packages.${system}.uad-cli;
+                  sable = inputs.sable-next.packages.${system}.sable-desktop;
                   # workaround: localsend 1.18.0 missing libz.so.1 at runtime on this nixpkgs rev
                   localsend = prev.localsend.overrideAttrs (old: {
                     nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ prev.makeWrapper ];
