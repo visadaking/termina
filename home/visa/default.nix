@@ -98,6 +98,7 @@ in
     ./thunderbird.nix
     ./cava.nix
     ./ghostty.nix
+    ./sable.nix
   ];
 
   home.username = "visa";
