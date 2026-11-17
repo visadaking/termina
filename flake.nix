@@ -101,6 +101,12 @@
                   kdePackages = prev.kdePackages.overrideScope (kfinal: kprev: {
                     akonadiconsole = prev.emptyDirectory;
                     akonadi-import-wizard = prev.emptyDirectory;
+                    ark = prev.emptyDirectory;
+                    elisa = prev.emptyDirectory;
+                    kmail = prev.emptyDirectory;
+                    kontact = prev.emptyDirectory;
+                    merkuro = prev.emptyDirectory;
+                    okular = prev.emptyDirectory;
                     qrca = prev.emptyDirectory;
                   });
                 })
