@@ -1,5 +1,5 @@
 {
-  description = "termina - personal";
+  description = "termina";
 
   inputs = {
     # nixos unstable
