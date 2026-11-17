@@ -46,11 +46,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794897420,
-        "narHash": "sha256-hMI9Xg+lxS8kbnxIxL/jPQn688dstoxQAcMEbCb1ax0=",
+        "lastModified": 1794953782,
+        "narHash": "sha256-sTnTYa/VMHpUWVYb+GNY2xvlUkLpXzTJ8WCT3AAQ+hI=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "5b76c5b8eec25fdbce4f43309b3ee10584374a26",
+        "rev": "4246683484a7b4ced0a0d880974b67137f092289",
         "type": "github"
       },
       "original": {
@@ -66,11 +66,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794924419,
-        "narHash": "sha256-nMRz55rmOm8APynIvNHeAYO/0yiUGbVm0auVlucQrzc=",
+        "lastModified": 1794926324,
+        "narHash": "sha256-u/7IZbRsCIRX3HU854hFIxMNkCKNi0O5EEaBJGe7+6k=",
         "owner": "Maidware-Project",
         "repo": "Maid-BT",
-        "rev": "b085376eb0f8b3f58bb4068d99d93e4035449772",
+        "rev": "f89d90456ba441678779284632d9d03adb56abf2",
         "type": "github"
       },
       "original": {
@@ -245,11 +245,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1794408140,
-        "narHash": "sha256-vS4BTt6CkLn2BLcYA7kZUxFNnZpPgW0GJ73s/VoPhWc=",
+        "lastModified": 1794943345,
+        "narHash": "sha256-1d33ym1V/UxX9pcNbrpG0/P8riFHE8VuVAc3T8WN52I=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "44849d3d24b28d59fa963bd832ec59c60c56a34c",
+        "rev": "b67578f451bd779e79ec42f8153a403421a4b266",
         "type": "github"
       },
       "original": {
