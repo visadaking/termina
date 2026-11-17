@@ -8,7 +8,7 @@
   # xwayland (the better x11)
   programs.xwayland.enable = true;
 
-  # exclude KDE/PIM apps you don't want (attr names may vary by nixpkgs rev)
+  # kde slop
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     akonadiconsole
     akonadi-import-wizard
