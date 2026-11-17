@@ -133,6 +133,43 @@ in
       "dolphinrc"."KFileDialog Settings"."Places Icons Static Size" = 22;
       dolphinrc.MainWindow.MenuBar = "Disabled";
       dolphinrc.PreviewSettings.Plugins = "appimagethumbnail,audiothumbnail,blenderthumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,fontthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,mltpreview,mobithumbnail,opendocumentthumbnail,gsthumbnail,rawthumbnail,svgthumbnail,ffmpegthumbs";
+
+      # KZones (KWin script): enabled with Halves (primary), 1/3-2/3, and Equal Thirds layouts.
+      "kwinrc"."Plugins".kzonesEnabled = true;
+      "kwinrc"."Script-kzones" = {
+        autoSnapAllNew = false;
+        rememberWindowGeometries = true;
+        enableEdgeSnapping = false;
+        enableZoneOverlay = true;
+        enableZoneSelector = true;
+        layoutsJson = builtins.toJSON [
+          {
+            name = "Halves";
+            padding = 0;
+            zones = [
+              { x = 0; y = 0; width = 50; height = 100; }
+              { x = 50; y = 0; width = 50; height = 100; }
+            ];
+          }
+          {
+            name = "1/3-2/3";
+            padding = 0;
+            zones = [
+              { x = 0; y = 0; width = 33.33; height = 100; }
+              { x = 33.33; y = 0; width = 66.67; height = 100; }
+            ];
+          }
+          {
+            name = "Equal Thirds";
+            padding = 0;
+            zones = [
+              { x = 0; y = 0; width = 33.33; height = 100; }
+              { x = 33.33; y = 0; width = 33.33; height = 100; }
+              { x = 66.66; y = 0; width = 33.34; height = 100; }
+            ];
+          }
+        ];
+      };
     };
   };
 
