@@ -406,7 +406,7 @@ in
             "type": "command",
             "key": "└ 󰋚 OS Age",
             "keyColor": "blue",
-            "text": "birth=$(stat -c %W /etc/machine-id 2>/dev/null); [ \"\${birth:-0}\" -le 0 ] 2>/dev/null && birth=$(stat -c %W / 2>/dev/null); [ \"\${birth:-0}\" -le 0 ] 2>/dev/null && birth=$(date +%s); now=$(date +%s); age=$((now-birth)); [ \"$age\" -lt 0 ] && age=0; d=$((age/86400)); h=$(((age%86400)/3600)); m=$(((age%3600)/60)); if [ \"$d\" -gt 0 ]; then echo \"$d days, $h hours\"; elif [ \"$h\" -gt 0 ]; then echo \"$h hours, $m mins\"; else echo \"$m mins\"; fi"
+            "text": "birth=$(stat -c %W /etc/machine-id 2>/dev/null); [ \"\${birth:-0}\" -le 0 ] 2>/dev/null && birth=$(stat -c %W / 2>/dev/null); [ \"\${birth:-0}\" -le 0 ] 2>/dev/null && birth=$(date +%s); now=$(date +%s); age=$((now-birth)); [ \"$age\" -lt 0 ] && age=0; d=$((age/86400)); if [ \"$d\" -eq 1 ]; then echo \"1 day\"; else echo \"$d days\"; fi"
           }
         ]
       }
