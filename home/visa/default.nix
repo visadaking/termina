@@ -97,7 +97,6 @@ in
     ./librewolf.nix
     ./thunderbird.nix
     ./ghostty.nix
-    ./sable.nix
   ];
 
   home.username = "visa";
@@ -137,11 +136,9 @@ in
       t-dry = "sudo nixos-rebuild dry-build --flake $HOME/Projects/termina#termina";
       t-switch = "sudo nixos-rebuild switch --flake $HOME/Projects/termina#termina";
       t-boot = "sudo nixos-rebuild boot --flake $HOME/Projects/termina#termina";
-      # pinned inputs (selective updates only): sable-next
-      t-syu = "nix flake update --flake $HOME/Projects/termina home-manager maid-bt maid-runner maid-suite maidshare nix-flatpak nix-index-database nixpkgs nixpkgs-unstable nixvim plasma-manager sunshine-screen uad-ng && nix flake check $HOME/Projects/termina && sudo nixos-rebuild dry-build --flake $HOME/Projects/termina#termina && sudo nixos-rebuild boot --flake $HOME/Projects/termina#termina";
-      t-update = "nix flake update --flake $HOME/Projects/termina home-manager maid-bt maid-runner maid-suite maidshare nix-flatpak nix-index-database nixpkgs nixpkgs-unstable nixvim plasma-manager sunshine-screen uad-ng";
+      t-syu = "nix flake update --flake $HOME/Projects/termina && nix flake check $HOME/Projects/termina && sudo nixos-rebuild dry-build --flake $HOME/Projects/termina#termina && sudo nixos-rebuild boot --flake $HOME/Projects/termina#termina";
+      t-update = "nix flake update --flake $HOME/Projects/termina";
       t-update-input = "f(){ nix flake lock --update-input \"\${1:?usage: t-update-input <input>}\" $HOME/Projects/termina; }; f";
-      t-spu = "nix flake update --flake $HOME/Projects/termina sable-next";
       t-test = "nix flake check $HOME/Projects/termina && sudo nixos-rebuild dry-build --flake $HOME/Projects/termina#termina";
       t-log = "git -C $HOME/Projects/termina log --oneline --decorate -10";
       t-push = "git -C $HOME/Projects/termina push";

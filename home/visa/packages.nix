@@ -15,7 +15,6 @@ in
 
     # comms
     vesktop
-    sable
     signal-desktop
     telegram-desktop
     zapzap # WhatsApp client
