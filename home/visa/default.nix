@@ -577,4 +577,21 @@ in
   systemd.user.sessionVariables = {
     NIXOS_SPEECH = "False";
   };
+
+  xdg.desktopEntries.vesktop = {
+    name = "Vesktop";
+    genericName = "Internet Messenger";
+    comment = "Alternative Discord client with Vencord built-in";
+    exec = "vesktop %U";
+    icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/64x64/apps/vesktop.svg";
+    terminal = false;
+    type = "Application";
+    categories = [ "Network" "InstantMessaging" "Chat" ];
+    mimeType = [ "x-scheme-handler/discord" ];
+    settings = {
+      Keywords = "discord;vencord;electron;chat";
+      StartupWMClass = "Vesktop";
+      Version = "1.5";
+    };
+  };
 }
