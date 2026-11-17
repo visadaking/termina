@@ -27,6 +27,7 @@
 
   environment.systemPackages = with pkgs; [
     kdePackages.kate
+    kdePackages.kzones
     kdePackages.discover
     gparted
   ];
