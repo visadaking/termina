@@ -5,7 +5,6 @@
   ...
 }:
 {
-  # nix settings/gc/cachix/autoUpgrade -> modules/nix.nix
 
   # nixpkgs unstable
   nixpkgs.overlays = [
@@ -17,7 +16,7 @@
     })
   ];
 
-  # boot (UEFI, systemd-boot)
+  # UEFI
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.editor = false;
   boot.loader.systemd-boot.configurationLimit = 5;
@@ -25,12 +24,10 @@
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Avoid long shutdown hangs when a service/app misbehaves (e.g. plasmashell timeout).
   systemd.settings.Manager.DefaultTimeoutStopSec = "20s";
   systemd.user.settings.Manager.DefaultTimeoutStopSec = "20s";
 
   time.timeZone = "Asia/Jerusalem";
-  # system in English; keyboard supports English (US) + Hebrew
   i18n.defaultLocale = "en_US.UTF-8";
   services.xserver.xkb = {
     layout = "us,il";
@@ -77,7 +74,7 @@
   };
   security.rtkit.enable = true;
 
-  # bluetooth (incl. USB adapters e.g. TP-Link UB600 / RTL8761BU)
+  # bluetooth for TP-LINK UB600 / RTL8761BU
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   hardware.bluetooth.settings = {
@@ -96,23 +93,23 @@
       ReconnectIntervals = "1,2,4,8,16,32,64";
     };
   };
-  # AppImage support (binfmt registration so .AppImage files run directly)
+  # appimage support (that doesn't work)
   programs.appimage = {
     enable = true;
     binfmt = true;
   };
 
-  # no printer
+  # i don't have a printer
   services.printing.enable = false;
 
-  # AMD graphics
+  # AMD
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
 
-  # zram swap (like current)
+  # zram swap
   zramSwap.enable = true;
 
-  # flatpak enabled (prefer nixpkgs apps); declaratively manage current system flatpaks via nix-flatpak
+  # nix flatpak ( i hate it)
   services.flatpak.enable = true;
   services.flatpak.packages = [
     "app.fluxer.Fluxer"
@@ -125,7 +122,6 @@
     onCalendar = "weekly";
   };
 
-  # user
   users.users.visa = {
     isNormalUser = true;
     description = "visa";
@@ -142,22 +138,22 @@
 
   programs.zsh.enable = true;
 
-  # allow unfree where needed (Steam etc.) - labeled in intent
+  # unfree software
   nixpkgs.config.allowUnfree = true;
 
-  # firmware (enableAllFirmware helps devices like TP-Link UB600/RTL8761BU; unfree already allowed)
+  # firmware updates (do not turn this off)
   hardware.enableRedistributableFirmware = true;
   hardware.enableAllFirmware = true;
 
   # fwupd/LVFS firmware updates
   services.fwupd.enable = true;
 
-  # LocalSend (opens firewall port 53317)
+  # localsend
   programs.localsend.enable = true;
 
-  # Android enabled (ADB/USB tethering via android-tools and systemd uaccess)
+  # adb
 
-  # fonts (broad coverage: UI/emoji/symbols/CJK/coding/compat)
+  # fonts
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans

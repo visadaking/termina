@@ -3,22 +3,22 @@
   virtualisation.libvirtd = {
     enable = true;
     qemu = {
-      # TPM support (e.g. Windows 11 VMs)
+      # TPM support for vms (winslop 10,11)
       swtpm.enable = true;
-      # Shared folders (virtiofs)
+      # shared folders
       vhostUserPackages = [ pkgs.virtiofsd ];
     };
   };
 
-  # Docker (installed/configured but do not autostart; start manually when needed)
+  # docker
   virtualisation.docker.enable = true;
   systemd.services.docker.wantedBy = lib.mkForce [ ];
   systemd.sockets.docker.wantedBy = lib.mkForce [ ];
 
-  # GUI for easier VM management (keeps vm-curator as a terminal option)
+  # gui for vm
   programs.virt-manager.enable = true;
 
-  # USB passthrough support for SPICE/libvirt VMs
+  # usb passthrough for vms
   virtualisation.spiceUSBRedirection.enable = true;
 
   environment.systemPackages = with pkgs; [
@@ -34,5 +34,5 @@
     "docker"
   ];
 
-  # keep default networks (libvirt manages them); no changes to /games
+  # keep default networks for vms
 }
