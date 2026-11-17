@@ -398,9 +398,10 @@ in
             "format": "╭─ Uptime / Age"
           },
           {
-            "type": "uptime",
+            "type": "command",
             "key": "├ 󰔚 Uptime",
-            "keyColor": "blue"
+            "keyColor": "blue",
+            "text": "s=$(cut -d. -f1 /proc/uptime); d=$((s/86400)); h=$(((s%86400)/3600)); if [ \"$d\" -ge 1 ]; then if [ \"$d\" -eq 1 ]; then echo \"1 day\"; else echo \"$d days\"; fi; else if [ \"$h\" -eq 1 ]; then echo \"1 hour\"; else echo \"$h hours\"; fi; fi"
           },
           {
             "type": "command",
