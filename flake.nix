@@ -1,5 +1,5 @@
 {
-  description = "termina - personal NixOS flake (multi-host, flakes + home-manager, KDE)";
+  description = "termina - personal";
 
   inputs = {
     # nixos unstable
