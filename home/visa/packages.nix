@@ -37,7 +37,7 @@ in
     eartag # audio file tag editor
     beets # music library manager/tagger
     mediainfo # media file metadata
-    vainfo # VA-API (libva) capability/driver info
+    libva-utils # provides vainfo (VA-API capability/driver info)
     kdePackages.kdenlive
     jellyfin-media-player # jellyfin desktop not server
     nicotine-plus
