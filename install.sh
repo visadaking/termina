@@ -18,7 +18,7 @@ Options:
 
 Examples:
   sudo ./install.sh
-  sudo ./install.sh --host termina --flake /mnt/home/visa/termina
+  sudo ./install.sh --host termina --flake /mnt/home/visa/Projects/termina
   ./install.sh --no-install --host termina
 
 Notes:
@@ -120,5 +120,5 @@ echo
 echo "Install command finished."
 echo "Post-install (first boot):"
 echo "  - Log in as the configured user, verify network/display/audio."
-echo "  - In ~/termina (or repo path): git remote -v, git status, then run t-test / t-switch as needed."
+echo "  - In ~/Projects/termina (or repo path): git remote -v, git status, then run t-test / t-switch as needed."
 echo "  - Set/change passwords and any secrets manually (never stored in this repo)."

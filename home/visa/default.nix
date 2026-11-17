@@ -71,11 +71,11 @@ let
     };
     "c4d5e6f7_8a9b_4c0d_1e2f_3a4b5c6d7ea6" = {
       name = "Update";
-      command = "ghostty -e bash -c 'nix flake update --flake /home/visa/termina; echo; echo \"update done - press Enter to close\"; read x'";
+      command = "ghostty -e bash -c 'nix flake update --flake /home/visa/Projects/termina; echo; echo \"update done - press Enter to close\"; read x'";
     };
     "d6e7f8a9_b0c1_4d2e_3f4a_5b6c7d8e9fb7" = {
       name = "Switch";
-      command = "ghostty -e bash -c 'sudo -n /run/current-system/sw/bin/nixos-rebuild switch --flake /home/visa/termina; echo; echo \"switch done - press Enter to close\"; read x'";
+      command = "ghostty -e bash -c 'sudo -n /run/current-system/sw/bin/nixos-rebuild switch --flake /home/visa/Projects/termina; echo; echo \"switch done - press Enter to close\"; read x'";
     };
   };
   # Escape for the INI-quoted value. kdeconnectd reads this file with QSettings
@@ -106,7 +106,7 @@ in
 
   programs.home-manager.enable = true;
 
-  # shells + termina aliases (repo lives at ~/termina)
+  # shells + termina aliases (repo lives at ~/Projects/termina)
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -125,25 +125,25 @@ in
       }
     '';
     shellAliases = {
-      t-edit = "nvim $HOME/termina";
-      t-check = "nix flake check $HOME/termina";
-      t-dry = "sudo nixos-rebuild dry-build --flake $HOME/termina#termina";
-      t-switch = "sudo nixos-rebuild switch --flake $HOME/termina#termina";
-      t-boot = "sudo nixos-rebuild boot --flake $HOME/termina#termina";
+      t-edit = "nvim $HOME/Projects/termina";
+      t-check = "nix flake check $HOME/Projects/termina";
+      t-dry = "sudo nixos-rebuild dry-build --flake $HOME/Projects/termina#termina";
+      t-switch = "sudo nixos-rebuild switch --flake $HOME/Projects/termina#termina";
+      t-boot = "sudo nixos-rebuild boot --flake $HOME/Projects/termina#termina";
       # pinned inputs (selective updates only): sable-next
-      t-syu = "nix flake update --flake $HOME/termina home-manager maid-bt maid-runner maid-suite maidshare nix-flatpak nix-index-database nixpkgs nixpkgs-unstable nixvim plasma-manager sunshine-screen uad-ng && nix flake check $HOME/termina && sudo nixos-rebuild dry-build --flake $HOME/termina#termina && sudo nixos-rebuild boot --flake $HOME/termina#termina";
-      t-update = "nix flake update --flake $HOME/termina home-manager maid-bt maid-runner maid-suite maidshare nix-flatpak nix-index-database nixpkgs nixpkgs-unstable nixvim plasma-manager sunshine-screen uad-ng";
-      t-update-input = "f(){ nix flake lock --update-input \"\${1:?usage: t-update-input <input>}\" $HOME/termina; }; f";
-      t-spu = "nix flake update --flake $HOME/termina sable-next";
-      t-test = "nix flake check $HOME/termina && sudo nixos-rebuild dry-build --flake $HOME/termina#termina";
-      t-status = "git -C $HOME/termina status";
-      t-log = "git -C $HOME/termina log --oneline --decorate -10";
-      t-push = "git -C $HOME/termina push";
-      t-backup = "git -C $HOME/termina push origin main && git -C $HOME/termina push rond main && git -C $HOME/termina push codeberg main";
+      t-syu = "nix flake update --flake $HOME/Projects/termina home-manager maid-bt maid-runner maid-suite maidshare nix-flatpak nix-index-database nixpkgs nixpkgs-unstable nixvim plasma-manager sunshine-screen uad-ng && nix flake check $HOME/Projects/termina && sudo nixos-rebuild dry-build --flake $HOME/Projects/termina#termina && sudo nixos-rebuild boot --flake $HOME/Projects/termina#termina";
+      t-update = "nix flake update --flake $HOME/Projects/termina home-manager maid-bt maid-runner maid-suite maidshare nix-flatpak nix-index-database nixpkgs nixpkgs-unstable nixvim plasma-manager sunshine-screen uad-ng";
+      t-update-input = "f(){ nix flake lock --update-input \"\${1:?usage: t-update-input <input>}\" $HOME/Projects/termina; }; f";
+      t-spu = "nix flake update --flake $HOME/Projects/termina sable-next";
+      t-test = "nix flake check $HOME/Projects/termina && sudo nixos-rebuild dry-build --flake $HOME/Projects/termina#termina";
+      t-status = "git -C $HOME/Projects/termina status";
+      t-log = "git -C $HOME/Projects/termina log --oneline --decorate -10";
+      t-push = "git -C $HOME/Projects/termina push";
+      t-backup = "git -C $HOME/Projects/termina push origin main && git -C $HOME/Projects/termina push rond main && git -C $HOME/Projects/termina push codeberg main";
       t-pushall = "t-backup";
-      t-pull = "git -C $HOME/termina pull --ff-only";
+      t-pull = "git -C $HOME/Projects/termina pull --ff-only";
       # usage: t-commit "message"  (stages tracked changes in termina repo)
-      t-commit = "f(){ git -C $HOME/termina add -A && git -C $HOME/termina commit -m \"\${1:?usage: t-commit \\\"message\\\"}\"; }; f";
+      t-commit = "f(){ git -C $HOME/Projects/termina add -A && git -C $HOME/Projects/termina commit -m \"\${1:?usage: t-commit \\\"message\\\"}\"; }; f";
       # strict DNS kept; temporary captive-portal workaround (runtime-only, no rebuild/degrade). usage: t-dns-relax wlan0
       t-dns-relax = "f(){ i=\${1:?usage: t-dns-relax <iface> (nmcli device status)}; sudo resolvectl dns \"$i\" '' && sudo resolvectl dnsovertls \"$i\" no && sudo resolvectl dnssec \"$i\" no && echo relaxed: $i; }; f";
       t-dns-revert = "f(){ i=\${1:?usage: t-dns-revert <iface>}; sudo resolvectl revert \"$i\" && echo reverted: $i; }; f";
@@ -552,7 +552,7 @@ in
   home.sessionVariables = {
     EDITOR = "nvim";
     BROWSER = "librewolf";
-    NH_FLAKE = "$HOME/termina";
+    NH_FLAKE = "$HOME/Projects/termina";
     # disable speech-dispatcher integration in electron wrappers (avoids crashes, thank you discord.)
     NIXOS_SPEECH = "False";
   };

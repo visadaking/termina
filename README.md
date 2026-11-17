@@ -54,7 +54,7 @@ personal nix config  (flakes + home manager + plasma manager)
 im lazy 
 
 ```sh
-t-edit          # open ~/termina in nvim
+t-edit          # open ~/Projects/termina in nvim
 
 switch/updates
 t-switch        # rebuild and switch now
@@ -70,11 +70,11 @@ t-dry           # dry build, see if it actually builds
 t-test          # t-check + t-dry (safe pre-switch/boot check)
 
 git
-t-status        # git status for ~/termina
-t-log           # recent commits for ~/termina
-t-pull          # git pull --ff-only in ~/termina
-t-commit "msg"  # stage + commit all changes in ~/termina
-t-push          # git push in ~/termina
+t-status        # git status for ~/Projects/termina
+t-log           # recent commits for ~/Projects/termina
+t-pull          # git pull --ff-only in ~/Projects/termina
+t-commit "msg"  # stage + commit all changes in ~/Projects/termina
+t-push          # git push in ~/Projects/termina
 t-backup        # push main to origin + rond + codeberg
 t-pushall       # alias for t-backup
 

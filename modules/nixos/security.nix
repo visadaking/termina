@@ -34,16 +34,16 @@
   services.fail2ban.enable = true;
 
   # passwordless nixos-rebuild actions for this flake (used by KDE Connect "Switch"
-  # and convenient local rebuild aliases). Scoped to /home/visa/termina only.
+  # and convenient local rebuild aliases). Scoped to /home/visa/Projects/termina only.
   security.sudo.extraRules = [
     {
       users = [ "visa" ];
       commands = [
-        { command = "/run/current-system/sw/bin/nixos-rebuild switch --flake /home/visa/termina"; options = [ "NOPASSWD" ]; }
-        { command = "/run/current-system/sw/bin/nixos-rebuild boot --flake /home/visa/termina"; options = [ "NOPASSWD" ]; }
-        { command = "/run/current-system/sw/bin/nixos-rebuild test --flake /home/visa/termina"; options = [ "NOPASSWD" ]; }
-        { command = "/run/current-system/sw/bin/nixos-rebuild dry-build --flake /home/visa/termina"; options = [ "NOPASSWD" ]; }
-        { command = "/run/current-system/sw/bin/nixos-rebuild build --flake /home/visa/termina"; options = [ "NOPASSWD" ]; }
+        { command = "/run/current-system/sw/bin/nixos-rebuild switch --flake /home/visa/Projects/termina"; options = [ "NOPASSWD" ]; }
+        { command = "/run/current-system/sw/bin/nixos-rebuild boot --flake /home/visa/Projects/termina"; options = [ "NOPASSWD" ]; }
+        { command = "/run/current-system/sw/bin/nixos-rebuild test --flake /home/visa/Projects/termina"; options = [ "NOPASSWD" ]; }
+        { command = "/run/current-system/sw/bin/nixos-rebuild dry-build --flake /home/visa/Projects/termina"; options = [ "NOPASSWD" ]; }
+        { command = "/run/current-system/sw/bin/nixos-rebuild build --flake /home/visa/Projects/termina"; options = [ "NOPASSWD" ]; }
       ];
     }
   ];
