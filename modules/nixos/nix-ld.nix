@@ -57,7 +57,6 @@
       libxcb-render-util
       libxcb-wm
       xkeyboard_config
-      # ROCm
     ];
   };
 }
