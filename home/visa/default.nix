@@ -123,6 +123,13 @@ in
         local msg="''${2:-ping from $(hostname)}"
         kdeconnect-cli -n "$dev" --ping-msg "$msg"
       }
+
+      termina() {
+        case "''${1:-}" in
+          status) shift; git -C "$HOME/Projects/termina" status "$@" ;;
+          *) echo "usage: termina status" >&2; return 2 ;;
+        esac
+      }
     '';
     shellAliases = {
       t-edit = "nvim $HOME/Projects/termina";
@@ -136,7 +143,6 @@ in
       t-update-input = "f(){ nix flake lock --update-input \"\${1:?usage: t-update-input <input>}\" $HOME/Projects/termina; }; f";
       t-spu = "nix flake update --flake $HOME/Projects/termina sable-next";
       t-test = "nix flake check $HOME/Projects/termina && sudo nixos-rebuild dry-build --flake $HOME/Projects/termina#termina";
-      t-status = "git -C $HOME/Projects/termina status";
       t-log = "git -C $HOME/Projects/termina log --oneline --decorate -10";
       t-push = "git -C $HOME/Projects/termina push";
       t-backup = "git -C $HOME/Projects/termina push origin main && git -C $HOME/Projects/termina push rond main && git -C $HOME/Projects/termina push codeberg main";
@@ -162,6 +168,14 @@ in
   programs.bash = {
     enable = true;
     shellAliases = config.programs.zsh.shellAliases;
+    initExtra = ''
+      termina() {
+        case "''${1:-}" in
+          status) shift; git -C "$HOME/Projects/termina" status "$@" ;;
+          *) echo "usage: termina status" >&2; return 2 ;;
+        esac
+      }
+    '';
   };
 
   # dev: neovim configured declaratively via nixvim (see nixvim.nix)
