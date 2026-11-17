@@ -2,39 +2,34 @@
 {
   networking.firewall = {
     enable = true;
-    # Home-network-first: management/streaming/LAN app ports restricted to LAN interface (eno1).
-    # Torrent peer port kept global for incoming peers. Syncthing sync (22000) kept global to preserve
-    # remote syncing connectivity; review separately if you only sync on LAN/VPN.
-    # Verify interface/LAN: ip -br addr; ip route show default
     allowedTCPPorts = [
-      22000             # Syncthing sync (global: preserves remote sync; restrict if LAN-only)
-      22446             # qBittorrent listen/peer port (global: incoming torrent peers)
+      22000
+      22446
     ];
     allowedUDPPorts = [
-      22000             # Syncthing QUIC/sync (global)
-      22446             # qBittorrent listen/peer port (global)
+      22000
+      22446
     ];
 
     interfaces.eno1 = {
       allowedTCPPorts = [
-        1716              # KDE Connect
-        8580              # qBittorrent WebUI (home LAN only)
-        47984 47989 47990 48010  # Sunshine (web UI/HTTPS/RTSP etc., home LAN only)
+        1716              # kde connect
+        8580
+        47984 47989 47990 48010
       ];
-      allowedTCPPortRanges = [ { from = 1714; to = 1764; } ]; # KDE Connect range
+      allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
       allowedUDPPorts = [
-        1716              # KDE Connect
-        21027             # Syncthing discovery (LAN)
-        47998 47999 48000 48002 48010  # Sunshine (home LAN only)
+        1716
+        21027
+        47998 47999 48000 48002 48010
       ];
-      allowedUDPPortRanges = [ { from = 1714; to = 1764; } ]; # KDE Connect range
+      allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
     };
   };
 
   services.fail2ban.enable = true;
 
-  # passwordless nixos-rebuild actions for this flake (used by KDE Connect "Switch"
-  # and convenient local rebuild aliases). Scoped to /home/visa/Projects/termina only.
+  # insane opesec (passwordless kde connect)
   security.sudo.extraRules = [
     {
       users = [ "visa" ];
@@ -48,13 +43,9 @@
     }
   ];
 
-  # DNSSEC + DNS-over-TLS (Quad9) - strict (kept strict; do not degrade declaratively)
-  # Captive portal / broken-network workaround (TEMPORARY, runtime-only, reverts on reboot or when undone):
-  #   sudo resolvectl dns <iface> ""          # or set portal/DHCP DNS for the interface
-  #   sudo resolvectl dnsovertls <iface> no
-  #   sudo resolvectl dnssec <iface> no
-  # Find interface: nmcli device status   (e.g. wlan0/enp5s0). After portal: reconnect or `sudo resolvectl revert <iface>`.
-  # Alternatively connect once with NetworkManager's portal flow, then revert interface settings.
+  # DNS over TLS (Quad9)
+  # incase shit goes sideways i guess
+  # for internet
   services.resolved = {
     enable = true;
     settings.Resolve = {

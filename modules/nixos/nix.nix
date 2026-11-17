@@ -25,7 +25,7 @@
     };
   };
 
-  # automatic system updates disabled; prefer manual control with t-update/t-dry/t-switch.
-  # (auto-upgrade + --commit-lock-file in an active git repo can create surprise commits/conflicts)
+  # updating your system? what? are you crazy?
+  # im actually lazy lol
   system.autoUpgrade.enable = false;
 }

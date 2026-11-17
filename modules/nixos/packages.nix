@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  # core utilities + dev/productivity/media baseline (organized here)
+  # core utils
   environment.systemPackages = with pkgs; [
     # core
     gcc
