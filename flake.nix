@@ -2,7 +2,7 @@
   description = "termina - personal NixOS flake (multi-host, flakes + home-manager, KDE)";
 
   inputs = {
-    # nixos-unstable (rolling)
+    # nixos unstable
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -25,7 +25,7 @@
       url = "github:gmodena/nix-flatpak/?ref=latest";
     };
 
-    # Maidware Project tools (packaging fixed/pushed upstream)
+    # maidware project
     maid-bt = {
       url = "github:Maidware-Project/Maid-BT";
       inputs.nixpkgs.follows = "nixpkgs";

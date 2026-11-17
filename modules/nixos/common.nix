@@ -7,7 +7,7 @@
 {
   # nix settings/gc/cachix/autoUpgrade -> modules/nix.nix
 
-  # nixpkgs 26.11 base + unstable available as pkgs.unstable.<name>
+  # nixpkgs unstable
   nixpkgs.overlays = [
     (final: prev: {
       unstable = import inputs.nixpkgs-unstable {
@@ -41,8 +41,7 @@
   # networking
   networking.networkmanager.enable = true;
 
-  # audio (PipeWire) - high-quality defaults (Fiio K11 USB DAC etc.)
-  # adjust allowed-rates/quantum if a device misbehaves; check with: pw-metadata -n settings 0
+  # pipewire
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -64,8 +63,7 @@
         "default.clock.max-quantum" = 2048;
       };
     };
-    # Bluetooth audio: prefer high-quality A2DP media profile (SBC-XQ) for playback.
-    # HFP/HSP headset roles disabled because a separate mic (PS22 Lite) is used.
+    # bluetooth A2DP
     wireplumber.extraConfig."10-bluez" = {
       "monitor.bluez.properties" = {
         "bluez5.enable-sbc-xq" = true;
