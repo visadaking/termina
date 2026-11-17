@@ -98,7 +98,11 @@
                 (final: prev: {
                   uad-ng = inputs.uad-ng.packages.${system}.uad-ng;
                   uad-cli = inputs.uad-ng.packages.${system}.uad-cli;
-
+                  kdePackages = prev.kdePackages.overrideScope (kfinal: kprev: {
+                    akonadiconsole = prev.emptyDirectory;
+                    akonadi-import-wizard = prev.emptyDirectory;
+                    qrca = prev.emptyDirectory;
+                  });
                 })
               ];
             }
