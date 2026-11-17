@@ -10,6 +10,7 @@ in
     enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = false;
+    gamescopeSession.enable = true;
     # declarative compatibility
     # ProtonPlus remains installed for on-demand installs/updates (e.g. Proton-CachyOS).
     extraCompatPackages = with pkgs; [
