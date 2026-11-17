@@ -5,12 +5,12 @@
   ...
 }:
 let
-  # Simp1e (capitaine successor) cursors, Tokyo Night Storm scheme - matches the GTK theme/accent
+  # my own theme
   simp1e-tokyo-night-storm = pkgs.callPackage ../../pkgs/simp1e-tokyo-night-storm.nix { };
   papirus-icon-theme-teal = pkgs.callPackage ../../pkgs/papirus-icon-theme-teal.nix { };
 in
 {
-  # GTK theme (Tokyo Night)
+  # my own theme
   gtk = {
     enable = true;
     theme = {
@@ -48,18 +48,17 @@ in
     x11.enable = true;
   };
 
-  # work around KWin/libX11 parsing a legacy iso8859-1 Compose table on UTF-8 locales.
+  # workaround for KWin/libX11
   home.sessionVariables = {
     XCOMPOSEFILE = "${pkgs.libx11}/share/X11/locale/en_US.UTF-8/Compose";
   };
 
-  # Monitor: G25F2 (DP-1) - VRR disabled (Never), as set in KDE Plasma
+  # G25F2 without VRR
   xdg.configFile."kwinoutputconfig.json".source = ./kwinoutputconfig-g25f2.json;
 
-  # KDE Plasma via plasma-manager: keybinds + theme basics only (start small).
-  # declarative can conflict with GUI changes - keep scope minimal.
-  # keybinds imported from current kglobalshortcutsrc (verify after first login).
-  # wallpaper deployed via home.file (Ergo Proxy).
+  # plasma manager
+  # keybinds
+  # wallpapers
   programs.plasma = {
     enable = true;
     workspace = {
@@ -69,10 +68,8 @@ in
         theme = "Simp1e-Tokyo-Night-Storm";
         size = 24;
       };
-      # Tokyo Night - GTK theme handled via programs.gtk above
-      # lookAndFeel = "org.kde.breezedark.desktop"; # third-party; install/set if available
-      # colorScheme = "TokyoNightStorm";             # set if a Plasma color scheme is installed
-      # theme = "default";
+      # tokyo night
+      # tokyo night but my own version
     };
     shortcuts = {
       ksmserver."Lock Session" = "Meta+Esc";
@@ -120,13 +117,12 @@ in
         ResetOldOptions.value = true;
         SwitchMode.value = "Global";
       };
-      # Tokyo Night / old dotfiles accent (teal #5cb9ae)
+      # from old dotfiles
       kdeglobals.General.AccentColor = "92,185,174";
       # Spectacle: stupid fucking pop up
       spectaclerc.General.clipboardGroup = "PostScreenshotCopyImage";
       spectaclerc.GuiConfig.quitAfterSaveCopyExport = true;
 
-      # Dolphin
       dolphinrc.General.ShowStatusBar = "FullWidth";
       "dolphinrc"."IconsMode".PreviewSize = 48;
       "dolphinrc"."KFileDialog Settings"."Places Icons Auto-resize" = false;
@@ -134,7 +130,7 @@ in
       dolphinrc.MainWindow.MenuBar = "Disabled";
       dolphinrc.PreviewSettings.Plugins = "appimagethumbnail,audiothumbnail,blenderthumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,fontthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,mltpreview,mobithumbnail,opendocumentthumbnail,gsthumbnail,rawthumbnail,svgthumbnail,ffmpegthumbs";
 
-      # KZones (KWin script): enabled with Halves (primary), 1/3-2/3, and Equal Thirds layouts.
+      # kzones (kwin script)
       "kwinrc"."Plugins".kzonesEnabled = true;
       "kwinrc"."Script-kzones" = {
         autoSnapAllNew = false;

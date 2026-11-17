@@ -4,13 +4,13 @@
     background-opacity = 0.92
     background = #131318
     background-blur = true
-    # Pinned Plasma accent #5CB9AE, subtle use only
+    # plasma accent
     cursor-color = #5cb9ae
     selection-background = #488985
     selection-foreground = #e4e1e9
-    # Animated shaders need this (true = only when focused, always = even unfocused)
+    # animated shaders
     custom-shader-animation = always
-    # No custom-shader set = no background animations.
+    # no custom shader
     # Example: custom-shader = ~/.config/ghostty/shaders/crt.glsl
 
     # Maple Mono NF

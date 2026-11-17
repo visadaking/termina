@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  # Steam uses its own FHS env; this is for random/foreign binaries.
+  # steam
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
@@ -57,8 +57,7 @@
       libxcb-render-util
       libxcb-wm
       xkeyboard_config
-      # ROCm OpenCL ICD is optional on AMD (can be heavy/driver-specific); add if needed:
-      # rocmPackages.clr.icd
+      # ROCm
     ];
   };
 }
