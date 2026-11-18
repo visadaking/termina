@@ -66,8 +66,9 @@ in
     uad-ng # Universal Android Debloater Next Generation (GUI; adb wrapped)
     nh # Nix helper
     speedtest-cli
+    # amdgpu stuff
+    amdgpu_top
     whyd # diagnose previous-boot freeze/crash/shutdown from journal (vmaltarello/whyd)
-    discordchatexporter-desktop
     yt-dlp
     tokei
     typos
