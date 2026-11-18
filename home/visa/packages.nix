@@ -45,8 +45,8 @@ in
     # localsend enabled system-wide via programs.localsend in modules/nixos/common.nix (opens firewall)
     obsidian # unfree/electron caveats
     onlyoffice-desktopeditors
-    ente-auth # verify attr (ente-auth / pkgs.unstable.ente-auth)
-    peazip # verify attr
+    ente-auth
+    peazip
     freac # audio converter (org.freac.freac)
     mission-center
     qbittorrent
@@ -84,10 +84,10 @@ in
 
     # gaming/helpers (Steam enabled system-wide); /games data untouched
     prismlauncher
-    itch # verify attr on search.nixos.org (26.11/unstable)
+    itch
     itch-dl
     moonlight-qt # Moonlight client (pairs with Sunshine host; ports opened in modules/security.nix)
-    bottles # verify attr/unfree
+    bottles
     goverlay
     dualsensectl # control PS5 DualSense (battery, leds, triggers, etc.)
     osu-lazer
@@ -98,11 +98,10 @@ in
     # VPN
     proton-vpn
 
-    # native replacements/helpers for former AppImages/niche (verify attrs on 26.11/unstable)
+    # native replacements/helpers for former AppImages/niche
     musicpresence # Discord/music rich presence
-    cameractrls # verify attr
-    xclicker # verify attr
-    # upscaler? peazip/freac/niche - verify attrs; Goose/Azahar/Sober/Reaper handled case-by-case (see docs)
+    cameractrls
+    # peazip/freac/niche; Goose/Azahar/Sober/Reaper handled case-by-case (see docs)
     # AppImages (appimage-run doesn't work but don't remove it)
     appimage-run
 

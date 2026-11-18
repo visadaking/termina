@@ -482,7 +482,6 @@ in
   };
 
   # apps (nixpkgs/native). Flatpak is enabled system-wide but no Flatpak apps declared here.
-  # verify attr names on nixpkgs 26.11 / unstable: nix search nixpkgs <name> (use pkgs.unstable.<pkg> if needed)
   # wallpapers (managed files)
   home.file."Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png".source =
     ../../assets/wallpapers/ergo-proxy-kw9yj7-1920x1080.png;
