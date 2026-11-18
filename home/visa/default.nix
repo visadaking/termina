@@ -97,6 +97,7 @@ in
     ./librewolf.nix
     ./thunderbird.nix
     ./ghostty.nix
+    ./sable.nix
   ];
 
   home.username = "visa";

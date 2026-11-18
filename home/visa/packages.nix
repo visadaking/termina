@@ -15,6 +15,7 @@ in
 
     # comms
     fluxer-canary-bin
+    sable
     vesktop
     signal-desktop
     telegram-desktop

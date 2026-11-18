@@ -58,6 +58,11 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sable-next = {
+      url = "https://git.sable.moe/SableClient/sable-next/archive/768be67a86dc141830603164d543a3f077b3f5c9.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -74,6 +79,7 @@
       maid-runner,
       nixvim,
       nix-index-database,
+      sable-next,
       ...
     }:
     let
@@ -98,6 +104,7 @@
                 (final: prev: {
                   uad-ng = inputs.uad-ng.packages.${system}.uad-ng;
                   uad-cli = inputs.uad-ng.packages.${system}.uad-cli;
+                  sable = inputs.sable-next.packages.${system}.sable-desktop;
                   kdePackages = prev.kdePackages.overrideScope (kfinal: kprev: {
                     akonadiconsole = prev.emptyDirectory;
                     akonadi-import-wizard = prev.emptyDirectory;
