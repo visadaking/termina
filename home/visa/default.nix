@@ -153,6 +153,7 @@ in
       fixaudio = "systemctl --user restart wireplumber pipewire pipewire-pulse";
       cls = "clear";
       ff = "fastfetch";
+      hy = "hyfetch";
 
       # wallpapers (runtime switch, Plasma 6)
       wallpaper-ergo = "plasma-apply-wallpaperimage \"$HOME/Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png\"";
@@ -407,19 +408,13 @@ in
           "break",
           {
             "type": "custom",
-            "format": "╭─ Uptime / Age"
+            "format": "╭─ Uptime"
           },
           {
             "type": "command",
-            "key": "├ 󰔚 Uptime",
+            "key": "└ 󰔚 Uptime",
             "keyColor": "blue",
             "text": "s=$(cut -d. -f1 /proc/uptime); d=$((s/86400)); h=$(((s%86400)/3600)); if [ \"$d\" -ge 1 ]; then if [ \"$d\" -eq 1 ]; then echo \"1 day\"; else echo \"$d days\"; fi; else if [ \"$h\" -eq 1 ]; then echo \"1 hour\"; else echo \"$h hours\"; fi; fi"
-          },
-          {
-            "type": "command",
-            "key": "└ 󰋚 OS Age",
-            "keyColor": "blue",
-            "text": "birth=$(stat -c %W /etc/machine-id 2>/dev/null); [ \"\${birth:-0}\" -le 0 ] 2>/dev/null && birth=$(stat -c %W / 2>/dev/null); [ \"\${birth:-0}\" -le 0 ] 2>/dev/null && birth=$(date +%s); now=$(date +%s); age=$((now-birth)); [ \"$age\" -lt 0 ] && age=0; d=$((age/86400)); if [ \"$d\" -eq 1 ]; then echo \"1 day\"; else echo \"$d days\"; fi"
           }
         ]
       }
