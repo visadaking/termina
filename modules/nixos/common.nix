@@ -152,9 +152,6 @@
   # localsend
   programs.localsend.enable = true;
 
-  # adb: programs.adb.enable removed (systemd 258 handles uaccess rules automatically);
-  # adb/fastboot provided via android-tools
-
   # fonts
   fonts.packages = with pkgs; [
     noto-fonts
