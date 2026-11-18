@@ -78,6 +78,7 @@ t-pushall       # alias for t-backup
 dns
 t-dns-relax i   # temporary DNS relax for captive portals (runtime-only)
 t-dns-revert i  # revert DNS relax for an interface
+t-cc            # flush DNS caches
 ```
 
 
