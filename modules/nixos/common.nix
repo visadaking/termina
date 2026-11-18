@@ -132,7 +132,6 @@
       "video"
       "audio"
       "i2c"
-      "adbusers"
     ];
     shell = pkgs.zsh;
   };
