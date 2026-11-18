@@ -140,6 +140,7 @@ in
       t-update = "nix flake update --flake $HOME/Projects/termina";
       t-update-input = "f(){ nix flake lock --update-input \"\${1:?usage: t-update-input <input>}\" $HOME/Projects/termina; }; f";
       t-test = "nix flake check $HOME/Projects/termina && sudo nixos-rebuild dry-build --flake $HOME/Projects/termina#termina";
+      t-status = "termina status";
       t-log = "git -C $HOME/Projects/termina log --oneline --decorate -10";
       t-push = "git -C $HOME/Projects/termina push";
       t-backup = "git -C $HOME/Projects/termina push origin main && git -C $HOME/Projects/termina push rond main && git -C $HOME/Projects/termina push codeberg main";

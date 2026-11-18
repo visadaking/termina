@@ -67,7 +67,7 @@ t-dry           # dry build, see if it actually builds
 t-test          # t-check + t-dry (safe pre-switch/boot check)
 
 git
-t-status        # git status for ~/Projects/termina
+t-status        # termina status for ~/Projects/termina
 t-log           # recent commits for ~/Projects/termina
 t-pull          # git pull --ff-only in ~/Projects/termina
 t-commit "msg"  # stage + commit all changes in ~/Projects/termina
