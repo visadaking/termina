@@ -112,7 +112,6 @@
   # nix flatpak ( i hate it)
   services.flatpak.enable = true;
   services.flatpak.packages = [
-    "app.fluxer.Fluxer"
     "org.desktop_plus.desktop-plus"
     "org.vinegarhq.Sober"
     "com.nuclearplayer.Nuclear"

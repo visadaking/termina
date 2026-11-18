@@ -14,6 +14,7 @@ in
     # firefox managed declaratively via programs.librewolf (home/visa/librewolf.nix)
 
     # comms
+    fluxer-canary-bin
     vesktop
     signal-desktop
     telegram-desktop
