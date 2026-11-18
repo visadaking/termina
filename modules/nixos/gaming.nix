@@ -58,7 +58,6 @@ in
     # wine staging 64bit
     unstable.wineWow64Packages.staging
     winetricks
-    # wine-mono: no declarative nixpkgs attr found; installed on-demand by Wine/winetricks in prefixes if needed
     openal-win
     # common gaming/audio libs
     openal

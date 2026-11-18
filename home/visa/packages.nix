@@ -100,8 +100,6 @@ in
 
     # native replacements/helpers for former AppImages/niche
     musicpresence # Discord/music rich presence
-    cameractrls
-    # peazip/freac/niche; Goose/Azahar/Sober/Reaper handled case-by-case (see docs)
     # AppImages (appimage-run doesn't work but don't remove it)
     appimage-run
 
