@@ -48,8 +48,6 @@ in
   # kernel support
   boot.kernelModules = [ "ntsync" ];
 
-  hardware.xone.enable = true;
-
   environment.systemPackages = with pkgs; [
     protonplus
     heroic

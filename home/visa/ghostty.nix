@@ -1,7 +1,7 @@
 { ... }:
 {
   xdg.configFile."ghostty/config".text = ''
-    background-opacity = 0.92
+    background-opacity = 0.88
     background = #131318
     background-blur = true
     # plasma accent
