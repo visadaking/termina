@@ -132,6 +132,7 @@
       "video"
       "audio"
       "i2c"
+      "adbusers"
     ];
     shell = pkgs.zsh;
   };
@@ -151,7 +152,8 @@
   # localsend
   programs.localsend.enable = true;
 
-  # adb
+  # adb: programs.adb.enable removed (systemd 258 handles uaccess rules automatically);
+  # adb/fastboot provided via android-tools
 
   # fonts
   fonts.packages = with pkgs; [
