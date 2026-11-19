@@ -80,7 +80,9 @@
   hardware.bluetooth.settings = {
     General = {
       Enable = "Source,Sink,Media,Socket";
+      # remove when supported for rc4 - LE Audio
       Experimental = true;
+      KernelExperimental = "6fbaf188-05e0-496a-9885-d6ddfdb4e03e";
       AutoEnable = true;
       ControllerMode = "dual";
       FastConnectable = false;
