@@ -22,7 +22,7 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
-  boot.kernelPackages = pkgs.linuxPackages_testing;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   systemd.settings.Manager.DefaultTimeoutStopSec = "20s";
   systemd.user.settings.Manager.DefaultTimeoutStopSec = "20s";
@@ -80,9 +80,7 @@
   hardware.bluetooth.settings = {
     General = {
       Enable = "Source,Sink,Media,Socket";
-      # remove when supported for rc4 - LE Audio
       Experimental = true;
-      KernelExperimental = "6fbaf188-05e0-496a-9885-d6ddfdb4e03e";
       AutoEnable = true;
       ControllerMode = "dual";
       FastConnectable = false;
