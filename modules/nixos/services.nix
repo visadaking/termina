@@ -5,10 +5,10 @@
   systemd.oomd.enable = true;
 
   # limit persistent journal size
-  services.journald.extraConfig = ''
-    SystemMaxUse=1G
-    MaxRetentionSec=1month
-  '';
+  services.journald.settings.Journal = {
+    SystemMaxUse = "1G";
+    MaxRetentionSec = "1month";
+  };
 
   # power profiles for Plasma
   services.power-profiles-daemon.enable = true;
