@@ -1,8 +1,17 @@
 { lib, pkgs, ... }:
 {
-  # zram
+  # memory pressure handling
   services.earlyoom.enable = false;
   systemd.oomd.enable = true;
+
+  # limit persistent journal size
+  services.journald.extraConfig = ''
+    SystemMaxUse=1G
+    MaxRetentionSec=1month
+  '';
+
+  # power profiles for Plasma / desktop power management
+  services.power-profiles-daemon.enable = true;
 
   # removable disk management
   services.udisks2.enable = true;

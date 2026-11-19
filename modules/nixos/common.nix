@@ -106,8 +106,12 @@
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
 
-  # zram swap
-  zramSwap.enable = true;
+  # zram swap (zstd: good compression/speed balance for desktop workloads)
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
+  };
 
   # nix flatpak ( i hate it)
   services.flatpak.enable = true;
