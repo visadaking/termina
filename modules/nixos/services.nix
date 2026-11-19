@@ -10,7 +10,7 @@
     MaxRetentionSec=1month
   '';
 
-  # power profiles for Plasma / desktop power management
+  # power profiles for Plasma
   services.power-profiles-daemon.enable = true;
 
   # removable disk management

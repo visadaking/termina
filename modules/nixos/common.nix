@@ -106,7 +106,7 @@
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
 
-  # zram swap (zstd: good compression/speed balance for desktop workloads)
+  # zram swap
   zramSwap = {
     enable = true;
     algorithm = "zstd";
