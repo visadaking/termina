@@ -55,6 +55,7 @@ in
 
   # G25F2 without VRR
   xdg.configFile."kwinoutputconfig.json".source = ./kwinoutputconfig-g25f2.json;
+  xdg.configFile."plasma-org.kde.plasma.desktop-appletsrc".source = ./plasma-org.kde.plasma.desktop-appletsrc;
 
   # plasma manager
   # keybinds
