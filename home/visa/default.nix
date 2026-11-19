@@ -411,13 +411,19 @@ in
           "break",
           {
             "type": "custom",
-            "format": "╭─ Uptime"
+            "format": "╭─ Time"
           },
           {
             "type": "command",
-            "key": "└ 󰔚 Uptime",
+            "key": "├ 󰔚 Uptime",
             "keyColor": "blue",
             "text": "s=$(cut -d. -f1 /proc/uptime); d=$((s/86400)); h=$(((s%86400)/3600)); if [ \"$d\" -ge 1 ]; then if [ \"$d\" -eq 1 ]; then echo \"1 day\"; else echo \"$d days\"; fi; else if [ \"$h\" -eq 1 ]; then echo \"1 hour\"; else echo \"$h hours\"; fi; fi"
+          },
+          {
+            "type": "command",
+            "key": "└ 󰃭 Age",
+            "keyColor": "blue",
+            "text": "b=$(stat -c %W / 2>/dev/null); n=$(date +%s); if [ -n \"$b\" ] && [ \"$b\" -gt 0 ] 2>/dev/null; then d=$(((n-b)/86400)); if [ \"$d\" -eq 1 ]; then echo \"1 day\"; else echo \"$d days\"; fi; else echo \"unknown\"; fi"
           }
         ]
       }
