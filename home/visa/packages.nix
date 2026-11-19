@@ -96,6 +96,7 @@ in
     dolphin-emu # GameCube / Wii emulator
     rpcs3 # PlayStation 3 emulator
     mupen64plus # Nintendo 64 emulator
+    
 
     # VPN
     proton-vpn
