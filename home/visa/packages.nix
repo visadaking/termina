@@ -51,6 +51,7 @@ in
     peazip
     freac # audio converter (org.freac.freac)
     mission-center
+    kdePackages.filelight
     qbittorrent
     netbird-ui
 

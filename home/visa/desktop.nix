@@ -125,11 +125,12 @@ in
       spectaclerc.GuiConfig.quitAfterSaveCopyExport = true;
 
       dolphinrc.General.ShowStatusBar = "FullWidth";
-      "dolphinrc"."IconsMode".PreviewSize = 48;
+      "dolphinrc"."IconsMode".PreviewSize = 80;
       "dolphinrc"."KFileDialog Settings"."Places Icons Auto-resize" = false;
       "dolphinrc"."KFileDialog Settings"."Places Icons Static Size" = 22;
       dolphinrc.MainWindow.MenuBar = "Disabled";
       dolphinrc.PreviewSettings.Plugins = "appimagethumbnail,audiothumbnail,blenderthumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,fontthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,mltpreview,mobithumbnail,opendocumentthumbnail,gsthumbnail,rawthumbnail,svgthumbnail,ffmpegthumbs";
+      dolphinrc.Search.Location = "Everywhere";
 
       # kzones (kwin script)
       "kwinrc"."Plugins".kzonesEnabled = true;
