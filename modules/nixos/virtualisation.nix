@@ -31,7 +31,6 @@
   users.users.visa.extraGroups = [
     "libvirtd"
     "kvm"
-    "docker"
   ];
 
   # keep default networks for vms
