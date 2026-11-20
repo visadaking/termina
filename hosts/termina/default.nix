@@ -45,5 +45,15 @@
     SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c358", TEST=="power/control", ATTR{power/control}="on"
   '';
 
+  # smart health
+  services.smartd.enable = true;
+
+  # mDNS / local network discovery
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
   system.stateVersion = "26.11";
 }
