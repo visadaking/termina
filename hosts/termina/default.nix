@@ -1,4 +1,4 @@
-{ lib, inputs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 {
   imports = [
     ./hardware.nix
@@ -17,7 +17,52 @@
   # future laptop configuration here
 
   # termina hardware stuff
-  boot.blacklistedKernelModules = [ "sp5100_tco" "kvm" "kvm_amd" ];
+  termina.vm.enable = false;
+  boot.blacklistedKernelModules =
+    [ "sp5100_tco" ]
+    ++ lib.optionals (!config.termina.vm.enable) [ "kvm" "kvm_amd" ];
+
+  environment.systemPackages = [
+    (pkgs.writeShellScriptBin "vm-on" ''
+      set -euo pipefail
+      file="/home/visa/Projects/termina/hosts/termina/default.nix"
+      if grep -q 'termina\.vm\.enable = true;' "$file"; then
+        echo "VM/KVM already enabled in config. Rebuilding to ensure state..."
+      else
+        sed -i 's/termina\.vm\.enable = false;/termina.vm.enable = true;/' "$file"
+        echo "Enabled termina.vm.enable in $file"
+      fi
+      sudo -n /run/current-system/sw/bin/nixos-rebuild switch --flake /home/visa/Projects/termina
+      echo "VM/KVM enabled. You may need to log out/in for group access and reboot if KVM modules were previously blacklisted/unloaded."
+    '')
+    (pkgs.writeShellScriptBin "vm-off" ''
+      set -euo pipefail
+      file="/home/visa/Projects/termina/hosts/termina/default.nix"
+      if grep -q 'termina\.vm\.enable = false;' "$file"; then
+        echo "VM/KVM already disabled in config. Rebuilding to ensure state..."
+      else
+        sed -i 's/termina\.vm\.enable = true;/termina.vm.enable = false;/' "$file"
+        echo "Disabled termina.vm.enable in $file"
+      fi
+      sudo -n /run/current-system/sw/bin/nixos-rebuild switch --flake /home/visa/Projects/termina
+      echo "VM/KVM disabled. Reboot recommended to ensure KVM modules are not loaded."
+    '')
+    (pkgs.writeShellScriptBin "vm-status" ''
+      set -euo pipefail
+      file="/home/visa/Projects/termina/hosts/termina/default.nix"
+      if grep -q 'termina\.vm\.enable = true;' "$file"; then
+        echo "config: enabled"
+      elif grep -q 'termina\.vm\.enable = false;' "$file"; then
+        echo "config: disabled"
+      else
+        echo "config: unknown"
+      fi
+      echo "kvm modules loaded:"
+      lsmod | grep '^kvm' || echo "  (none)"
+      echo "groups:"
+      id -nG "$USER" | tr ' ' '\n' | grep -E '^(libvirtd|kvm)$' || echo "  (not in libvirtd/kvm)"
+    '')
+  ];
 
   # wake on lan
   # sleep for wol

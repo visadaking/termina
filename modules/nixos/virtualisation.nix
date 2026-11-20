@@ -1,20 +1,52 @@
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+let
+  cfg = config.termina.vm;
+in
 {
-  # VM/KVM stack disabled to reduce KVM attack surface (re-enable when needed)
-  virtualisation.libvirtd.enable = false;
+  options.termina.vm.enable = lib.mkEnableOption "VM/KVM stack (libvirt, virt-manager, KVM access)";
 
-  # docker
-  virtualisation.docker.enable = true;
-  systemd.services.docker.wantedBy = lib.mkForce [ ];
-  systemd.sockets.docker.wantedBy = lib.mkForce [ ];
+  config = lib.mkMerge [
+    {
+      # docker
+      virtualisation.docker.enable = true;
+      systemd.services.docker.wantedBy = lib.mkForce [ ];
+      systemd.sockets.docker.wantedBy = lib.mkForce [ ];
 
-  # gui for vm
-  programs.virt-manager.enable = false;
+      environment.systemPackages = with pkgs; [
+        docker-compose
+      ];
+    }
 
-  # usb passthrough for vms
-  virtualisation.spiceUSBRedirection.enable = false;
+    (lib.mkIf cfg.enable {
+      virtualisation.libvirtd = {
+        enable = true;
+        qemu = {
+          # TPM support for vms (winslop 10,11)
+          swtpm.enable = true;
+          # shared folders
+          vhostUserPackages = [ pkgs.virtiofsd ];
+        };
+      };
 
-  environment.systemPackages = with pkgs; [
-    docker-compose
+      programs.virt-manager.enable = true;
+      virtualisation.spiceUSBRedirection.enable = true;
+
+      environment.systemPackages = with pkgs; [
+        vm-curator
+        virt-viewer
+        spice-gtk
+      ];
+
+      users.users.visa.extraGroups = [
+        "libvirtd"
+        "kvm"
+      ];
+    })
+
+    (lib.mkIf (!cfg.enable) {
+      virtualisation.libvirtd.enable = false;
+      programs.virt-manager.enable = false;
+      virtualisation.spiceUSBRedirection.enable = false;
+    })
   ];
 }
