@@ -1,14 +1,7 @@
 { lib, pkgs, ... }:
 {
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu = {
-      # TPM support for vms (winslop 10,11)
-      swtpm.enable = true;
-      # shared folders
-      vhostUserPackages = [ pkgs.virtiofsd ];
-    };
-  };
+  # VM/KVM stack disabled to reduce KVM attack surface (re-enable when needed)
+  virtualisation.libvirtd.enable = false;
 
   # docker
   virtualisation.docker.enable = true;
@@ -16,22 +9,12 @@
   systemd.sockets.docker.wantedBy = lib.mkForce [ ];
 
   # gui for vm
-  programs.virt-manager.enable = true;
+  programs.virt-manager.enable = false;
 
   # usb passthrough for vms
-  virtualisation.spiceUSBRedirection.enable = true;
+  virtualisation.spiceUSBRedirection.enable = false;
 
   environment.systemPackages = with pkgs; [
-    vm-curator
-    virt-viewer
-    spice-gtk
     docker-compose
   ];
-
-  users.users.visa.extraGroups = [
-    "libvirtd"
-    "kvm"
-  ];
-
-  # keep default networks for vms
 }

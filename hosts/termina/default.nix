@@ -17,7 +17,7 @@
   # future laptop configuration here
 
   # termina hardware stuff
-  boot.blacklistedKernelModules = [ "sp5100_tco" ];
+  boot.blacklistedKernelModules = [ "sp5100_tco" "kvm" "kvm_amd" ];
 
   # wake on lan
   # sleep for wol
