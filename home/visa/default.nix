@@ -98,6 +98,7 @@ in
     ./thunderbird.nix
     ./ghostty.nix
     ./sable.nix
+    ./qbittorrent.nix
   ];
 
   home.username = "visa";
