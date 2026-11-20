@@ -32,7 +32,7 @@
         sed -i 's/termina\.vm\.enable = false;/termina.vm.enable = true;/' "$file"
         echo "Enabled termina.vm.enable in $file"
       fi
-      sudo -n /run/current-system/sw/bin/nixos-rebuild switch --flake /home/visa/Projects/termina
+      sudo nixos-rebuild switch --flake /home/visa/Projects/termina#termina
       echo "VM/KVM enabled. You may need to log out/in for group access and reboot if KVM modules were previously blacklisted/unloaded."
     '')
     (pkgs.writeShellScriptBin "vm-off" ''
@@ -44,7 +44,7 @@
         sed -i 's/termina\.vm\.enable = true;/termina.vm.enable = false;/' "$file"
         echo "Disabled termina.vm.enable in $file"
       fi
-      sudo -n /run/current-system/sw/bin/nixos-rebuild switch --flake /home/visa/Projects/termina
+      sudo nixos-rebuild switch --flake /home/visa/Projects/termina#termina
       echo "VM/KVM disabled. Reboot recommended to ensure KVM modules are not loaded."
     '')
     (pkgs.writeShellScriptBin "vm-status" ''
