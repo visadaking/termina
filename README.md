@@ -68,6 +68,11 @@ dry tests
 t-dry           # dry build, see if it actually builds
 t-test          # t-check + t-dry (safe pre-switch/boot check)
 
+vm
+vm-status       # show VM/KVM config state, loaded modules, and group membership
+vm-on           # enable VM/KVM stack and rebuild+switch
+vm-off          # disable VM/KVM stack and rebuild+switch
+
 git
 t-status        # termina status for ~/Projects/termina
 t-log           # recent commits for ~/Projects/termina
