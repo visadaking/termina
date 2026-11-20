@@ -41,6 +41,7 @@
     ddrescue
     qdiskinfo
     qdirstat
+    smartmontools
     ntfs3g
     exfatprogs # NTFS/exFAT support
     netbird

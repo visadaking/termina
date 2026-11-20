@@ -79,7 +79,6 @@
   hardware.bluetooth.powerOnBoot = true;
   hardware.bluetooth.settings = {
     General = {
-      Experimental = true;
       ControllerMode = "dual";
       FastConnectable = false;
       Privacy = "device";
