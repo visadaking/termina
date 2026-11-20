@@ -34,15 +34,10 @@
   # i2c/DDC access (for ddcutil / sunshine-screen)
   hardware.i2c.enable = true;
 
-  # udev rules for bluetooth and logitech g515 tkl
+  # udev rules for bluetooth
   services.udev.extraRules = lib.mkAfter ''
     # disable autosuspend for bluetooth
     SUBSYSTEM=="usb", ATTR{bDeviceClass}=="e0", ATTR{bDeviceSubClass}=="01", ATTR{bDeviceProtocol}=="01", TEST=="power/control", ATTR{power/control}="on"
-
-    # logitech g515 tkl
-    SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c358", TAG+="uaccess"
-    KERNEL=="hidraw*", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c358", TAG+="uaccess", MODE="0660"
-    SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c358", TEST=="power/control", ATTR{power/control}="on"
   '';
 
   # smart health
