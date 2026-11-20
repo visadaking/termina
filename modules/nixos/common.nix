@@ -79,13 +79,10 @@
   hardware.bluetooth.powerOnBoot = true;
   hardware.bluetooth.settings = {
     General = {
-      Enable = "Source,Sink,Media,Socket";
       Experimental = true;
-      AutoEnable = true;
       ControllerMode = "dual";
       FastConnectable = false;
       Privacy = "device";
-      ResumeDelay = 2;
     };
     Policy = {
       AutoEnable = true;

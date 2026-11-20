@@ -51,6 +51,7 @@
     settings.Resolve = {
       DNSSEC = "true";
       DNSOverTLS = "true";
+      MulticastDNS = "false";
       FallbackDNS = [ "9.9.9.9" "149.112.112.112" ];
     };
   };
