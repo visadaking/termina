@@ -26,10 +26,10 @@
     (pkgs.writeShellScriptBin "vm-on" ''
       set -euo pipefail
       file="/home/visa/Projects/termina/hosts/termina/default.nix"
-      if grep -q 'termina\.vm\.enable = true;' "$file"; then
+      if grep -Eq '^[[:space:]]*termina\.vm\.enable = true;' "$file"; then
         echo "VM/KVM already enabled in config. Rebuilding to ensure state..."
       else
-        sed -i 's/termina\.vm\.enable = false;/termina.vm.enable = true;/' "$file"
+        sed -i -E 's/^([[:space:]]*)termina\.vm\.enable = false;/\1termina.vm.enable = true;/' "$file"
         echo "Enabled termina.vm.enable in $file"
       fi
       sudo nixos-rebuild switch --flake /home/visa/Projects/termina#termina
@@ -38,10 +38,10 @@
     (pkgs.writeShellScriptBin "vm-off" ''
       set -euo pipefail
       file="/home/visa/Projects/termina/hosts/termina/default.nix"
-      if grep -q 'termina\.vm\.enable = false;' "$file"; then
+      if grep -Eq '^[[:space:]]*termina\.vm\.enable = false;' "$file"; then
         echo "VM/KVM already disabled in config. Rebuilding to ensure state..."
       else
-        sed -i 's/termina\.vm\.enable = true;/termina.vm.enable = false;/' "$file"
+        sed -i -E 's/^([[:space:]]*)termina\.vm\.enable = true;/\1termina.vm.enable = false;/' "$file"
         echo "Disabled termina.vm.enable in $file"
       fi
       sudo nixos-rebuild switch --flake /home/visa/Projects/termina#termina
@@ -50,9 +50,9 @@
     (pkgs.writeShellScriptBin "vm-status" ''
       set -euo pipefail
       file="/home/visa/Projects/termina/hosts/termina/default.nix"
-      if grep -q 'termina\.vm\.enable = true;' "$file"; then
+      if grep -Eq '^[[:space:]]*termina\.vm\.enable = true;' "$file"; then
         echo "config: enabled"
-      elif grep -q 'termina\.vm\.enable = false;' "$file"; then
+      elif grep -Eq '^[[:space:]]*termina\.vm\.enable = false;' "$file"; then
         echo "config: disabled"
       else
         echo "config: unknown"
