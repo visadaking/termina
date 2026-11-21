@@ -286,6 +286,27 @@
         "uad-ng": "uad-ng"
       }
     },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "uad-ng",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794733384,
+        "narHash": "sha256-VaXNWDU+9dXckN4BlZbrcYTTd9pIscLeiknbhHX4+lk=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "67f1944c7c99d8dbb57fa3d83043bc0a92cbcc56",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
     "sable-next": {
       "inputs": {
         "nixpkgs": [
@@ -359,14 +380,15 @@
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
-        ]
+        ],
+        "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1793910952,
-        "narHash": "sha256-0HLDh1BjykzgyhEEZV4bunIgkMmyr/XZHAF5eAdZ9zg=",
+        "lastModified": 1795235300,
+        "narHash": "sha256-a2YPiQiKjtsKkrJNXVL3Cswdf2MsSDG4kwHmiXpbg4A=",
         "owner": "Universal-Debloater-Alliance",
         "repo": "universal-android-debloater-next-generation",
-        "rev": "9fcad87bf78c52c4270504bc8880139d95a27a29",
+        "rev": "61fda8ba7b07aff0fb1351e705455ae3961fb868",
         "type": "github"
       },
       "original": {
