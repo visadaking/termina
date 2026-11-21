@@ -13,15 +13,18 @@ personal nix config  (flakes + home manager + plasma manager)
 │   └── wallpapers/
 ├── home/
 │   └── visa/
+│       ├── qBittorrent/
 │       ├── vesktop/
 │       ├── default.nix
 │       ├── desktop.nix
 │       ├── ghostty.nix
-│       ├── librewolf.nix
 │       ├── kwinoutputconfig-g25f2.json
+│       ├── librewolf.nix
 │       ├── nixvim.nix
-│       ├── sable.nix
-│       └── packages.nix
+│       ├── packages.nix
+│       ├── qBittorrent.conf
+│       ├── qbittorrent.nix
+│       └── sable.nix
 ├── hosts/
 │   └── termina/
 │       ├── default.nix
