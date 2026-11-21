@@ -3,7 +3,6 @@
   stdenv,
   fetchFromGitHub,
   cmake,
-  extra-cmake-modules,
   pkg-config,
   kdePackages,
   qt6,
