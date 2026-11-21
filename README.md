@@ -22,7 +22,6 @@ personal nix config  (flakes + home manager + plasma manager)
 │       ├── librewolf.nix
 │       ├── nixvim.nix
 │       ├── packages.nix
-│       ├── qBittorrent.conf
 │       ├── qbittorrent.nix
 │       └── sable.nix
 ├── hosts/
