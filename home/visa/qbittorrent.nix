@@ -1,13 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  # Persist qBittorrent configuration (theme/UI/session preferences) and search
-  # engine plugins declaratively while keeping sensitive material out of the repo.
-  #
-  # Sensitive values (WebUI password hash, cookies, etc.) live in a local gitignored
-  # secrets file and are merged into the live config at activation time. The tracked
-  # repo snapshot stays sanitized. The live config is not overwritten wholesale so
-  # qBittorrent's runtime/UI state is preserved.
+  # qbittorrent config + search plugins
+  # secrets stay in local gitignored file, merged on activation
   home.activation.qbittorrentConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     qb_dir="$HOME/.config/qBittorrent"
     engines_dir="$qb_dir/nova3/engines"
@@ -61,7 +56,7 @@ conf_path.write_text(conf)
 PY
     fi
 
-    # Search engine plugins
+    # search plugins
     $DRY_RUN_CMD chmod -R u+w "$engines_dir" 2>/dev/null || true
     $DRY_RUN_CMD cp -r ${./qBittorrent/nova3/engines}/. "$engines_dir"/
     $DRY_RUN_CMD chmod -R u+w "$engines_dir"
