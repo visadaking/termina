@@ -201,7 +201,7 @@ DialogWidth=1356
 
 [Containments][42][Wallpaper][luisbocanegra.smart.video.wallpaper.reborn][General]
 LastVideoPosition=10200
-VideoUrls=[{"filename":"file:///home/visa/trash/live wallpapers/sephiroth-final-fantasy-vii.1920x1080.mp4","enabled":true,"duration":0,"customDuration":0,"playbackRate":0,"alternativePlaybackRate":0,"loop":false,"dayNightPhase":4}]
+VideoUrls=[{"filename":"file:///home/visa/Videos/Live Wallpapers/default.mp4","enabled":true,"duration":0,"customDuration":0,"playbackRate":0,"alternativePlaybackRate":0,"loop":false,"dayNightPhase":4}]
 
 [Containments][42][Wallpaper][org.kde.image][General]
 Image=file:///home/visa/Pictures/Wallpapers/lain-suburban-cool-blue-wallhaven-xelyx3.jpg
@@ -216,7 +216,7 @@ FillBlur=false
 MuteMode=5
 PauseMode=0
 ScreenOffPausesVideo=true
-VideoUrls=["file:///home/visa/Videos/Live%20Wallpapers/sephiroth-final-fantasy-vii.1920x1080.mp4"]
+VideoUrls=["file:///home/visa/Videos/Live%20Wallpapers/default.mp4"]
 
 [ScreenMapping]
 itemsOnDisabledScreens=

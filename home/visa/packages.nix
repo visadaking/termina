@@ -8,6 +8,7 @@ in
     tokyonight-gtk-theme
     kdePackages.breeze-icons
     (callPackage ../../pkgs/papirus-icon-theme-teal.nix { })
+    (callPackage ../../pkgs/plasma-smart-video-wallpaper-reborn.nix { })
     # (cursor theme: Simp1e Tokyo Night Storm via desktop.nix, pkgs/simp1e-tokyo-night-storm.nix)
 
     # browsers

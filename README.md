@@ -8,6 +8,7 @@ personal nix config  (flakes + home manager + plasma manager)
 .
 ├── assets/
 │   ├── feishin/
+│   ├── live-wallpapers/
 │   ├── sable-themes/
 │   ├── telegram/
 │   └── wallpapers/
@@ -42,6 +43,7 @@ personal nix config  (flakes + home manager + plasma manager)
 ├── pkgs/
 │   ├── openal-win.nix
 │   ├── papirus-icon-theme-teal.nix
+│   ├── plasma-smart-video-wallpaper-reborn.nix
 │   ├── simp1e-tokyo-night-storm.nix
 │   └── whyd.nix
 ├── .gitignore

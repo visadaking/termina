@@ -502,6 +502,8 @@ in
     ../../assets/wallpapers/overcast-suburban-powerlines-wallhaven-d889yo.jpg;
   home.file."Pictures/Wallpapers/ergo-proxy-ne782l-2500x1406.jpg".source =
     ../../assets/wallpapers/ergo-proxy-ne782l-2500x1406.jpg;
+  home.file."Videos/Live Wallpapers/default.mp4".source =
+    ../../assets/live-wallpapers/default.mp4;
 
   # Telegram Desktop theme generated to match current KDE Plasma colors (apply in Telegram settings)
   xdg.dataFile."TelegramDesktop/tdata/themes/TokyoNightStormPlasma.tdesktop-theme".source =
