@@ -2,7 +2,6 @@
 
 {
   # qbittorrent config + search plugins
-  # secrets stay in local gitignored file, merged on activation
   home.activation.qbittorrentConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     qb_dir="$HOME/.config/qBittorrent"
     engines_dir="$qb_dir/nova3/engines"
