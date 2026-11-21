@@ -2,19 +2,63 @@
 
 {
   # Persist qBittorrent configuration (theme/UI/session preferences) and search
-  # engine plugins declaratively while keeping sensitive material out of the repo
-  # (WebUI password hash, cookies).
+  # engine plugins declaratively while keeping sensitive material out of the repo.
   #
-  # IMPORTANT: do not overwrite an existing live config on activation — qBittorrent
-  # stores sensitive/runtime state in it (WebUI password hash, cookies, etc.). The
-  # sanitized repo snapshot is installed only if no config exists yet. Search
-  # engine plugins are refreshed from the repo snapshot.
+  # Sensitive values (WebUI password hash, cookies, etc.) live in a local gitignored
+  # secrets file and are merged into the live config at activation time. The tracked
+  # repo snapshot stays sanitized. The live config is not overwritten wholesale so
+  # qBittorrent's runtime/UI state is preserved.
   home.activation.qbittorrentConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     qb_dir="$HOME/.config/qBittorrent"
     engines_dir="$qb_dir/nova3/engines"
+    conf="$qb_dir/qBittorrent.conf"
+    secrets="${config.home.homeDirectory}/Projects/termina/secrets/qBittorrent.secrets.conf"
     $DRY_RUN_CMD mkdir -p "$engines_dir"
-    if [ ! -e "$qb_dir/qBittorrent.conf" ]; then
-      $DRY_RUN_CMD install -m 600 ${./qBittorrent.conf} "$qb_dir/qBittorrent.conf"
+
+    if [ ! -e "$conf" ]; then
+      $DRY_RUN_CMD install -m 600 ${./qBittorrent.conf} "$conf"
+    fi
+
+    if [ -f "$secrets" ]; then
+      ${pkgs.python3}/bin/python3 - "$conf" "$secrets" <<'PY'
+import re, sys
+from pathlib import Path
+
+conf_path = Path(sys.argv[1])
+secrets_path = Path(sys.argv[2])
+conf = conf_path.read_text()
+secrets = secrets_path.read_text().splitlines()
+
+section = None
+pending = []  # (section, key, full_line)
+for raw in secrets:
+    line = raw.rstrip('\n')
+    if not line or line.lstrip().startswith('#') or line.lstrip().startswith(';'):
+        continue
+    m = re.match(r'^\[(.*)\]\s*$', line)
+    if m:
+        section = m.group(1)
+        continue
+    if '=' in line and section:
+        key = line.split('=', 1)[0].strip()
+        pending.append((section, key, line))
+
+for sec, key, full_line in pending:
+    sec_re = re.compile(r'(?ms)^\[' + re.escape(sec) + r'\]\n(.*?)(?=^\[|\Z)')
+    m = sec_re.search(conf)
+    key_re = re.compile(r'(?m)^' + re.escape(key) + r'=.*$')
+    if m:
+        block = m.group(0)
+        if key_re.search(block):
+            block = key_re.sub(full_line, block, count=1)
+        else:
+            block = block.rstrip('\n') + '\n' + full_line + '\n'
+        conf = conf[:m.start()] + block + conf[m.end():]
+    else:
+        conf = conf.rstrip() + f'\n\n[{sec}]\n{full_line}\n'
+
+conf_path.write_text(conf)
+PY
     fi
 
     # Search engine plugins
