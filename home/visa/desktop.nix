@@ -123,6 +123,8 @@ in
       # Spectacle: stupid fucking pop up
       spectaclerc.General.clipboardGroup = "PostScreenshotCopyImage";
       spectaclerc.GuiConfig.quitAfterSaveCopyExport = true;
+      spectaclerc.ImageSave.imageCompressionQuality = 100;
+      spectaclerc.ImageSave.preferredImageFormat = "png";
 
       dolphinrc.General.ShowStatusBar = "FullWidth";
       "dolphinrc"."IconsMode".PreviewSize = 80;
