@@ -23,9 +23,11 @@ in
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
       if (action.id == "org.freedesktop.policykit.exec" &&
-          action.lookup("program").indexOf("cpugovctl") > -1 &&
           subject.isInGroup("wheel")) {
-        return polkit.Result.YES;
+        var prog = action.lookup("program");
+        if (prog.indexOf("cpugovctl") > -1 || prog.indexOf("gamemode") > -1) {
+          return polkit.Result.YES;
+        }
       }
     });
   '';
