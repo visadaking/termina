@@ -23,7 +23,6 @@ personal nix config  (flakes + home manager + plasma manager)
 │       ├── librewolf.nix
 │       ├── nixvim.nix
 │       ├── packages.nix
-│       ├── plasma-org.kde.plasma.desktop-appletsrc
 │       ├── qBittorrent.conf
 │       ├── qbittorrent.nix
 │       ├── sable.nix
