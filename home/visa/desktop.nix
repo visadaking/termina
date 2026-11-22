@@ -53,7 +53,7 @@ in
     XCOMPOSEFILE = "${pkgs.libx11}/share/X11/locale/en_US.UTF-8/Compose";
   };
 
-  # G25F2 without VRR
+  # G25F2 with VRR set to Automatic
   xdg.configFile."kwinoutputconfig.json".source = ./kwinoutputconfig-g25f2.json;
   xdg.configFile."plasma-org.kde.plasma.desktop-appletsrc".source = ./plasma-org.kde.plasma.desktop-appletsrc;
 

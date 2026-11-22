@@ -51,7 +51,7 @@
         "sharpness": 0,
         "transform": "Normal",
         "uuid": "f9df4c0a-cd73-43c0-929a-e02adf919df0",
-        "vrrPolicy": "Never",
+        "vrrPolicy": "Automatic",
         "wideColorGamut": false
       }
     ],
