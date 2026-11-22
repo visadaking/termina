@@ -136,6 +136,7 @@ in
 
       # kzones (kwin script)
       "kwinrc"."Plugins".kzonesEnabled = true;
+      "kwinrc"."Plugins".shakecursorEnabled = false;
       "kwinrc"."Script-kzones" = {
         autoSnapAllNew = false;
         rememberWindowGeometries = true;
