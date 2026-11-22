@@ -93,6 +93,10 @@
       ReconnectIntervals = "1,2,4,8,16,32,64";
     };
   };
+
+  # QMK keyboards
+  hardware.keyboard.qmk.enable = true;
+
   # appimage support (that doesn't work)
   programs.appimage = {
     enable = true;

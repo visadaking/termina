@@ -76,6 +76,8 @@ in
     tokei
     typos
     # direnv already enabled declaratively via programs.direnv (+ nix-direnv) in home/visa/default.nix
+    via # GUI remapping
+    qmk # QMK CLI for firmware
 
     # terminal/tools + configs to migrate
     ghostty
