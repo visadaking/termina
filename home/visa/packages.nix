@@ -59,7 +59,6 @@ in
     # dev/tools
     lazygit
     gh
-    vscodium
     opencode
     filezilla
     home-manager

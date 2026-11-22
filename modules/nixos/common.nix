@@ -37,6 +37,10 @@
 
   # networking
   networking.networkmanager.enable = true;
+  networking.networkmanager.settings.connectivity = {
+    uri = "http://connectivity-check.ubuntu.com";
+    response = "";
+  };
 
   # pipewire
   services.pipewire = {

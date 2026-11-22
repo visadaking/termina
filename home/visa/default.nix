@@ -94,8 +94,8 @@ in
     ./desktop.nix
     ./packages.nix
     ./nixvim.nix
+    ./vscodium.nix
     ./librewolf.nix
-    ./thunderbird.nix
     ./ghostty.nix
     ./sable.nix
     ./qbittorrent.nix
@@ -360,6 +360,12 @@ in
             "type": "kernel",
             "key": "├ 󰒋 Kernel",
             "keyColor": "blue"
+          },
+          {
+            "type": "initsystem",
+            "key": "├ 󰜉 Init",
+            "keyColor": "blue",
+            "format": "{name}"
           },
           {
             "type": "de",
