@@ -39,8 +39,8 @@ let
     pulseSupport = false;
   };
 
-  openal32 = fixMeta (pkgsCross.mingw32.openal-soft.override common);
-  openal64 = fixMeta (pkgsCross.mingwW64.openal-soft.override common);
+  openal32 = fixMeta (pkgsCross.mingw-msvcrt-i686.openal-soft.override common);
+  openal64 = fixMeta (pkgsCross.mingw-msvcrt-x86_64.openal-soft.override common);
 in
 runCommand "openal-win-${openal32.version}"
   {
