@@ -19,6 +19,17 @@ in
   };
   programs.gamemode.enable = true;
 
+  # allow gamemode's cpugovctl to change CPU governor without this stupid popup
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (action.id == "org.freedesktop.policykit.exec" &&
+          action.lookup("program").indexOf("cpugovctl") > -1 &&
+          subject.isInGroup("wheel")) {
+        return polkit.Result.YES;
+      }
+    });
+  '';
+
   # mesa shader cache size (not VRAM-reserved)
   environment.sessionVariables = {
     MESA_SHADER_CACHE_MAX_SIZE = "12G";
