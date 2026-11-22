@@ -4,6 +4,7 @@
     enable = true;
     allowedTCPPorts = [
       22000
+      2234   # nicotine+ (soulseek)
       22446
     ];
     allowedUDPPorts = [
