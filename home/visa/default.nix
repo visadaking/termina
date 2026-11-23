@@ -607,7 +607,6 @@ in
 
   xdg.desktopEntries.zapfast = {
     name = "WhatsApp";
-    genericName = "Instant Messenger";
     comment = "WhatsApp desktop client";
     exec = "zapfast %U";
     terminal = false;
