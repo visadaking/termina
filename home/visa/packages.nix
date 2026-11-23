@@ -20,7 +20,7 @@ in
     vesktop
     signal-desktop
     telegram-desktop
-    zapfast # WhatsApp client
+
     zoom-us
     simplex-chat-desktop
     quassel # IRC client

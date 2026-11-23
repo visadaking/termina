@@ -605,12 +605,5 @@ in
     };
   };
 
-  xdg.desktopEntries.zapfast = {
-    name = "WhatsApp";
-    comment = "WhatsApp desktop client";
-    exec = "zapfast %U";
-    terminal = false;
-    type = "Application";
-    categories = [ "Network" "InstantMessaging" "Chat" ];
-  };
 }
+
