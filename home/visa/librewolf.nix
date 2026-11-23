@@ -43,9 +43,6 @@
         "browser.download.viewableInternally.typeWasRegistered.jxl" = true;
         "browser.download.viewableInternally.typeWasRegistered.webp" = true;
         "browser.eme.ui.firstContentShown" = true;
-        "media.eme.enabled" = true;
-        "media.gmp-widevinecdm.enabled" = true;
-        "media.gmp-widevinecdm.visible" = true;
         "browser.engagement.ctrlTab.has-used" = true;
         "browser.engagement.downloads-button.has-used" = true;
         "browser.engagement.home-button.has-used" = true;
@@ -177,6 +174,8 @@
         "media.gmp-widevinecdm.abi" = "x86_64-gcc3";
         "media.gmp-widevinecdm.hashValue" =
           "4bc44f7e2010ff1dec995ab496702467ec02f45db2f4d977822be89e40043ee0dd75f3d777539ecf243617029bbe5b41a1171d293b2fa615ffeacf5cd7112f29";
+        "media.gmp-widevinecdm.enabled" = true;
+        "media.gmp-widevinecdm.visible" = true;
         "media.gmp-widevinecdm.version" = "4.10.3112.0";
         "media.gmp.storage.version.observed" = 1;
         "media.peerconnection.ice.default_address_only" = true;
