@@ -13,7 +13,6 @@ in
 
     # browsers
     # firefox managed declaratively via programs.librewolf (home/visa/librewolf.nix)
-    helium
 
     # comms
     fluxer-canary-bin

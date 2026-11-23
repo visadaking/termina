@@ -65,11 +65,6 @@
     };
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-
-    helium = {
-      url = "github:amaanq/helium-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -88,7 +83,6 @@
       nix-index-database,
       sable-next,
       nix-cachyos-kernel,
-      helium,
       ...
     }:
     let
@@ -115,7 +109,6 @@
                   uad-ng = inputs.uad-ng.packages.${system}.uad-ng;
                   uad-cli = inputs.uad-ng.packages.${system}.uad-cli;
                   sable = inputs.sable-next.packages.${system}.sable-desktop;
-                  helium = inputs.helium.packages.${system}.default;
                   kdePackages = prev.kdePackages.overrideScope (kfinal: kprev: {
                     akonadiconsole = prev.emptyDirectory;
                     akonadi-import-wizard = prev.emptyDirectory;
