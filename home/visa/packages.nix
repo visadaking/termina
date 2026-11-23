@@ -12,7 +12,7 @@ in
     # (cursor theme: Simp1e Tokyo Night Storm via desktop.nix, pkgs/simp1e-tokyo-night-storm.nix)
 
     # browsers
-    # firefox managed declaratively via programs.librewolf (home/visa/librewolf.nix)
+    # firefox managed declaratively via programs.firefox (home/visa/firefox.nix)
 
     # comms
     fluxer-canary-bin

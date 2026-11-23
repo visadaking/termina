@@ -95,7 +95,7 @@ in
     ./packages.nix
     ./nixvim.nix
     ./vscodium.nix
-    ./librewolf.nix
+    ./firefox.nix
     ./ghostty.nix
     ./sable.nix
     ./qbittorrent.nix
@@ -521,11 +521,11 @@ in
     enable = true;
     defaultApplications = {
       # web browser
-      "text/html" = [ "librewolf.desktop" ];
-      "x-scheme-handler/http" = [ "librewolf.desktop" ];
-      "x-scheme-handler/https" = [ "librewolf.desktop" ];
-      "x-scheme-handler/about" = [ "librewolf.desktop" ];
-      "x-scheme-handler/unknown" = [ "librewolf.desktop" ];
+      "text/html" = [ "firefox.desktop" ];
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "x-scheme-handler/about" = [ "firefox.desktop" ];
+      "x-scheme-handler/unknown" = [ "firefox.desktop" ];
 
       # music player
       "audio/mpeg" = [ "org.fooyin.fooyin.desktop" ];
@@ -577,7 +577,7 @@ in
   # keep secrets out of repo; browser passwords/keys/cookies/sessions excluded by migration script
   home.sessionVariables = {
     EDITOR = "nvim";
-    BROWSER = "librewolf";
+    BROWSER = "firefox";
     NH_FLAKE = "$HOME/Projects/termina";
     # disable speech-dispatcher integration in electron wrappers (avoids crashes, thank you discord.)
     NIXOS_SPEECH = "False";

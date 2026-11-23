@@ -5,11 +5,11 @@
   ...
 }:
 {
-  # migrated from firefox.nix; local profile data (passwords/extensions/cookies/sessions/history)
-  # lives outside git (e.g. ~/.librewolf/<profile>/) and must be migrated/backed up manually.
-  programs.librewolf = {
+  # Firefox profile data (passwords/extensions/cookies/sessions/history)
+  # lives outside git (e.g. ~/.mozilla/firefox/<profile>/) and must be migrated/backed up manually.
+  programs.firefox = {
     enable = true;
-    package = pkgs.librewolf;
+    package = pkgs.firefox;
 
     profiles.default = {
       isDefault = true;
@@ -496,7 +496,7 @@
     };
   };
 
-  # LibreWolf new-tab custom wallpaper (profile-local library file, referenced by UUID pref above)
-  home.file.".librewolf/dNhbcrRJ.Profile 1/wallpaper/library/v1-custom-dark-center-1-e636fb5e-cd40-4250-b4d1-eac49792bbf2".source =
+  # Firefox new-tab custom wallpaper (profile-local library file, referenced by UUID pref above)
+  home.file.".mozilla/firefox/dNhbcrRJ.Profile 1/wallpaper/library/v1-custom-dark-center-1-e636fb5e-cd40-4250-b4d1-eac49792bbf2".source =
     ../../assets/wallpapers/ergo-proxy-ne782l-2500x1406.jpg;
 }
