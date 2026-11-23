@@ -19,9 +19,11 @@
       # binary caches
       extra-substituters = [
         "https://nix-gaming.cachix.org"
+        "https://cache.lantian.pub/lantian"
       ];
       extra-trusted-public-keys = [
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+        "lantian:WVGO7vsRMSEN+h7Lp7kv6SAmrkEXgUGbbXm7jMDjBuQ="
       ];
     };
 

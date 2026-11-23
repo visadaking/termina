@@ -63,6 +63,8 @@
       url = "https://git.sable.moe/SableClient/sable-next/archive/768be67a86dc141830603164d543a3f077b3f5c9.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };
 
   outputs =
@@ -80,6 +82,7 @@
       nixvim,
       nix-index-database,
       sable-next,
+      nix-cachyos-kernel,
       ...
     }:
     let
@@ -101,6 +104,7 @@
             {
               # expose uad-ng GUI + uad CLI (flake inputs) as pkgs
               nixpkgs.overlays = [
+                nix-cachyos-kernel.overlays.pinned
                 (final: prev: {
                   uad-ng = inputs.uad-ng.packages.${system}.uad-ng;
                   uad-cli = inputs.uad-ng.packages.${system}.uad-cli;
