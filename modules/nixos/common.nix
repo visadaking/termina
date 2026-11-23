@@ -22,7 +22,7 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
-  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v4;
 
   systemd.settings.Manager.DefaultTimeoutStopSec = "20s";
   systemd.user.settings.Manager.DefaultTimeoutStopSec = "20s";
