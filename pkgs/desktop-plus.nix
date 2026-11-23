@@ -19,6 +19,7 @@
   libgbm,
   libglvnd,
   libnotify,
+  libsecret,
   libxkbcommon,
   mesa,
   nspr,
@@ -70,6 +71,7 @@ stdenv.mkDerivation rec {
     libgbm
     libglvnd
     libnotify
+    libsecret
     libxkbcommon
     mesa
     nspr
