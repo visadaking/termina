@@ -138,6 +138,7 @@ in
       t-dry = "sudo nixos-rebuild dry-build --flake $HOME/Projects/termina#termina";
       t-switch = "sudo nixos-rebuild switch --flake $HOME/Projects/termina#termina";
       t-boot = "sudo nixos-rebuild boot --flake $HOME/Projects/termina#termina";
+      t-roll = "sudo nixos-rebuild switch --rollback";
       t-syu = "nix flake update --flake $HOME/Projects/termina && nix flake check $HOME/Projects/termina && sudo nixos-rebuild dry-build --flake $HOME/Projects/termina#termina && sudo nixos-rebuild boot --flake $HOME/Projects/termina#termina";
       t-update = "nix flake update --flake $HOME/Projects/termina";
       t-update-input = "f(){ nix flake lock --update-input \"\${1:?usage: t-update-input <input>}\" $HOME/Projects/termina; }; f";

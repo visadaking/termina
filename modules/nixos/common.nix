@@ -5,6 +5,8 @@
   ...
 }:
 {
+  # Shared system defaults (reusable across hosts). Host-specific hardware/quirks
+  # belong in hosts/<name>/default.nix or hardware.nix.
 
   # nixpkgs unstable
   nixpkgs.overlays = [
@@ -22,6 +24,7 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
+  # fallback to mainline
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v4;
 
   systemd.settings.Manager.DefaultTimeoutStopSec = "20s";

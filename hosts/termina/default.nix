@@ -1,5 +1,7 @@
 { config, lib, pkgs, inputs, ... }:
 {
+  # Host-specific config for "termina" (hardware quirks, peripherals, host toggles).
+  # Shared/reusable defaults live in modules/nixos/*.
   imports = [
     ./hardware.nix
     ../../modules/nixos/common.nix

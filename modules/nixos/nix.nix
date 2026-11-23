@@ -27,6 +27,12 @@
       ];
     };
 
+    # Keep GitHub token out of git. Create this file with:
+    #   access-tokens = github.com=ghp_...
+    extraOptions = ''
+      !include /home/visa/.config/nix/access-tokens.conf
+    '';
+
     gc = {
       automatic = false;
     };
