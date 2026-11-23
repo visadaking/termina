@@ -22,7 +22,7 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
-  boot.kernelPackages = pkgs.linuxPackages_testing;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   systemd.settings.Manager.DefaultTimeoutStopSec = "20s";
   systemd.user.settings.Manager.DefaultTimeoutStopSec = "20s";
