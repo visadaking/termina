@@ -43,6 +43,9 @@
         "browser.download.viewableInternally.typeWasRegistered.jxl" = true;
         "browser.download.viewableInternally.typeWasRegistered.webp" = true;
         "browser.eme.ui.firstContentShown" = true;
+        "media.eme.enabled" = true;
+        "media.gmp-widevinecdm.enabled" = true;
+        "media.gmp-widevinecdm.visible" = true;
         "browser.engagement.ctrlTab.has-used" = true;
         "browser.engagement.downloads-button.has-used" = true;
         "browser.engagement.home-button.has-used" = true;
