@@ -93,7 +93,7 @@ stdenv.mkDerivation rec {
 
   unpackPhase = ''
     runHook preUnpack
-    dpkg-deb -x $src .
+    dpkg-deb --fsys-tarfile $src | tar -xf - --no-same-owner --no-same-permissions
     runHook postUnpack
   '';
 
