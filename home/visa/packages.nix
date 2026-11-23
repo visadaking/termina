@@ -60,6 +60,7 @@ in
     lazygit
     gh
     opencode
+    desktop-plus
     filezilla
     home-manager
     kdePackages.kcolorchooser # color picker
