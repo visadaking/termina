@@ -104,7 +104,7 @@
             {
               # expose uad-ng GUI + uad CLI (flake inputs) as pkgs
               nixpkgs.overlays = [
-                nix-cachyos-kernel.overlays.pinned
+                nix-cachyos-kernel.overlays.default
                 (final: prev: {
                   uad-ng = inputs.uad-ng.packages.${system}.uad-ng;
                   uad-cli = inputs.uad-ng.packages.${system}.uad-cli;
