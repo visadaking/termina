@@ -36,14 +36,4 @@
     fi
   }
 
-  # yazi cd-on-quit wrapper: launch with y, quit with q to cd there
-  y() {
-    local tmp cwd
-    tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-    command yazi "$@" --cwd-file="$tmp"
-    if cwd="$(command cat -- "$tmp" 2>/dev/null)" && [ -n "$cwd" ] && [ -d "$cwd" ]; then
-      builtin cd -- "$cwd"
-    fi
-    rm -f -- "$tmp"
-  }
 ''

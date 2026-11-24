@@ -60,24 +60,4 @@ in
       ${functions}
     '';
   };
-
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-    enableBashIntegration = true;
-    defaultOptions = [
-      "--height=40%"
-      "--layout=reverse"
-      "--border"
-      "--color=bg+:#364a82,bg:#24283b,spinner:#7dcfff,hl:#7aa2f7"
-      "--color=fg:#c0caf5,header:#7aa2f7,info:#e0af68,pointer:#7dcfff"
-      "--color=marker:#9ece6a,fg+:#c0caf5,prompt:#7aa2f7,hl+:#7dcfff"
-    ];
-  };
-
-  programs.zoxide = {
-    enable = true;
-    enableZshIntegration = true;
-    enableBashIntegration = true;
-  };
 }
