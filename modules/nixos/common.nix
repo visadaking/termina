@@ -110,8 +110,14 @@
   services.printing.enable = false;
 
   # AMD
-  hardware.graphics.enable = true;
-  hardware.graphics.enable32Bit = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      libva
+      libvdpau-va-gl
+    ];
+  };
 
   # zram swap
   zramSwap = {
