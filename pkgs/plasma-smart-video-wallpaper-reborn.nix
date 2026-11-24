@@ -6,6 +6,7 @@
   pkg-config,
   kdePackages,
   qt6,
+  glib,
 }:
 
 stdenv.mkDerivation rec {
@@ -41,6 +42,12 @@ stdenv.mkDerivation rec {
     "-DBUILD_PLUGIN=ON"
     "-DINSTALL_WALLPAPER=ON"
   ];
+
+  # Ensure gdbus is found when kscreenlocker/Plasma runs the helper script.
+  postPatch = ''
+    substituteInPlace package/contents/ui/tools/gdbus_get_signal.sh \
+      --replace-fail "gdbus monitor" "${glib.bin}/bin/gdbus monitor"
+  '';
 
   # Qt6 cmake modules are found via Qt6_DIR/KDE paths provided by hooks.
   dontWrapQtApps = true;
