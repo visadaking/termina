@@ -61,7 +61,7 @@ in
     gh
     opencode
     desktop-plus
-    root # Root communications app
+    root # discord alternative number 4
     filezilla
     home-manager
     kdePackages.kcolorchooser # color picker
