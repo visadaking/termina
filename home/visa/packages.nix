@@ -83,6 +83,11 @@ in
     ghostty
     hyfetch
     starship
+    yazi
+    fzf
+    zoxide
+    eza
+    bat
     cowsay
     nyancat
     wakeonlan # send magic packets to wake other machines (wol)

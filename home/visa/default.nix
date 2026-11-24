@@ -97,6 +97,7 @@ in
     ./vscodium.nix
     ./firefox.nix
     ./ghostty.nix
+    ./zsh
     ./sable.nix
     ./qbittorrent.nix
   ];
@@ -107,80 +108,7 @@ in
 
   programs.home-manager.enable = true;
 
-  # shells + termina aliases (repo lives at ~/Projects/termina)
-  programs.zsh = {
-    enable = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" ];
-    };
-    initContent = ''
-      # KDE Connect helpers (kdeconnect-cli)
-      kc-devices() { kdeconnect-cli --list-devices "$@"; }
-      kc-ping() {
-        local dev="''${1:?usage: kc-ping <device-name-or-id> [message]}"
-        local msg="''${2:-ping from $(hostname)}"
-        kdeconnect-cli -n "$dev" --ping-msg "$msg"
-      }
-
-      termina() {
-        case "''${1:-}" in
-          status) shift; git -C "$HOME/Projects/termina" status "$@" ;;
-          *) echo "usage: termina status" >&2; return 2 ;;
-        esac
-      }
-    '';
-    shellAliases = {
-      t-edit = "nvim $HOME/Projects/termina";
-      t-check = "nix flake check $HOME/Projects/termina";
-      t-dry = "sudo nixos-rebuild dry-build --flake $HOME/Projects/termina#termina";
-      t-switch = "sudo nixos-rebuild switch --flake $HOME/Projects/termina#termina";
-      t-boot = "sudo nixos-rebuild boot --flake $HOME/Projects/termina#termina";
-      t-roll = "sudo nixos-rebuild switch --rollback";
-      t-syu = "nix flake update --flake $HOME/Projects/termina && nix flake check $HOME/Projects/termina && sudo nixos-rebuild dry-build --flake $HOME/Projects/termina#termina && sudo nixos-rebuild boot --flake $HOME/Projects/termina#termina";
-      t-update = "nix flake update --flake $HOME/Projects/termina";
-      t-update-input = "f(){ nix flake lock --update-input \"\${1:?usage: t-update-input <input>}\" $HOME/Projects/termina; }; f";
-      t-test = "nix flake check $HOME/Projects/termina && sudo nixos-rebuild dry-build --flake $HOME/Projects/termina#termina";
-      t-status = "termina status";
-      t-log = "git -C $HOME/Projects/termina log --oneline --decorate -10";
-      t-push = "git -C $HOME/Projects/termina push";
-      t-backup = "git -C $HOME/Projects/termina push origin main && git -C $HOME/Projects/termina push rond main && git -C $HOME/Projects/termina push codeberg main";
-      t-pushall = "t-backup";
-      t-pull = "git -C $HOME/Projects/termina pull --ff-only";
-      # usage: t-commit "message"  (stages tracked changes in termina repo)
-      t-commit = "f(){ git -C $HOME/Projects/termina add -A && git -C $HOME/Projects/termina commit -m \"\${1:?usage: t-commit \\\"message\\\"}\"; }; f";
-      # strict DNS kept; temporary captive-portal workaround (runtime-only, no rebuild/degrade). usage: t-dns-relax wlan0
-      t-dns-relax = "f(){ i=\${1:?usage: t-dns-relax <iface> (nmcli device status)}; sudo resolvectl dns \"$i\" '' && sudo resolvectl dnsovertls \"$i\" no && sudo resolvectl dnssec \"$i\" no && echo relaxed: $i; }; f";
-      t-dns-revert = "f(){ i=\${1:?usage: t-dns-revert <iface>}; sudo resolvectl revert \"$i\" && echo reverted: $i; }; f";
-      t-cc = "sudo resolvectl flush-caches";
-      fixaudio = "systemctl --user restart wireplumber pipewire pipewire-pulse";
-      cls = "clear";
-      ff = "fastfetch";
-      hy = "hyfetch";
-
-      # wallpapers (runtime switch, Plasma 6)
-      wallpaper-ergo = "plasma-apply-wallpaperimage \"$HOME/Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png\"";
-      wallpaper-715139 = "plasma-apply-wallpaperimage \"$HOME/Pictures/Wallpapers/715139.jpg\"";
-      wallpaper-lain-suburban = "plasma-apply-wallpaperimage \"$HOME/Pictures/Wallpapers/lain-suburban-cool-blue-wallhaven-xelyx3.jpg\"";
-      wallpaper-overcast-powerlines = "plasma-apply-wallpaperimage \"$HOME/Pictures/Wallpapers/overcast-suburban-powerlines-wallhaven-d889yo.jpg\"";
-      wallpaper-ergo-ne782l = "plasma-apply-wallpaperimage \"$HOME/Pictures/Wallpapers/ergo-proxy-ne782l-2500x1406.jpg\"";
-    };
-  };
-  programs.bash = {
-    enable = true;
-    enableCompletion = true;
-    shellAliases = config.programs.zsh.shellAliases;
-    initExtra = ''
-      termina() {
-        case "''${1:-}" in
-          status) shift; git -C "$HOME/Projects/termina" status "$@" ;;
-          *) echo "usage: termina status" >&2; return 2 ;;
-        esac
-      }
-    '';
-  };
+  # shells, aliases, and helpers live in ./zsh
 
   # dev: neovim configured declaratively via nixvim (see nixvim.nix)
   # (vim kept in system packages; nixvim provides nvim as default editor)
