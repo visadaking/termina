@@ -96,6 +96,7 @@
             ({ lib, ... }: {
               system.configurationRevision = lib.mkDefault (self.shortRev or self.dirtyShortRev or "unknown");
             })
+            ./modules/nixos/termina.nix
             ./hosts/${hostName}
             nix-flatpak.nixosModules.nix-flatpak
             home-manager.nixosModules.home-manager
@@ -125,10 +126,14 @@
                 })
               ];
             }
-            {
+            ({ config, ... }: {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                terminaRepoDir = config.termina.repoDir;
+                terminaHomeDir = config.users.users.visa.home;
+              };
               home-manager.sharedModules = [
                 plasma-manager.homeModules.plasma-manager
                 sunshine-screen.homeModules.default
@@ -143,7 +148,7 @@
                 nixpkgs.legacyPackages.${system}.bash
               }/bin/bash -c 'mv -- \"$1\" \"$1.bak-$(date +%s)\"' --";
               home-manager.users.visa = import ./home/visa;
-            }
+            })
           ];
         };
     in

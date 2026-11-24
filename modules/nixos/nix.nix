@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   nix = {
     channel.enable = false;
@@ -30,7 +30,7 @@
     # Keep GitHub token out of git. Create this file with:
     #   access-tokens = github.com=ghp_...
     extraOptions = ''
-      !include /home/visa/.config/nix/access-tokens.conf
+      !include ${config.users.users.visa.home}/.config/nix/access-tokens.conf
     '';
 
     gc = {
@@ -44,7 +44,7 @@
       enable = true;
       extraArgs = "--keep-since 14d --keep 5";
     };
-    flake = "/home/visa/Projects/termina";
+    flake = config.termina.repoDir;
   };
 
   # nix-index-database + comma are used instead

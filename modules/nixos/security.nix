@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   networking.firewall = {
     enable = true;
@@ -35,11 +35,11 @@
     {
       users = [ "visa" ];
       commands = [
-        { command = "/run/current-system/sw/bin/nixos-rebuild switch --flake /home/visa/Projects/termina"; options = [ "NOPASSWD" ]; }
-        { command = "/run/current-system/sw/bin/nixos-rebuild boot --flake /home/visa/Projects/termina"; options = [ "NOPASSWD" ]; }
-        { command = "/run/current-system/sw/bin/nixos-rebuild test --flake /home/visa/Projects/termina"; options = [ "NOPASSWD" ]; }
-        { command = "/run/current-system/sw/bin/nixos-rebuild dry-build --flake /home/visa/Projects/termina"; options = [ "NOPASSWD" ]; }
-        { command = "/run/current-system/sw/bin/nixos-rebuild build --flake /home/visa/Projects/termina"; options = [ "NOPASSWD" ]; }
+        { command = "/run/current-system/sw/bin/nixos-rebuild switch --flake ${config.termina.repoDir}"; options = [ "NOPASSWD" ]; }
+        { command = "/run/current-system/sw/bin/nixos-rebuild boot --flake ${config.termina.repoDir}"; options = [ "NOPASSWD" ]; }
+        { command = "/run/current-system/sw/bin/nixos-rebuild test --flake ${config.termina.repoDir}"; options = [ "NOPASSWD" ]; }
+        { command = "/run/current-system/sw/bin/nixos-rebuild dry-build --flake ${config.termina.repoDir}"; options = [ "NOPASSWD" ]; }
+        { command = "/run/current-system/sw/bin/nixos-rebuild build --flake ${config.termina.repoDir}"; options = [ "NOPASSWD" ]; }
       ];
     }
   ];

@@ -27,31 +27,31 @@
   environment.systemPackages = [
     (pkgs.writeShellScriptBin "vm-on" ''
       set -euo pipefail
-      file="/home/visa/Projects/termina/hosts/termina/default.nix"
+      file="${config.termina.repoDir}/hosts/termina/default.nix"
       if grep -Eq '^[[:space:]]*termina\.vm\.enable = true;' "$file"; then
         echo "VM/KVM already enabled in config. Rebuilding to ensure state..."
       else
         sed -i -E 's/^([[:space:]]*)termina\.vm\.enable = false;/\1termina.vm.enable = true;/' "$file"
         echo "Enabled termina.vm.enable in $file"
       fi
-      sudo nixos-rebuild switch --flake /home/visa/Projects/termina#termina
+      sudo nixos-rebuild switch --flake ${config.termina.repoDir}#termina
       echo "VM/KVM enabled. You may need to log out/in for group access and reboot if KVM modules were previously blacklisted/unloaded."
     '')
     (pkgs.writeShellScriptBin "vm-off" ''
       set -euo pipefail
-      file="/home/visa/Projects/termina/hosts/termina/default.nix"
+      file="${config.termina.repoDir}/hosts/termina/default.nix"
       if grep -Eq '^[[:space:]]*termina\.vm\.enable = false;' "$file"; then
         echo "VM/KVM already disabled in config. Rebuilding to ensure state..."
       else
         sed -i -E 's/^([[:space:]]*)termina\.vm\.enable = true;/\1termina.vm.enable = false;/' "$file"
         echo "Disabled termina.vm.enable in $file"
       fi
-      sudo nixos-rebuild switch --flake /home/visa/Projects/termina#termina
+      sudo nixos-rebuild switch --flake ${config.termina.repoDir}#termina
       echo "VM/KVM disabled. Reboot recommended to ensure KVM modules are not loaded."
     '')
     (pkgs.writeShellScriptBin "vm-status" ''
       set -euo pipefail
-      file="/home/visa/Projects/termina/hosts/termina/default.nix"
+      file="${config.termina.repoDir}/hosts/termina/default.nix"
       if grep -Eq '^[[:space:]]*termina\.vm\.enable = true;' "$file"; then
         echo "config: enabled"
       elif grep -Eq '^[[:space:]]*termina\.vm\.enable = false;' "$file"; then
