@@ -4,8 +4,6 @@
   lib,
   inputs,
   osConfig ? { },
-  terminaRepoDir ? "/home/visa/Projects/termina",
-  terminaHomeDir ? "/home/visa",
   ...
 }:
 let
@@ -73,11 +71,11 @@ let
     };
     "c4d5e6f7_8a9b_4c0d_1e2f_3a4b5c6d7ea6" = {
       name = "Update";
-      command = "ghostty -e bash -c 'nix flake update --flake ${terminaRepoDir}; echo; echo \"update done - press Enter to close\"; read x'";
+      command = "ghostty -e bash -c 'nix flake update --flake /home/visa/Projects/termina; echo; echo \"update done - press Enter to close\"; read x'";
     };
     "d6e7f8a9_b0c1_4d2e_3f4a_5b6c7d8e9fb7" = {
       name = "Switch";
-      command = "ghostty -e bash -c 'sudo -n /run/current-system/sw/bin/nixos-rebuild switch --flake ${terminaRepoDir}; echo; echo \"switch done - press Enter to close\"; read x'";
+      command = "ghostty -e bash -c 'sudo -n /run/current-system/sw/bin/nixos-rebuild switch --flake /home/visa/Projects/termina; echo; echo \"switch done - press Enter to close\"; read x'";
     };
   };
   # Escape for the INI-quoted value. kdeconnectd reads this file with QSettings

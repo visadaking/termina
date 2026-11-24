@@ -31,7 +31,7 @@
         "browser.ai.control.speechRecognition" = "blocked";
         "browser.ai.control.translations" = "blocked";
         "browser.backup.enabled_on.profiles" = "[2]";
-        "browser.backup.location" = "${config.home.homeDirectory}/Documents/Restore Firefox";
+        "browser.backup.location" = "/home/visa/Documents/Restore Firefox";
         "browser.backup.scheduled.enabled" = true;
         "browser.bookmarks.editDialog.confirmationHintShowCount" = 3;
         "browser.contentblocking.category" = "strict";
