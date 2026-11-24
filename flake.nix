@@ -110,6 +110,7 @@
                   uad-cli = inputs.uad-ng.packages.${system}.uad-cli;
                   sable = inputs.sable-next.packages.${system}.sable-desktop;
                   desktop-plus = final.callPackage ./pkgs/desktop-plus.nix { };
+                  root = final.callPackage ./pkgs/root.nix { };
                   kdePackages = prev.kdePackages.overrideScope (kfinal: kprev: {
                     akonadiconsole = prev.emptyDirectory;
                     akonadi-import-wizard = prev.emptyDirectory;

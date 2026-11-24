@@ -61,6 +61,7 @@ in
     gh
     opencode
     desktop-plus
+    root # Root communications app
     filezilla
     home-manager
     kdePackages.kcolorchooser # color picker
