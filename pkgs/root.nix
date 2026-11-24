@@ -20,6 +20,7 @@ appimageTools.wrapType2 {
   extraInstallCommands = ''
     install -Dm444 ${appimageContents}/Root.desktop $out/share/applications/root.desktop
     install -Dm444 ${appimageContents}/Root.png $out/share/icons/hicolor/512x512/apps/root.png
+    install -Dm444 ${appimageContents}/Root.png $out/share/pixmaps/root.png
     chmod +w $out/share/applications/root.desktop
     substituteInPlace $out/share/applications/root.desktop \
       --replace-fail 'Exec=Root' 'Exec=root' \
