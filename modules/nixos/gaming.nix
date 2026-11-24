@@ -17,6 +17,10 @@ in
       proton-ge-bin
     ];
   };
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true;
+  };
   programs.gamemode.enable = true;
 
   # allow gamemode's cpugovctl to change CPU governor without this stupid popup
