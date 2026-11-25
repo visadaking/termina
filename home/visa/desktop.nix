@@ -131,6 +131,11 @@ in
       spectaclerc.ImageSave.imageCompressionQuality = 100;
       spectaclerc.ImageSave.preferredImageFormat = "png";
 
+      kscreenlockerrc.Daemon.Autolock = false;
+      kscreenlockerrc.Daemon.LockGrace = 0;
+      kscreenlockerrc.Daemon.LockOnResume = false;
+      kscreenlockerrc.Daemon.Timeout = 0;
+
       dolphinrc.General.ShowStatusBar = "FullWidth";
       "dolphinrc"."IconsMode".PreviewSize = 80;
       "dolphinrc"."KFileDialog Settings"."Places Icons Auto-resize" = false;
@@ -182,4 +187,8 @@ in
     };
   };
 
+  # kglobalshortcutsrc: managed as writable copy (plasma-manager writes to it during activation)
+  home.activation.kglobalshortcutsrc = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    $DRY_RUN_CMD install -m 644 ${./kglobalshortcutsrc} "$HOME/.config/kglobalshortcutsrc"
+  '';
 }
