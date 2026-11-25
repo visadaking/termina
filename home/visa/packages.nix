@@ -14,6 +14,7 @@ in
     # browsers
     # firefox managed declaratively via programs.firefox (home/visa/firefox.nix)
 
+
     # comms
     fluxer-canary-bin
     sable
