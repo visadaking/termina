@@ -17,6 +17,10 @@ DFBD1A000FD727804A00632C72B6ED3E-MediaPlayPause=none,Media Play,feishin shortcut
 F46D01A9DFB1C730141E423C601C71E1-MediaStop=none,Media Stop,feishin shortcut: MediaStop
 _k_friendly_name=Feishin
 
+[itch]
+114FC89C7DA67EDFA95C6A8C3885E5B0-=none,none,itch shortcut:\s
+_k_friendly_name=itch
+
 [kmix]
 _k_friendly_name=Audio Volume
 decrease_microphone_volume=Microphone Volume Down,Microphone Volume Down,Decrease Microphone Volume

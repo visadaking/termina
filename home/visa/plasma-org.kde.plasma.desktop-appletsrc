@@ -204,7 +204,7 @@ LastVideoPosition=10200
 VideoUrls=[{"filename":"file:///home/visa/Videos/Live Wallpapers/default.mp4","enabled":true,"duration":0,"customDuration":0,"playbackRate":0,"alternativePlaybackRate":0,"loop":false,"dayNightPhase":4}]
 
 [Containments][42][Wallpaper][org.kde.image][General]
-Image=file:///home/visa/Pictures/Wallpapers/lain-suburban-cool-blue-wallhaven-xelyx3.jpg
+Image=file:///home/visa/Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png
 SlidePaths=/nix/store/2cps0zl71c8v13pxyimrxcpx126k6ij9-breeze-6.8.2/share/wallpapers/,/run/current-system/sw/share/wallpapers/
 
 [Containments\x5d\x5b1]
