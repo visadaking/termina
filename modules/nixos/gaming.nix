@@ -55,6 +55,9 @@ in
     # bluetooth
     ATTRS{name}=="Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
     ATTRS{name}=="DualSense Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
+
+    # Keychron C3 Pro 8K exposes extra HID interfaces misdetected as joysticks
+    KERNEL=="event*", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0530", ENV{ID_INPUT_JOYSTICK}=="1", ENV{ID_INPUT_JOYSTICK}="", TAG-="joystick"
   '';
 
   # udev rules for Steam-supported controllers/VR devices (improved device access in Steam)
