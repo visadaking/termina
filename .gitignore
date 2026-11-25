@@ -32,3 +32,6 @@ secrets/*
 *.bak
 *.backup-*
 *.hm-bak.stale-*
+
+# local media
+Music/
