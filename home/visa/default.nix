@@ -532,7 +532,7 @@ in
     name = "Vesktop";
     genericName = "Internet Messenger";
     comment = "Alternative Discord client with Vencord built-in";
-    exec = "vesktop %U";
+    exec = "vesktop --enable-blink-features=MiddleClickAutoscroll %U";
     icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/64x64/apps/vesktop.svg";
     terminal = false;
     type = "Application";
