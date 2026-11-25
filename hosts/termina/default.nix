@@ -8,6 +8,7 @@
     ../../modules/nixos/nix.nix
     ../../modules/nixos/nix-ld.nix
     ../../modules/nixos/security.nix
+    ../../modules/nixos/secrets.nix
     ../../modules/nixos/services.nix
     ../../modules/nixos/packages.nix
     ../../modules/nixos/desktop-kde.nix

@@ -57,6 +57,10 @@ in
   xdg.configFile."kwinoutputconfig.json".source = ./kwinoutputconfig-g25f2.json;
   xdg.configFile."plasma-org.kde.plasma.desktop-appletsrc".source = ./plasma-org.kde.plasma.desktop-appletsrc;
 
+  # Plasma color schemes (from termina-dots)
+  xdg.dataFile."color-schemes/TokyoNight.colors".source = ../../assets/plasma/color-schemes/TokyoNight.colors;
+  xdg.dataFile."color-schemes/TokyoNightStorm.colors".source = ../../assets/plasma/color-schemes/TokyoNightStorm.colors;
+
   # plasma manager
   # keybinds
   # wallpapers
@@ -69,6 +73,7 @@ in
         theme = "Simp1e-Tokyo-Night-Storm";
         size = 24;
       };
+      colorScheme = "TokyoNightStorm";
       # tokyo night
       # tokyo night but my own version
     };
@@ -135,8 +140,11 @@ in
       dolphinrc.Search.Location = "Everywhere";
 
       # kzones (kwin script)
+      "kwinrc"."Plugins".blurEnabled = true;
+      "kwinrc"."Plugins".dynamic_workspacesEnabled = true;
       "kwinrc"."Plugins".kzonesEnabled = true;
       "kwinrc"."Plugins".shakecursorEnabled = false;
+      "kwinrc"."Plugins".translucencyEnabled = true;
       "kwinrc"."Script-kzones" = {
         autoSnapAllNew = false;
         rememberWindowGeometries = true;

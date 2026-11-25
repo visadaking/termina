@@ -65,6 +65,11 @@
     };
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -100,6 +105,7 @@
             nix-flatpak.nixosModules.nix-flatpak
             home-manager.nixosModules.home-manager
             nix-index-database.nixosModules.nix-index
+            inputs.sops-nix.nixosModules.sops
             { programs.nix-index-database.comma.enable = true; }
             {
               # expose uad-ng GUI + uad CLI (flake inputs) as pkgs
@@ -111,6 +117,8 @@
                   sable = inputs.sable-next.packages.${system}.sable-desktop;
                   desktop-plus = final.callPackage ./pkgs/desktop-plus.nix { };
                   root = final.callPackage ./pkgs/root.nix { };
+                  # build fixes for upstream hash/drift
+                  osu-lazer = prev.osu-lazer-bin;
                   kdePackages = prev.kdePackages.overrideScope (kfinal: kprev: {
                     akonadiconsole = prev.emptyDirectory;
                     akonadi-import-wizard = prev.emptyDirectory;

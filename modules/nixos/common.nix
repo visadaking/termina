@@ -126,6 +126,9 @@
     memoryPercent = 50;
   };
 
+  # periodic TRIM for SSD/NVMe
+  services.fstrim.enable = true;
+
   # nix flatpak ( i hate it)
   services.flatpak.enable = true;
   services.flatpak.packages = [

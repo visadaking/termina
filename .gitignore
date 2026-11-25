@@ -1,12 +1,13 @@
-# secrets - never commit
-/secrets/
-secrets.nix
+# secrets - never commit (sops-nix encrypted secrets are allowed)
+secrets/*
+!secrets/secrets.yaml
 *.age
 /*.key
 *.secret
 *.token
 .env
 .env.*
+
 
 # local migration outputs / backups
 /scripts/migration-output/

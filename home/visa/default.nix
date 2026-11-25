@@ -121,6 +121,11 @@ in
       pull.rebase = false;
     };
   };
+
+  programs.gh = {
+    enable = true;
+    gitCredentialHelper.enable = true;
+  };
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
@@ -515,6 +520,11 @@ in
   systemd.user.sessionVariables = {
     NIXOS_SPEECH = "False";
   };
+
+  # Vesktop config (managed declaratively)
+  xdg.configFile."vesktop/settings.json".source = ./vesktop/settings.json;
+  xdg.configFile."vesktop/settings/settings.json".source = ./vesktop/settings/settings.json;
+  xdg.configFile."vesktop/settings/quickCss.css".source = ./vesktop/settings/quickCss.css;
 
   xdg.desktopEntries.vesktop = {
     name = "Vesktop";

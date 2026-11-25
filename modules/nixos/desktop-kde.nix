@@ -30,6 +30,7 @@
   environment.systemPackages = with pkgs; [
     kdePackages.kate
     kdePackages.kzones
+    kdePackages.dynamic-workspaces
     kdePackages.discover
     gparted
   ];

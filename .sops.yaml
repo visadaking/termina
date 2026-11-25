@@ -1,0 +1,7 @@
+keys:
+  - &visa_age age1lznaj5ke05sp5shc8mk3avdtrf4w8kwv0r8ajx0mr4ayrxd0ey3qkr0u8d
+creation_rules:
+  - path_regex: secrets/secrets\.yaml$
+    key_groups:
+      - age:
+          - *visa_age
