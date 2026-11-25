@@ -442,6 +442,8 @@ in
     ../../assets/wallpapers/overcast-suburban-powerlines-wallhaven-d889yo.jpg;
   home.file."Pictures/Wallpapers/ergo-proxy-ne782l-2500x1406.jpg".source =
     ../../assets/wallpapers/ergo-proxy-ne782l-2500x1406.jpg;
+  home.file."Pictures/Wallpapers/HX9lDRKacAAYOY1.jpg".source =
+    ../../assets/wallpapers/HX9lDRKacAAYOY1.jpg;
   home.file."Videos/Live Wallpapers/default.mp4".source =
     ../../assets/live-wallpapers/default.mp4;
 

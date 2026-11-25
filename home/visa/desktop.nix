@@ -68,7 +68,7 @@ in
     enable = true;
     workspace = {
       clickItemTo = "select";
-      wallpaper = "${config.home.homeDirectory}/Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png";
+      wallpaper = "${config.home.homeDirectory}/Pictures/Wallpapers/HX9lDRKacAAYOY1.jpg";
       cursor = {
         theme = "Simp1e-Tokyo-Night-Storm";
         size = 24;
