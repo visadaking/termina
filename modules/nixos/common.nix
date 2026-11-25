@@ -26,6 +26,16 @@
   boot.loader.efi.efiSysMountPoint = "/boot";
   # fallback to mainline
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v4;
+  # Workaround for amdgpu/DC advertising DRM_FORMAT_RGBA8888 (RA24) but rejecting it,
+  # which causes KWin/SDDM Wayland modeset loops on affected AMD GPUs (e.g. RX 9060 XT).
+  # Upstream tracking: https://gitlab.freedesktop.org/drm/amd/-/work_items/5339
+  # temp workaround, might remove this later if it gets fixed upstream
+  boot.kernelPatches = [
+    {
+      name = "amdgpu-ra24-fix";
+      patch = ../../patches/amdgpu-ra24-fix.patch;
+    }
+  ];
 
   systemd.settings.Manager.DefaultTimeoutStopSec = "20s";
   systemd.user.settings.Manager.DefaultTimeoutStopSec = "20s";
