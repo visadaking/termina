@@ -100,6 +100,7 @@ in
     ./zsh
     ./sable.nix
     ./qbittorrent.nix
+    ./nixcord.nix
   ];
 
   home.username = "visa";
@@ -517,27 +518,7 @@ in
     NIXOS_SPEECH = "False";
   };
 
-  # Vesktop config (managed declaratively)
-  xdg.configFile."vesktop/settings.json".source = ./vesktop/settings.json;
-  xdg.configFile."vesktop/settings/settings.json".source = ./vesktop/settings/settings.json;
-  xdg.configFile."vesktop/settings/quickCss.css".source = ./vesktop/settings/quickCss.css;
-
-  xdg.desktopEntries.vesktop = {
-    name = "Vesktop";
-    genericName = "Internet Messenger";
-    comment = "Alternative Discord client with Vencord built-in";
-    exec = "vesktop --enable-blink-features=MiddleClickAutoscroll %U";
-    icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/64x64/apps/vesktop.svg";
-    terminal = false;
-    type = "Application";
-    categories = [ "Network" "InstantMessaging" "Chat" ];
-    mimeType = [ "x-scheme-handler/discord" ];
-    settings = {
-      Keywords = "discord;vencord;electron;chat";
-      StartupWMClass = "Vesktop";
-      Version = "1.5";
-    };
-  };
+  # Vesktop managed declaratively via nixcord (home/visa/nixcord.nix)
 
 }
 

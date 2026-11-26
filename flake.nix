@@ -59,6 +59,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixcord = {
+      url = "github:4evy/nixcord";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     sable-next = {
       url = "https://git.sable.moe/SableClient/sable-next/archive/768be67a86dc141830603164d543a3f077b3f5c9.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -86,6 +91,7 @@
       maid-runner,
       nixvim,
       nix-index-database,
+      nixcord,
       sable-next,
       nix-cachyos-kernel,
       ...
@@ -145,6 +151,7 @@
                 maid-suite.homeModules.default
                 maid-runner.homeModules.default
                 nixvim.homeModules.nixvim
+                nixcord.homeModules.nixcord
               ];
               # avoid HM activation failures when a previous backup file already exists
               home-manager.backupCommand = "${

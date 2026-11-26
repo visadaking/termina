@@ -407,7 +407,7 @@
             "enabled": true
         },
         "NormalizeMessageLinks": {
-            "enabled": true
+            "enabled": false
         },
         "NotificationVolume": {
             "enabled": false
@@ -571,10 +571,6 @@
             "contextMenu": false,
             "isEnabled": true,
             "showTypingIn": ""
-        },
-        "SortFriendRequests": {
-            "enabled": true,
-            "showDates": false
         },
         "SpotifyControls": {
             "enabled": false,
@@ -804,9 +800,6 @@
             "showAlbumCover": true,
             "username": "visa1337"
         },
-        "TenorGifSearch": {
-            "enabled": true
-        },
         "AddAttachments": {
             "enabled": false
         },
@@ -836,6 +829,13 @@
         },
         "MutedServersActivityBadge": {
             "enabled": false
+        },
+        "sortFriends": {
+            "enabled": true,
+            "showDates": false
+        },
+        "gifProviderSwitcher": {
+            "enabled": true
         }
     },
     "uiElements": {
