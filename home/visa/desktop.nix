@@ -159,7 +159,7 @@ in
         layoutsJson = builtins.toJSON [
           {
             name = "Halves";
-            padding = 0;
+            padding = 6;
             zones = [
               { x = 0; y = 0; width = 50; height = 100; }
               { x = 50; y = 0; width = 50; height = 100; }
@@ -167,7 +167,7 @@ in
           }
           {
             name = "1/3-2/3";
-            padding = 0;
+            padding = 6;
             zones = [
               { x = 0; y = 0; width = 33.33; height = 100; }
               { x = 33.33; y = 0; width = 66.67; height = 100; }
@@ -175,7 +175,7 @@ in
           }
           {
             name = "Equal Thirds";
-            padding = 0;
+            padding = 6;
             zones = [
               { x = 0; y = 0; width = 33.33; height = 100; }
               { x = 33.33; y = 0; width = 33.33; height = 100; }
