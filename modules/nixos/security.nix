@@ -30,20 +30,6 @@
 
   services.fail2ban.enable = true;
 
-  # insane opesec (passwordless kde connect)
-  security.sudo.extraRules = [
-    {
-      users = [ "visa" ];
-      commands = [
-        { command = "/run/current-system/sw/bin/nixos-rebuild switch --flake /home/visa/Projects/termina"; options = [ "NOPASSWD" ]; }
-        { command = "/run/current-system/sw/bin/nixos-rebuild boot --flake /home/visa/Projects/termina"; options = [ "NOPASSWD" ]; }
-        { command = "/run/current-system/sw/bin/nixos-rebuild test --flake /home/visa/Projects/termina"; options = [ "NOPASSWD" ]; }
-        { command = "/run/current-system/sw/bin/nixos-rebuild dry-build --flake /home/visa/Projects/termina"; options = [ "NOPASSWD" ]; }
-        { command = "/run/current-system/sw/bin/nixos-rebuild build --flake /home/visa/Projects/termina"; options = [ "NOPASSWD" ]; }
-      ];
-    }
-  ];
-
   # DNS over TLS (Quad9)
   # incase shit goes sideways i guess
   # for internet

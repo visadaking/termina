@@ -172,7 +172,6 @@
 
   # firmware updates (do not turn this off)
   hardware.enableRedistributableFirmware = true;
-  hardware.enableAllFirmware = true;
 
   # fwupd/LVFS firmware updates
   services.fwupd.enable = true;
