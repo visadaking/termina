@@ -93,6 +93,22 @@
         "type": "github"
       }
     },
+    "kiri": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1795704917,
+        "narHash": "sha256-MDYleqtV3m4VhjTzY5t6sQQUcybiZOWoZCBaNJncgfM=",
+        "owner": "SeniorMatt",
+        "repo": "kiri",
+        "rev": "0fe4a758c6e260f13f37d7b4df487506083e8f52",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SeniorMatt",
+        "repo": "kiri",
+        "type": "github"
+      }
+    },
     "maid-bt": {
       "inputs": {
         "nixpkgs": [
@@ -357,6 +373,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "kiri": "kiri",
         "maid-bt": "maid-bt",
         "maid-runner": "maid-runner",
         "maid-suite": "maid-suite",

@@ -66,6 +66,11 @@
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
+    kiri = {
+      url = "github:SeniorMatt/kiri";
+      flake = false;
+    };
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -117,6 +122,7 @@
                   sable = inputs.sable-next.packages.${system}.sable-desktop;
                   desktop-plus = final.callPackage ./pkgs/desktop-plus.nix { };
                   root = final.callPackage ./pkgs/root.nix { };
+                  kiri = final.callPackage ./pkgs/kiri.nix { };
                   # build fixes for upstream hash/drift
                   osu-lazer = prev.osu-lazer-bin;
                   kdePackages = prev.kdePackages.overrideScope (kfinal: kprev: {
