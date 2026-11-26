@@ -144,8 +144,11 @@
   services.flatpak.enable = true;
   services.flatpak.packages = [
     "org.desktop_plus.desktop-plus"
-    "org.vinegarhq.Sober"
     "com.nuclearplayer.Nuclear"
+    {
+      flatpakref = "https://coderdayton.github.io/nightcap/nightcap.flatpakref";
+      sha256 = "1x1v3871mbdqsg4x5kbzmrycvdmgxwqcg32f9zxxa9s7fzh4vri9";
+    }
   ];
   services.flatpak.update.auto = {
     enable = true;

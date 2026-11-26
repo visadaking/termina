@@ -101,6 +101,7 @@ in
     ./sable.nix
     ./qbittorrent.nix
     ./nixcord.nix
+    ./nightcap.nix
   ];
 
   home.username = "visa";
