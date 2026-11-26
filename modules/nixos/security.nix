@@ -28,8 +28,6 @@
     };
   };
 
-  services.fail2ban.enable = true;
-
   # DNS over TLS (Quad9)
   # incase shit goes sideways i guess
   # for internet
