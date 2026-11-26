@@ -61,9 +61,6 @@ in
   xdg.dataFile."color-schemes/TokyoNight.colors".source = ../../assets/plasma/color-schemes/TokyoNight.colors;
   xdg.dataFile."color-schemes/TokyoNightStorm.colors".source = ../../assets/plasma/color-schemes/TokyoNightStorm.colors;
 
-  # kiri kwin script (until pr is accepted, fork is being used)
-  xdg.dataFile."kwin/scripts/kiri".source = "${pkgs.kiri}/share/kwin/scripts/kiri";
-
   # plasma manager
   # keybinds
   # wallpapers
@@ -83,7 +80,7 @@ in
     shortcuts = {
       ksmserver."Lock Session" = "Meta+Esc";
       kwin = {
-        "Overview" = "Meta+E";
+        "Overview" = "Meta+W";
         "Grid View" = "Meta+G";
         "Show Desktop" = "Meta+D";
         "Window Close" = "Meta+Q";
@@ -96,24 +93,12 @@ in
         "Switch to Desktop 6" = "Meta+6";
         "Switch One Desktop Down" = "Meta+Ctrl+Down";
         "Switch One Desktop Up" = "Meta+Ctrl+Up";
+        "Switch One Desktop to the Left" = "Meta+Ctrl+Left";
+        "Switch One Desktop to the Right" = "Meta+Ctrl+Right";
         "Walk Through Windows" = "Meta+Tab";
         "Walk Through Windows (Reverse)" = "Meta+Shift+Tab";
         "Walk Through Windows of Current Application" = "Meta+`";
         "Walk Through Windows of Current Application (Reverse)" = "Meta+~";
-      };
-      kiri = {
-        "focus-left" = "Meta+Left";
-        "focus-right" = "Meta+Right";
-        "focus-up" = "Meta+Up";
-        "focus-down" = "Meta+Down";
-        "column-move-left" = "Meta+Ctrl+Left";
-        "column-move-right" = "Meta+Ctrl+Right";
-        "window-move-up" = "Meta+Alt+X";
-        "window-move-down" = "Meta+Alt+C";
-        "column-toggle-tabbed" = "Meta+W";
-      };
-      "org.kde.dolphin.desktop" = {
-        "_launch" = "Meta+F";
       };
       kmix = {
         "decrease_volume" = "Volume Down";
@@ -162,8 +147,7 @@ in
       # kzones (kwin script)
       "kwinrc"."Plugins".blurEnabled = true;
       "kwinrc"."Plugins".dynamic_workspacesEnabled = true;
-      "kwinrc"."Plugins".kiriEnabled = true;
-      "kwinrc"."Plugins".kzonesEnabled = false;
+      "kwinrc"."Plugins".kzonesEnabled = true;
       "kwinrc"."Plugins".shakecursorEnabled = false;
       "kwinrc"."Plugins".translucencyEnabled = true;
       "kwinrc"."Script-kzones" = {
