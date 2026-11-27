@@ -51,6 +51,10 @@
 
   # networking
   networking.networkmanager.enable = true;
+  # Prevent stale/broken initrd NM units from being linked on normal boots.
+  systemd.services.NetworkManager-initrd.enable = false;
+  systemd.services.NetworkManager-config-initrd.enable = false;
+  systemd.services.NetworkManager-wait-online-initrd.enable = false;
   networking.networkmanager.settings.connectivity = {
     uri = "http://connectivity-check.ubuntu.com";
     response = "";
