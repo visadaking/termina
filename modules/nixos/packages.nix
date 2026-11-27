@@ -34,6 +34,7 @@
     fastfetch
     ethtool
     alsa-utils
+    pulseaudio # provides pactl/pacmd for PipeWire pulse compat
     imagemagick
     lm_sensors
     openssl
@@ -45,7 +46,6 @@
     ntfs3g
     exfatprogs # NTFS/exFAT support
     netbird
-
 
     # media / streaming (service/app)
     sunshine
