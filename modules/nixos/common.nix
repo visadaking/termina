@@ -25,8 +25,8 @@
   boot.loader.timeout = 1;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
-  # fallback to mainline
-  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v4;
+  # mainline latest kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   # Workaround for amdgpu/DC advertising DRM_FORMAT_RGBA8888 (RA24) but rejecting it,
   # which causes KWin/SDDM Wayland modeset loops on affected AMD GPUs (e.g. RX 9060 XT).
   # Upstream tracking: https://gitlab.freedesktop.org/drm/amd/-/work_items/5339
@@ -51,14 +51,12 @@
 
   # networking
   networking.networkmanager.enable = true;
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   # prevent stale/broken initrd NM units from being linked on normal boots
   systemd.services.NetworkManager-initrd.enable = false;
   systemd.services.NetworkManager-config-initrd.enable = false;
   systemd.services.NetworkManager-wait-online-initrd.enable = false;
-  networking.networkmanager.settings.connectivity = {
-    uri = "http://connectivity-check.ubuntu.com";
-    response = "";
-  };
+
 
   # pipewire
   services.pipewire = {
@@ -95,6 +93,13 @@
     };
   };
   security.rtkit.enable = true;
+
+  # screen sharing / portals (Wayland)
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+    config.common.default = "kde";
+  };
 
   # bluetooth for TP-LINK UB600 / RTL8761BU
   hardware.bluetooth.enable = true;
@@ -186,6 +191,8 @@
 
   # localsend
   programs.localsend.enable = true;
+
+
 
   # fonts
   fonts.packages = with pkgs; [

@@ -10,8 +10,19 @@
       settings = builtins.fromJSON (builtins.readFile ./vesktop/settings.json);
     };
 
-    # Preserve existing Vencord settings/plugins exactly
-    extraConfig = builtins.fromJSON (builtins.readFile ./vesktop/settings/settings.json);
+    # Preserve existing Vencord settings/plugins exactly, plus screen share fixes
+    extraConfig =
+      let
+        base = builtins.fromJSON (builtins.readFile ./vesktop/settings/settings.json);
+      in
+      base
+      // {
+        plugins = base.plugins // {
+          webScreenShareFixes = {
+            enabled = true;
+          };
+        };
+      };
   };
 
   # Keep custom desktop entry (middle-click autoscroll + icon)

@@ -39,7 +39,6 @@ in
   # mesa shader cache size (not VRAM-reserved)
   environment.sessionVariables = {
     MESA_SHADER_CACHE_MAX_SIZE = "12G";
-    NIXOS_OZONE_WL = "1"; # fuck electron but this is what we have to do ig
   };
 
   # increase vm.max_map_count for Proton/Wine/game compatibility

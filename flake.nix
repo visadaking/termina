@@ -69,12 +69,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
   };
 
   outputs =
@@ -93,7 +92,6 @@
       nix-index-database,
       nixcord,
       sable-next,
-      nix-cachyos-kernel,
       ...
     }:
     let
@@ -116,7 +114,6 @@
             {
               # expose uad-ng GUI + uad CLI (flake inputs) as pkgs
               nixpkgs.overlays = [
-                nix-cachyos-kernel.overlays.default
                 (final: prev: {
                   uad-ng = inputs.uad-ng.packages.${system}.uad-ng;
                   uad-cli = inputs.uad-ng.packages.${system}.uad-cli;

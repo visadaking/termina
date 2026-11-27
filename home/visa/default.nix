@@ -6,102 +6,23 @@
   osConfig ? { },
   ...
 }:
-let
-  # KDE Connect run commands (device-specific: 5356cbe09e0a454cbcf086511c34833e)
-  # Adds reboot/poweroff (systemctl, polkit/session-dependent), Sunshine controls, sunshine-screen dim/restore.
-  # NOTE: kdeconnectd reads this file with QSettings (INI format), so the JSON must be
-  # written as an INI-quoted string with escaped inner quotes - a raw unquoted JSON
-  # value gets comma-split by QSettings and the phone receives an empty command list.
-  kdeconnectCommands = {
-    "8a05428f_5569_471f_8e19_0f3f18f7743c" = {
-      name = "Lock Screen";
-      command = "loginctl lock-session";
-    };
-    "c0c0d80a_8139_4c3d_8834_6efb34cfa197" = {
-      name = "Unlock Screen";
-      command = "loginctl unlock-session";
-    };
-    "d6c72055_a741_4584_8207_1a8933b95986" = {
-      name = "Restart";
-      command = "systemctl reboot";
-    };
-    "032d737c_5b31_470a_a024_49d00a50162b" = {
-      name = "Power Off";
-      command = "systemctl poweroff";
-    };
-    "a8d40325_b018_49ca_a0c3_a7c7cedf0dbd" = {
-      name = "Sunshine Start";
-      command = "systemctl --user start sunshine";
-    };
-    "643440b3_4fc8_4fd6_84d9_804a6b30503d" = {
-      name = "Sunshine Restart";
-      command = "systemctl --user restart sunshine";
-    };
-    "6ac9a6ba_878a_4e38_8acd_0cfa67c76cf0" = {
-      name = "Sunshine Stop";
-      command = "systemctl --user stop sunshine";
-    };
-    "b1f0d2a4_3c6e_4f8a_9b1d_2e4f6a8c0d1e" = {
-      name = "Screen Off";
-      command = "sunshine-screen off";
-    };
-    "e2a1b3c4_5d6f_4789_8a0b_1c2d3e4f5a6b" = {
-      name = "Screen On";
-      command = "sunshine-screen on";
-    };
-    "3f5e2a1b_7c4d_4e8f_9a0b_1c2d3e4f5a61" = {
-      name = "Sleep";
-      command = "systemctl suspend";
-    };
-    "5c7d9e1f_2a3b_4c5d_8e9f_0a1b2c3d4e52" = {
-      name = "Bluetooth On";
-      command = "bluetooth-toggle.sh on";
-    };
-    "7e9f1a2b_4c5d_4e6f_8a0b_2c3d4e5f6a73" = {
-      name = "Bluetooth Off";
-      command = "bluetooth-toggle.sh off";
-    };
-    "9a1b2c3d_5e4f_4a6b_8c7d_3e4f5a6b7c84" = {
-      name = "Bluetooth Release";
-      command = "bluetooth-toggle.sh release";
-    };
-    "b2c3d4e5_6f7a_4b8c_9d0e_4f5a6b7c8d95" = {
-      name = "Bluetooth Toggle";
-      command = "bluetooth-toggle.sh toggle";
-    };
-    "c4d5e6f7_8a9b_4c0d_1e2f_3a4b5c6d7ea6" = {
-      name = "Update";
-      command = "ghostty -e bash -c 'nix flake update --flake /home/visa/Projects/termina; echo; echo \"update done - press Enter to close\"; read x'";
-    };
-    "d6e7f8a9_b0c1_4d2e_3f4a_5b6c7d8e9fb7" = {
-      name = "Switch";
-      command = "ghostty -e bash -c 'sudo -n /run/current-system/sw/bin/nixos-rebuild switch --flake /home/visa/Projects/termina; echo; echo \"switch done - press Enter to close\"; read x'";
-    };
-  };
-  # Escape for the INI-quoted value. kdeconnectd reads this file with QSettings
-  # (IniFormat), which UNESCAPES the raw value when reading - so the JSON's own
-  # escapes must survive that pass: '\' -> '\\' and '"' -> '\"'.
-  # Quote-only escaping is not enough once a command contains quotes (e.g. the
-  # ghostty popups): toJSON's \" would become \" in the file, QSettings reads a
-  # bare quote, the value gets truncated mid-string and the phone receives
-  # invalid JSON => empty command list.
-  kdeconnectCommandsIni = lib.replaceStrings [ "\\" "\"" ] [ "\\\\" "\\\"" ] (
-    builtins.toJSON kdeconnectCommands
-  );
-in
 {
   imports = [
     ./desktop.nix
     ./packages.nix
     ./nixvim.nix
     ./zed.nix
-    ./firefox.nix
+    ./librewolf.nix
     ./ghostty.nix
     ./zsh
     ./sable.nix
     ./qbittorrent.nix
     ./nixcord.nix
     ./nightcap.nix
+    ./starship.nix
+    ./fastfetch.nix
+    ./kdeconnect.nix
+    ./wallpapers.nix
   ];
 
   home.username = "visa";
@@ -133,239 +54,6 @@ in
     nix-direnv.enable = true;
   };
 
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  xdg.configFile."starship.toml".text = ''
-    "$schema" = 'https://starship.rs/config-schema.json'
-
-    format = """
-    [░▒▓](#a3aed2)\
-    $os\
-    [](bg:#769ff0 fg:#a3aed2)\
-    $directory\
-    [](fg:#769ff0 bg:#394260)\
-    $git_branch\
-    $git_status\
-    [](fg:#394260 bg:#212736)\
-    $nodejs\
-    $bun\
-    $rust\
-    $golang\
-    $php\
-    [ ](fg:#212736)\
-    \n$character"""
-
-    [directory]
-    style = "fg:#e3e5e5 bg:#769ff0"
-    format = "[ $path ]($style)"
-    truncation_length = 3
-    truncation_symbol = "…/"
-
-    [directory.substitutions]
-    "Documents" = "󰈙 "
-    "Downloads" = " "
-    "Music" = " "
-    "Pictures" = " "
-
-    [git_branch]
-    symbol = ""
-    style = "bg:#394260"
-    format = '[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'
-
-    [git_status]
-    style = "bg:#394260"
-    format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
-
-    [jj_bookmark]
-    symbol = ""
-    style = "bg:#394260"
-    format = '[[ $symbol $bookmark(@$remote)$diverged( \\(+$overflow_count others\\)) ](fg:#769ff0 bg:#394260)]($style)'
-
-    [jj_status]
-    style = "bg:#394260"
-    format = '[[($all )](fg:#769ff0 bg:#394260)]($style)'
-
-    [nodejs]
-    symbol = ""
-    style = "bg:#212736"
-    format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
-
-    [bun]
-    symbol = ""
-    style = "bg:#212736"
-    format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
-
-    [rust]
-    symbol = ""
-    style = "bg:#212736"
-    format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
-
-    [golang]
-    symbol = ""
-    style = "bg:#212736"
-    format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
-
-    [php]
-    symbol = ""
-    style = "bg:#212736"
-    format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
-
-    [time]
-    disabled = true
-
-    [os]
-    style = "bg:#a3aed2 fg:#090c0c"
-    format = "[ $symbol ]($style)"
-    disabled = false
-
-    [os.symbols]
-    Windows = "󰍲"
-    Ubuntu = "󰕈"
-    SUSE = ""
-    Raspbian = "󰐿"
-    Mint = "󰣭"
-    Macos = "󰀵"
-    Manjaro = ""
-    Linux = "󰌽"
-    Gentoo = "󰣨"
-    Fedora = "󰣛"
-    Alpine = ""
-    Amazon = ""
-    Android = ""
-    AOSC = ""
-    Arch = "󰣇"
-    Artix = "󰣇"
-    EndeavourOS = ""
-    CentOS = ""
-    Debian = "󰣚"
-    Redhat = "󱄛"
-    RedHatEnterprise = "󱄛"
-    Pop = ""
-  '';
-
-  # fastfetch config (portable across machines/users)
-  xdg.configFile."fastfetch/fastfetch-logo.jpg".source = ../../assets/wallpapers/fastfetch-logo.jpg;
-  xdg.configFile."fastfetch/config.jsonc".text =
-    let
-      host = osConfig.networking.hostName or "nixos";
-      user = config.home.username;
-      home = config.home.homeDirectory;
-    in
-    ''
-      {
-        "logo": {
-          "type": "kitty",
-          "source": "${home}/.config/fastfetch/fastfetch-logo.jpg",
-          "width": 63,
-          "padding": {
-            "top": 1,
-            "left": 2
-          }
-        },
-        "display": {
-          "separator": " ─ ",
-          "color": {
-            "separator": "blue"
-          }
-        },
-        "modules": [
-          "break",
-          {
-            "type": "title",
-            "format": "${user}@${host}",
-            "color": {
-              "user": "blue",
-              "host": "cyan"
-            }
-          },
-          "break",
-          {
-            "type": "custom",
-            "format": "╭─ System"
-          },
-          {
-            "type": "os",
-            "key": "├  OS",
-            "keyColor": "blue",
-            "format": "{pretty-name}"
-          },
-          {
-            "type": "kernel",
-            "key": "├ 󰒋 Kernel",
-            "keyColor": "blue"
-          },
-          {
-            "type": "initsystem",
-            "key": "├ 󰜉 Init",
-            "keyColor": "blue",
-            "format": "{name}"
-          },
-          {
-            "type": "de",
-            "key": "├ 󰧨 DE",
-            "keyColor": "blue"
-          },
-          {
-            "type": "shell",
-            "key": "├ 󱆃 Shell",
-            "keyColor": "blue"
-          },
-          {
-            "type": "terminal",
-            "key": "├ 󰆍 Terminal",
-            "keyColor": "blue"
-          },
-          {
-            "type": "media",
-            "key": "└ 󰝚 Music",
-            "keyColor": "blue"
-          },
-          "break",
-          {
-            "type": "custom",
-            "format": "╭─ Hardware"
-          },
-          {
-            "type": "cpu",
-            "key": "├ 󰍛 CPU",
-            "keyColor": "cyan",
-            "format": "{name} @ {freq-max}{?temperature} - {temperature}{?}",
-            "temp": true
-          },
-          {
-            "type": "gpu",
-            "key": "├ 󰢮 GPU",
-            "keyColor": "cyan",
-            "temp": true
-          },
-          {
-            "type": "memory",
-            "key": "├ 󰑭 RAM",
-            "keyColor": "cyan"
-          },
-          {
-            "type": "disk",
-            "key": "└ 󰋊 Disk",
-            "keyColor": "cyan"
-          },
-          "break",
-          {
-            "type": "custom",
-            "format": "╭─ Time"
-          },
-          {
-            "type": "command",
-            "key": "└ 󰔚 Uptime",
-            "keyColor": "blue",
-            "text": "s=$(cut -d. -f1 /proc/uptime); d=$((s/86400)); h=$(((s%86400)/3600)); if [ \"$d\" -ge 1 ]; then if [ \"$d\" -eq 1 ]; then echo \"1 day\"; else echo \"$d days\"; fi; else if [ \"$h\" -eq 1 ]; then echo \"1 hour\"; else echo \"$h hours\"; fi; fi"
-          }
-        ]
-      }
-    '';
-
   # Sunshine user service (start/stop/restart via KDE Connect commands; no auto-start)
   systemd.user.services.sunshine = {
     Unit = {
@@ -391,20 +79,6 @@ in
   programs.maid-suite.enable = true;
   programs.maid-runner.enable = true;
 
-  # KDE Connect run commands (device-specific: 5356cbe09e0a454cbcf086511c34833e)
-  # Managed via activation (not xdg.configFile symlink) so the file is always a
-  # regular, writable config even if a previous activation left a backup/regular
-  # file in place. kdeconnectd reads this with QSettings (IniFormat).
-  home.activation.kdeconnectRuncommand = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    kde_dir="$HOME/.config/kdeconnect/5356cbe09e0a454cbcf086511c34833e/kdeconnect_runcommand"
-    $DRY_RUN_CMD mkdir -p "$kde_dir"
-    $DRY_RUN_CMD install -m 600 ${pkgs.writeText "kdeconnect-runcommand-config" ''
-      [General]
-      commands="${kdeconnectCommandsIni}"
-    ''} "$kde_dir/config"
-  '';
-
-  # OBS Studio (wrapped with plugins)
   programs.obs-studio = {
     enable = true;
     plugins = with pkgs.obs-studio-plugins; [
@@ -428,35 +102,16 @@ in
   };
 
   # apps (nixpkgs/native). Flatpak is enabled system-wide but no Flatpak apps declared here.
-  # wallpapers (managed files)
-  home.file."Pictures/Wallpapers/ergo-proxy-kw9yj7-1920x1080.png".source =
-    ../../assets/wallpapers/ergo-proxy-kw9yj7-1920x1080.png;
-  home.file."Pictures/Wallpapers/715139.jpg".source = ../../assets/wallpapers/715139.jpg;
-  home.file."Pictures/Wallpapers/lain-suburban-cool-blue-wallhaven-xelyx3.jpg".source =
-    ../../assets/wallpapers/lain-suburban-cool-blue-wallhaven-xelyx3.jpg;
-  home.file."Pictures/Wallpapers/overcast-suburban-powerlines-wallhaven-d889yo.jpg".source =
-    ../../assets/wallpapers/overcast-suburban-powerlines-wallhaven-d889yo.jpg;
-  home.file."Pictures/Wallpapers/ergo-proxy-ne782l-2500x1406.jpg".source =
-    ../../assets/wallpapers/ergo-proxy-ne782l-2500x1406.jpg;
-  home.file."Pictures/Wallpapers/HX9lDRKacAAYOY1.jpg".source =
-    ../../assets/wallpapers/HX9lDRKacAAYOY1.jpg;
-  home.file."Videos/Live Wallpapers/default.mp4".source =
-    ../../assets/live-wallpapers/default.mp4;
-
-  # Telegram Desktop theme generated to match current KDE Plasma colors (apply in Telegram settings)
-  xdg.dataFile."TelegramDesktop/tdata/themes/TokyoNightStormPlasma.tdesktop-theme".source =
-    ../../assets/telegram/TokyoNightStormPlasma.tdesktop-theme;
-
   # default applications (declarative)
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
       # web browser
-      "text/html" = [ "firefox.desktop" ];
-      "x-scheme-handler/http" = [ "firefox.desktop" ];
-      "x-scheme-handler/https" = [ "firefox.desktop" ];
-      "x-scheme-handler/about" = [ "firefox.desktop" ];
-      "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+      "text/html" = [ "librewolf.desktop" ];
+      "x-scheme-handler/http" = [ "librewolf.desktop" ];
+      "x-scheme-handler/https" = [ "librewolf.desktop" ];
+      "x-scheme-handler/about" = [ "librewolf.desktop" ];
+      "x-scheme-handler/unknown" = [ "librewolf.desktop" ];
 
       # music player
       "audio/mpeg" = [ "org.fooyin.fooyin.desktop" ];
@@ -508,7 +163,7 @@ in
   # keep secrets out of repo; browser passwords/keys/cookies/sessions excluded by migration script
   home.sessionVariables = {
     EDITOR = "nvim";
-    BROWSER = "firefox";
+    BROWSER = "librewolf";
     NH_FLAKE = "$HOME/Projects/termina";
     # disable speech-dispatcher integration in electron wrappers (avoids crashes, thank you discord.)
     NIXOS_SPEECH = "False";
@@ -519,7 +174,7 @@ in
     NIXOS_SPEECH = "False";
   };
 
-  # Vesktop managed declaratively via nixcord (home/visa/nixcord.nix)
+  # GoofCord managed declaratively (home/visa/goofcord.nix)
 
 }
 

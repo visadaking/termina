@@ -5,16 +5,30 @@
   ...
 }:
 {
-  # Firefox profile data (passwords/extensions/cookies/sessions/history)
-  # lives outside git (e.g. ~/.mozilla/firefox/<profile>/) and must be migrated/backed up manually.
-  programs.firefox = {
+  # LibreWolf profile data lives outside git (~/.librewolf/<profile>/) and must be migrated/backed up manually.
+  programs.librewolf = {
     enable = true;
-    package = pkgs.firefox;
+    package = pkgs.librewolf;
+
+    policies = {
+      DisableTelemetry = true;
+      DisablePocket = true;
+      ExtensionSettings =
+        let
+          moz = short: "https://addons.mozilla.org/firefox/downloads/latest/${short}/latest.xpi";
+        in
+        {
+          "uBlock0@raymondhill.net" = { install_url = moz "ublock-origin"; installation_mode = "force_installed"; };
+          "addon@darkreader.org" = { install_url = moz "darkreader"; installation_mode = "force_installed"; };
+          "sponsorBlocker@ajay.app" = { install_url = moz "sponsorblock"; installation_mode = "force_installed"; };
+          "keepassxc-browser@keepassxc.org" = { install_url = moz "keepassxc-browser"; installation_mode = "force_installed"; };
+          "firefox@tampermonkey.net" = { install_url = moz "tampermonkey"; installation_mode = "force_installed"; };
+          "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = { install_url = moz "return-youtube-dislikes"; installation_mode = "force_installed"; };
+        };
+    };
 
     profiles.default = {
       isDefault = true;
-      path = "dNhbcrRJ.Profile 1";
-
       # declarative prefs (sanitized: excludes passwords/logins/cookies/sessions/sync/account tokens)
       settings = {
         "ui.systemUsesDarkTheme" = 1;
@@ -108,7 +122,7 @@
         "browser.toolbarbuttons.introduced.sidebar-button" = true;
         "browser.translations.enable" = false;
         "browser.uiCustomization.state" =
-          "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[\"sponsorblocker_ajay_app-browser-action\",\"moz-addon-prod_7tv_app-browser-action\",\"ublock0_raymondhill_net-browser-action\",\"_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action\",\"_74145f27-f039-47ce-a470-a662b129930a_-browser-action\",\"_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action\",\"addon_darkreader_org-browser-action\",\"prathercc_gmail_com-browser-action\",\"librezam_librezam-browser-action\",\"firefox_tampermonkey_net-browser-action\",\"keepassxc-browser_keepassxc_org-browser-action\",\"extension_redact_dev-browser-action\"],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"vertical-spacer\",\"home-button\",\"urlbar-container\",\"downloads-button\",\"reset-pbm-toolbar-button\",\"unified-extensions-button\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"new-tab-button\",\"smartwindow-group-tabs-button\",\"ai-window-toggle\"],\"vertical-tabs\":[],\"PersonalToolbar\":[\"personal-bookmarks\"]},\"seen\":[\"reset-pbm-toolbar-button\",\"smartwindow-group-tabs-button\",\"ai-window-toggle\",\"developer-button\",\"screenshot-button\",\"ipprotection-button\",\"ublock0_raymondhill_net-browser-action\",\"_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action\",\"_74145f27-f039-47ce-a470-a662b129930a_-browser-action\",\"_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action\",\"addon_darkreader_org-browser-action\",\"prathercc_gmail_com-browser-action\",\"librezam_librezam-browser-action\",\"firefox_tampermonkey_net-browser-action\",\"moz-addon-prod_7tv_app-browser-action\",\"keepassxc-browser_keepassxc_org-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"extension_redact_dev-browser-action\"],\"dirtyAreaCache\":[\"nav-bar\",\"TabsToolbar\",\"vertical-tabs\",\"toolbar-menubar\",\"PersonalToolbar\",\"unified-extensions-area\"],\"currentVersion\":28,\"newElementCount\":8}";
+          "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[\"sponsorblocker_ajay_app-browser-action\",\"moz-addon-prod_7tv_app-browser-action\",\"ublock0_raymondhill_net-browser-action\",\"_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action\",\"addon_darkreader_org-browser-action\",\"prathercc_gmail_com-browser-action\",\"librezam_librezam-browser-action\",\"firefox_tampermonkey_net-browser-action\",\"keepassxc-browser_keepassxc_org-browser-action\",\"extension_redact_dev-browser-action\"],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"vertical-spacer\",\"home-button\",\"urlbar-container\",\"downloads-button\",\"reset-pbm-toolbar-button\",\"unified-extensions-button\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"new-tab-button\",\"smartwindow-group-tabs-button\",\"ai-window-toggle\"],\"vertical-tabs\":[],\"PersonalToolbar\":[\"personal-bookmarks\"]},\"seen\":[\"reset-pbm-toolbar-button\",\"smartwindow-group-tabs-button\",\"ai-window-toggle\",\"developer-button\",\"screenshot-button\",\"ipprotection-button\",\"ublock0_raymondhill_net-browser-action\",\"_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action\",\"addon_darkreader_org-browser-action\",\"prathercc_gmail_com-browser-action\",\"librezam_librezam-browser-action\",\"firefox_tampermonkey_net-browser-action\",\"moz-addon-prod_7tv_app-browser-action\",\"keepassxc-browser_keepassxc_org-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"extension_redact_dev-browser-action\"],\"dirtyAreaCache\":[\"nav-bar\",\"TabsToolbar\",\"vertical-tabs\",\"toolbar-menubar\",\"PersonalToolbar\",\"unified-extensions-area\"],\"currentVersion\":28,\"newElementCount\":8}";
         "browser.urlbar.lastUrlbarSearchSeconds" = 1794623971;
         "browser.urlbar.placeholderName" = "DuckDuckGo";
         "browser.urlbar.placeholderName.private" = "DuckDuckGo";
@@ -496,7 +510,4 @@
     };
   };
 
-  # Firefox new-tab custom wallpaper (profile-local library file, referenced by UUID pref above)
-  home.file.".mozilla/firefox/dNhbcrRJ.Profile 1/wallpaper/library/v1-custom-dark-center-1-e636fb5e-cd40-4250-b4d1-eac49792bbf2".source =
-    ../../assets/wallpapers/ergo-proxy-ne782l-2500x1406.jpg;
 }

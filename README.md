@@ -16,17 +16,19 @@ personal nix config  (flakes + home manager + plasma manager)
 │   └── visa/
 │       ├── qBittorrent/
 │       ├── vesktop/
+│       ├── zsh/
 │       ├── default.nix
 │       ├── desktop.nix
 │       ├── ghostty.nix
 │       ├── kwinoutputconfig-g25f2.json
 │       ├── librewolf.nix
+│       ├── nightcap.nix
+│       ├── nixcord.nix
 │       ├── nixvim.nix
 │       ├── packages.nix
-│       ├── qBittorrent.conf
 │       ├── qbittorrent.nix
 │       ├── sable.nix
-│       └── vscodium.nix
+│       └── zed.nix
 ├── hosts/
 │   └── termina/
 │       ├── default.nix
