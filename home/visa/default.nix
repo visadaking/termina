@@ -94,7 +94,7 @@ in
     ./desktop.nix
     ./packages.nix
     ./nixvim.nix
-    ./vscodium.nix
+    ./zed.nix
     ./firefox.nix
     ./ghostty.nix
     ./zsh
