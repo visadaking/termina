@@ -4,7 +4,8 @@
   # qbittorrent config + search plugins
   home.activation.qbittorrentConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     qb_dir="$HOME/.config/qBittorrent"
-    engines_dir="$qb_dir/nova3/engines"
+    data_dir="$HOME/.local/share/qBittorrent"
+    engines_dir="$data_dir/nova3/engines"
     conf="$qb_dir/qBittorrent.conf"
     secrets="${config.home.homeDirectory}/Projects/termina/secrets/qBittorrent.secrets.conf"
     $DRY_RUN_CMD mkdir -p "$engines_dir"
