@@ -15,6 +15,7 @@
     git
     python3
     ffmpeg-full
+    ffmpegthumbnailer
     zip
     unzip
     ripgrep
