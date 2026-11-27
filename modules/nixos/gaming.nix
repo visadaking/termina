@@ -72,6 +72,7 @@ in
   environment.systemPackages = with pkgs; [
     protonplus
     heroic
+    faugus-launcher
     mangohud
     gamescope
     # wine staging 64bit
