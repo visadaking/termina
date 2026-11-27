@@ -43,6 +43,7 @@ in
 
     # files/sync/productivity
     keepassxc
+    gnutar
     # localsend enabled system-wide via programs.localsend in modules/nixos/common.nix (opens firewall)
     obsidian # unfree/electron caveats
     onlyoffice-desktopeditors
@@ -87,6 +88,7 @@ in
     # gearlever           # temporarily disabled: fails to build due to dwarfs-0.15.8 tests in current nixpkgs (upstream issue)
 
     # gaming/helpers (Steam enabled system-wide); /games data untouched
+    steam-run
     prismlauncher
     itch
     itch-dl
@@ -102,6 +104,7 @@ in
 
     # VPN
     proton-vpn
+    amnezia-vpn
 
     # native replacements/helpers for former AppImages/niche
     musicpresence # Discord/music rich presence
