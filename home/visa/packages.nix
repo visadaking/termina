@@ -85,7 +85,6 @@ in
     cowsay
     nyancat
     wakeonlan # send magic packets to wake other machines (wol)
-    # gearlever           # temporarily disabled: fails to build due to dwarfs-0.15.8 tests in current nixpkgs (upstream issue)
 
     # gaming/helpers (Steam enabled system-wide); /games data untouched
     steam-run
