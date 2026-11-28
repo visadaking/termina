@@ -8,13 +8,10 @@
   # Shared system defaults (reusable across hosts). Host-specific hardware/quirks
   # belong in hosts/<name>/default.nix or hardware.nix.
 
-  # nixpkgs unstable
+  # nixpkgs is already nixos-unstable; keep pkgs.unstable alias for compatibility
   nixpkgs.overlays = [
     (final: prev: {
-      unstable = import inputs.nixpkgs-unstable {
-        system = prev.stdenv.hostPlatform.system;
-        config.allowUnfree = true;
-      };
+      unstable = prev;
     })
   ];
 

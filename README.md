@@ -72,7 +72,7 @@ switch/updates
 t-switch        # rebuild and switch now
 t-boot          # rebuild and set it for next boot (doesn't switch right away)
 t-update        # update all flake inputs
-t-update-input  # update one input: t-update-input nixpkgs-unstable
+t-update-input  # update one input: t-update-input nixpkgs
 t-ch            # update all nix channels
 t-syu           # t-update + t-test + t-boot (safe update, set for next boot)
 t-check         # nix flake check
