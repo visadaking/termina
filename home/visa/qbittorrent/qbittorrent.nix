@@ -58,7 +58,7 @@ PY
 
     # search plugins
     $DRY_RUN_CMD chmod -R u+w "$engines_dir" 2>/dev/null || true
-    $DRY_RUN_CMD cp -r ${./qBittorrent/nova3/engines}/. "$engines_dir"/
+    $DRY_RUN_CMD cp -r ${./nova3/engines}/. "$engines_dir"/
     $DRY_RUN_CMD chmod -R u+w "$engines_dir"
   '';
 }

@@ -1,7 +1,7 @@
 { config, osConfig ? { }, ... }:
 {
   # fastfetch config (portable across machines/users)
-  xdg.configFile."fastfetch/fastfetch-logo.jpg".source = ../../assets/wallpapers/fastfetch-logo.jpg;
+  xdg.configFile."fastfetch/fastfetch-logo.jpg".source = ../../../assets/wallpapers/fastfetch-logo.jpg;
   xdg.configFile."fastfetch/config.jsonc".text =
     let
       host = osConfig.networking.hostName or "nixos";

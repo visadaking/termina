@@ -6,8 +6,8 @@
 }:
 let
   # my own theme
-  simp1e-tokyo-night-storm = pkgs.callPackage ../../pkgs/simp1e-tokyo-night-storm.nix { };
-  papirus-icon-theme-teal = pkgs.callPackage ../../pkgs/papirus-icon-theme-teal.nix { };
+  simp1e-tokyo-night-storm = pkgs.callPackage ../../../pkgs/simp1e-tokyo-night-storm.nix { };
+  papirus-icon-theme-teal = pkgs.callPackage ../../../pkgs/papirus-icon-theme-teal.nix { };
 in
 {
   # my own theme
@@ -54,12 +54,12 @@ in
   };
 
   # G25F2 with VRR set to Automatic
-  xdg.configFile."kwinoutputconfig.json".source = ./kwinoutputconfig-g25f2.json;
-  xdg.configFile."plasma-org.kde.plasma.desktop-appletsrc".source = ./plasma-org.kde.plasma.desktop-appletsrc;
+  xdg.configFile."kwinoutputconfig.json".source = ../../../assets/plasma/kwinoutputconfig-g25f2.json;
+  xdg.configFile."plasma-org.kde.plasma.desktop-appletsrc".source = ../../../assets/plasma/plasma-org.kde.plasma.desktop-appletsrc;
 
   # Plasma color schemes (from termina-dots)
-  xdg.dataFile."color-schemes/TokyoNight.colors".source = ../../assets/plasma/color-schemes/TokyoNight.colors;
-  xdg.dataFile."color-schemes/TokyoNightStorm.colors".source = ../../assets/plasma/color-schemes/TokyoNightStorm.colors;
+  xdg.dataFile."color-schemes/TokyoNight.colors".source = ../../../assets/plasma/color-schemes/TokyoNight.colors;
+  xdg.dataFile."color-schemes/TokyoNightStorm.colors".source = ../../../assets/plasma/color-schemes/TokyoNightStorm.colors;
 
   # plasma manager
   # keybinds
@@ -189,6 +189,6 @@ in
 
   # kglobalshortcutsrc: managed as writable copy (plasma-manager writes to it during activation)
   home.activation.kglobalshortcutsrc = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    $DRY_RUN_CMD install -m 644 ${./kglobalshortcutsrc} "$HOME/.config/kglobalshortcutsrc"
+    $DRY_RUN_CMD install -m 644 ${../../../assets/plasma/kglobalshortcutsrc} "$HOME/.config/kglobalshortcutsrc"
   '';
 }

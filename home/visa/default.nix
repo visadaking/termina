@@ -8,21 +8,21 @@
 }:
 {
   imports = [
-    ./desktop.nix
     ./packages.nix
-    ./nixvim.nix
-    ./zed.nix
-    ./librewolf.nix
-    ./ghostty.nix
+    ./plasma/plasma.nix
+    ./plasma/wallpapers.nix
+    ./plasma/kdeconnect.nix
+    ./librewolf/librewolf.nix
+    ./nixcord/nixcord.nix
+    ./nixvim/nixvim.nix
+    ./zed/zed.nix
+    ./ghostty/ghostty.nix
+    ./starship/starship.nix
+    ./fastfetch/fastfetch.nix
+    ./sable/sable.nix
+    ./nightcap/nightcap.nix
+    ./qbittorrent/qbittorrent.nix
     ./zsh
-    ./sable.nix
-    ./qbittorrent.nix
-    ./nixcord.nix
-    ./nightcap.nix
-    ./starship.nix
-    ./fastfetch.nix
-    ./kdeconnect.nix
-    ./wallpapers.nix
   ];
 
   home.username = "visa";
@@ -173,8 +173,5 @@
   systemd.user.sessionVariables = {
     NIXOS_SPEECH = "False";
   };
-
-  # GoofCord managed declaratively (home/visa/goofcord.nix)
-
 }
 

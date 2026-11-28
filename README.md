@@ -9,26 +9,49 @@ a personal nix config immutable/atomic configuration with semi dendritic layout,
 ├── assets/
 │   ├── feishin/
 │   ├── live-wallpapers/
+│   ├── plasma/
+│   │   ├── color-schemes/
+│   │   ├── kglobalshortcutsrc
+│   │   ├── kwinoutputconfig-g25f2.json
+│   │   └── plasma-org.kde.plasma.desktop-appletsrc
 │   ├── sable-themes/
 │   ├── telegram/
 │   └── wallpapers/
 ├── home/
 │   └── visa/
-│       ├── qBittorrent/
-│       ├── vesktop/
-│       ├── zsh/
 │       ├── default.nix
-│       ├── desktop.nix
-│       ├── ghostty.nix
-│       ├── kwinoutputconfig-g25f2.json
-│       ├── librewolf.nix
-│       ├── nightcap.nix
-│       ├── nixcord.nix
-│       ├── nixvim.nix
 │       ├── packages.nix
-│       ├── qbittorrent.nix
-│       ├── sable.nix
-│       └── zed.nix
+│       ├── fastfetch/
+│       │   └── fastfetch.nix
+│       ├── ghostty/
+│       │   └── ghostty.nix
+│       ├── librewolf/
+│       │   └── librewolf.nix
+│       ├── nightcap/
+│       │   └── nightcap.nix
+│       ├── nixcord/
+│       │   ├── nixcord.nix
+│       │   └── vesktop/
+│       ├── nixvim/
+│       │   └── nixvim.nix
+│       ├── plasma/
+│       │   ├── kdeconnect.nix
+│       │   ├── plasma.nix
+│       │   └── wallpapers.nix
+│       ├── qbittorrent/
+│       │   ├── qbittorrent.nix
+│       │   ├── qBittorrent.conf
+│       │   └── nova3/
+│       ├── sable/
+│       │   └── sable.nix
+│       ├── starship/
+│       │   └── starship.nix
+│       ├── zed/
+│       │   └── zed.nix
+│       └── zsh/
+│           ├── aliases.nix
+│           ├── default.nix
+│           └── functions.nix
 ├── hosts/
 │   └── termina/
 │       ├── default.nix
@@ -36,18 +59,22 @@ a personal nix config immutable/atomic configuration with semi dendritic layout,
 ├── modules/
 │   └── nixos/
 │       ├── common.nix
+│       ├── default.nix
 │       ├── desktop-kde.nix
 │       ├── gaming.nix
 │       ├── nix-ld.nix
 │       ├── nix.nix
 │       ├── packages.nix
+│       ├── secrets.nix
 │       ├── security.nix
 │       ├── services.nix
 │       └── virtualisation.nix
 ├── pkgs/
+│   ├── desktop-plus.nix
 │   ├── openal-win.nix
 │   ├── papirus-icon-theme-teal.nix
 │   ├── plasma-smart-video-wallpaper-reborn.nix
+│   ├── root.nix
 │   ├── simp1e-tokyo-night-storm.nix
 │   └── whyd.nix
 ├── .gitignore
