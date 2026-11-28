@@ -47,13 +47,6 @@ a personal nix config immutable/atomic configuration with semi dendritic layout,
 │       ├── services.nix
 │       └── virtualisation.nix
 ├── pkgs/
-│   ├── desktop-plus.nix
-│   ├── openal-win.nix
-│   ├── papirus-icon-theme-teal.nix
-│   ├── plasma-smart-video-wallpaper-reborn.nix
-│   ├── root.nix
-│   ├── simp1e-tokyo-night-storm.nix
-│   └── whyd.nix
 ├── .gitignore
 ├── README.md
 ├── flake.lock
