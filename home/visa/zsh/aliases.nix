@@ -10,6 +10,7 @@
   t-syu = "nix flake update --flake ${homeDir}/Projects/termina && nix flake check ${homeDir}/Projects/termina && sudo nixos-rebuild dry-build --flake ${homeDir}/Projects/termina#termina && sudo nixos-rebuild boot --flake ${homeDir}/Projects/termina#termina";
   t-update = "nix flake update --flake ${homeDir}/Projects/termina";
   t-update-input = "f(){ nix flake lock --update-input \"\${1:?usage: t-update-input <input>}\" ${homeDir}/Projects/termina; }; f";
+  t-ch = "nix shell nixpkgs#nix -c nix-channel --update";
   t-test = "nix flake check ${homeDir}/Projects/termina && sudo nixos-rebuild dry-build --flake ${homeDir}/Projects/termina#termina";
   t-status = "termina status";
   t-log = "git -C ${homeDir}/Projects/termina log --oneline --decorate -10";
