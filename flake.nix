@@ -29,14 +29,6 @@
       url = "github:Maidware-Project/Maid-BT";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    maidshare = {
-      url = "github:Maidware-Project/Maidshare";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    maid-suite = {
-      url = "github:Maidware-Project/Maid-Suite";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     maid-runner = {
       url = "github:Maidware-Project/Maid-Runner";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -84,8 +76,6 @@
       sunshine-screen,
       nix-flatpak,
       maid-bt,
-      maidshare,
-      maid-suite,
       maid-runner,
       nixvim,
       nix-index-database,
@@ -143,8 +133,6 @@
                 plasma-manager.homeModules.plasma-manager
                 sunshine-screen.homeModules.default
                 maid-bt.homeModules.default
-                maidshare.homeModules.default
-                maid-suite.homeModules.default
                 maid-runner.homeModules.default
                 nixvim.homeModules.nixvim
                 nixcord.homeModules.nixcord

@@ -75,8 +75,6 @@
 
   # Maidware Project tools
   programs.maid-bt.enable = true;
-  programs.maidshare.enable = true;
-  programs.maid-suite.enable = true;
   programs.maid-runner.enable = true;
 
   programs.obs-studio = {
