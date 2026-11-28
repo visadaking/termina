@@ -64,7 +64,7 @@
     };
 
     sable-next = {
-      url = "https://git.sable.moe/SableClient/sable-next/archive/768be67a86dc141830603164d543a3f077b3f5c9.tar.gz";
+      url = "https://git.sable.moe/SableClient/sable-next/archive/59ad24fc9a652fce8593cbda104dbaa151f0b9aa.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

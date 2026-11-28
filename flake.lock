@@ -394,15 +394,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1794997977,
-        "narHash": "sha256-jB22k4GOraTtJJjb16RHH2xqZda6S6Qx0cTnlWI33U4=",
-        "rev": "768be67a86dc141830603164d543a3f077b3f5c9",
+        "lastModified": 1795809110,
+        "narHash": "sha256-e6V3BXjIxynQwloagAL+HRZttEq9NcLU+M9z0ogBmYs=",
+        "rev": "59ad24fc9a652fce8593cbda104dbaa151f0b9aa",
         "type": "tarball",
-        "url": "https://git.sable.moe/api/v1/repos/SableClient/sable-next/archive/768be67a86dc141830603164d543a3f077b3f5c9.tar.gz"
+        "url": "https://git.sable.moe/api/v1/repos/SableClient/sable-next/archive/59ad24fc9a652fce8593cbda104dbaa151f0b9aa.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://git.sable.moe/SableClient/sable-next/archive/768be67a86dc141830603164d543a3f077b3f5c9.tar.gz"
+        "url": "https://git.sable.moe/SableClient/sable-next/archive/59ad24fc9a652fce8593cbda104dbaa151f0b9aa.tar.gz"
       }
     },
     "sops-nix": {
