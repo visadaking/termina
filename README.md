@@ -22,36 +22,17 @@ a personal nix config immutable/atomic configuration with semi dendritic layout,
 │       ├── default.nix
 │       ├── packages.nix
 │       ├── fastfetch/
-│       │   └── fastfetch.nix
 │       ├── ghostty/
-│       │   └── ghostty.nix
 │       ├── librewolf/
-│       │   └── librewolf.nix
 │       ├── nightcap/
-│       │   └── nightcap.nix
 │       ├── nixcord/
-│       │   ├── nixcord.nix
-│       │   └── vesktop/
 │       ├── nixvim/
-│       │   └── nixvim.nix
 │       ├── plasma/
-│       │   ├── kdeconnect.nix
-│       │   ├── plasma.nix
-│       │   └── wallpapers.nix
 │       ├── qbittorrent/
-│       │   ├── qbittorrent.nix
-│       │   ├── qBittorrent.conf
-│       │   └── nova3/
 │       ├── sable/
-│       │   └── sable.nix
 │       ├── starship/
-│       │   └── starship.nix
 │       ├── zed/
-│       │   └── zed.nix
 │       └── zsh/
-│           ├── aliases.nix
-│           ├── default.nix
-│           └── functions.nix
 ├── hosts/
 │   └── termina/
 │       ├── default.nix
