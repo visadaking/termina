@@ -37,7 +37,9 @@ in
     beets # music library manager/tagger
     mediainfo # media file metadata
     libva-utils # provides vainfo (VA-API capability/driver info)
-    kdePackages.kdenlive
+    # editors (i miss camtasia studio but kdenlive sucks)
+    davinci-resolve
+    shotcut
     jellyfin-media-player # jellyfin desktop not server
     nicotine-plus
 
