@@ -4,16 +4,7 @@
   # Shared/reusable defaults live in modules/nixos/*.
   imports = [
     ./hardware.nix
-    ../../modules/nixos/common.nix
-    ../../modules/nixos/nix.nix
-    ../../modules/nixos/nix-ld.nix
-    ../../modules/nixos/security.nix
-    ../../modules/nixos/secrets.nix
-    ../../modules/nixos/services.nix
-    ../../modules/nixos/packages.nix
-    ../../modules/nixos/desktop-kde.nix
-    ../../modules/nixos/gaming.nix
-    ../../modules/nixos/virtualisation.nix
+    ../../modules/nixos
   ];
 
   networking.hostName = "termina";
