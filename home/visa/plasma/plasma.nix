@@ -125,6 +125,8 @@ in
       };
       # from old dotfiles
       kdeglobals.General.AccentColor = "92,185,174";
+      kdeglobals.General.TerminalApplication = "ghostty";
+      kdeglobals.General.TerminalService = "com.mitchellh.ghostty.desktop";
       # Spectacle: stupid fucking pop up
       spectaclerc.General.clipboardGroup = "PostScreenshotCopyImage";
       spectaclerc.GuiConfig.quitAfterSaveCopyExport = true;

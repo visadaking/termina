@@ -164,6 +164,7 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     BROWSER = "librewolf";
+    TERMINAL = "ghostty";
     NH_FLAKE = "$HOME/Projects/termina";
     # disable speech-dispatcher integration in electron wrappers (avoids crashes, thank you discord.)
     NIXOS_SPEECH = "False";
