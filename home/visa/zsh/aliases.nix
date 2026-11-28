@@ -25,6 +25,7 @@
   t-dns-revert = "f(){ i=\${1:?usage: t-dns-revert <iface>}; sudo resolvectl revert \"$i\" && echo reverted: $i; }; f";
   t-cc = "sudo resolvectl flush-caches";
   fixaudio = "systemctl --user restart wireplumber pipewire pipewire-pulse";
+  netup = "sudo systemctl start netbird tailscaled";
   cls = "clear";
   ff = "fastfetch";
   hy = "hyfetch";
