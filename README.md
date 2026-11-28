@@ -10,10 +10,6 @@ a personal nix config immutable/atomic configuration with semi dendritic layout,
 │   ├── feishin/
 │   ├── live-wallpapers/
 │   ├── plasma/
-│   │   ├── color-schemes/
-│   │   ├── kglobalshortcutsrc
-│   │   ├── kwinoutputconfig-g25f2.json
-│   │   └── plasma-org.kde.plasma.desktop-appletsrc
 │   ├── sable-themes/
 │   ├── telegram/
 │   └── wallpapers/
