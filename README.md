@@ -1,6 +1,6 @@
 # termina
 
-personal nix config  (flakes + home manager + plasma manager)
+a personal nix config immutable/atomic configuration with semi dendritic layout, flake and home manager and plasma manager  termina
 
 ## layout 
 
